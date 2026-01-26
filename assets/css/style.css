@@ -1227,6 +1227,14 @@ img {
         --section-spacing: 64px;
     }
 
+    .header .container {
+        height: 80px;
+    }
+
+    .logo img {
+        height: 60px;
+    }
+
     .nav {
         position: fixed;
         top: 0;
