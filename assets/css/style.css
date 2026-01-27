@@ -337,6 +337,10 @@ img {
     text-transform: uppercase;
     letter-spacing: 0.1em;
     margin-bottom: 24px;
+    opacity: 0;
+    transform: translateY(20px);
+    animation: fadeInUp 0.8s ease forwards;
+    animation-delay: 0.1s;
 }
 
 .hero-title {
@@ -346,20 +350,38 @@ img {
     letter-spacing: -0.03em;
     text-transform: uppercase;
     margin-bottom: 32px;
+    opacity: 0;
+    transform: translateY(20px);
+    animation: fadeInUp 0.8s ease forwards;
+    animation-delay: 0.2s;
 }
 
 .hero-subtitle {
     font-size: 18px;
-    color: var(--gray-600);
+    color: var(--gray-700, #374151);
     max-width: 500px;
     line-height: 1.6;
     margin-bottom: 40px;
+    opacity: 0;
+    transform: translateY(20px);
+    animation: fadeInUp 0.8s ease forwards;
+    animation-delay: 0.3s;
+}
+
+@keyframes fadeInUp {
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
 }
 
 .hero-cta {
     display: flex;
     gap: 16px;
     margin-bottom: 80px;
+    opacity: 0;
+    animation: fadeInUp 0.8s ease forwards;
+    animation-delay: 0.4s;
 }
 
 .hero-meta {
@@ -1267,7 +1289,7 @@ img {
     }
 
     .header .container {
-        height: 80px;
+        height: 120px;
         justify-content: center;
     }
 
@@ -1275,10 +1297,12 @@ img {
         position: absolute;
         left: 50%;
         transform: translateX(-50%);
+        transition: all 0.4s ease;
     }
 
     .logo img {
-        height: 60px;
+        height: 100px;
+        transition: all 0.4s ease;
     }
 
     .header-actions {
@@ -1297,8 +1321,8 @@ img {
     }
 
     .header.scrolled .logo.logo-center {
-        position: relative;
-        left: 0;
+        position: absolute;
+        left: 16px;
         transform: translateX(0);
     }
 
@@ -1350,7 +1374,7 @@ img {
     }
 
     .hero {
-        padding: 100px 24px 64px;
+        padding: 140px 24px 64px;
     }
 
     .hero-cta {
