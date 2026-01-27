@@ -949,7 +949,7 @@ img {
 }
 
 .price-card.featured:hover {
-    background: rgba(0, 0, 0, 0.5);
+    background: rgba(0, 0, 0, 0.8);
 }
 
 .price-badge {
@@ -984,7 +984,7 @@ img {
 }
 
 .price-card.featured .price-duration {
-    color: var(--gray-400);
+    color: var(--gray-300);
 }
 
 .price-dates {
@@ -994,7 +994,7 @@ img {
 }
 
 .price-card.featured .price-dates {
-    color: var(--gray-400);
+    color: var(--gray-300);
 }
 
 .price-amount {
