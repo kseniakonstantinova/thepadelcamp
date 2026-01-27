@@ -1361,11 +1361,9 @@ img {
     .logo.logo-center {
         position: absolute;
         left: 50%;
-        transform: translateX(-50%);
-        transition: left 0.4s ease, transform 0.4s ease, top 0.4s ease;
         top: 50%;
-        margin-top: 0;
         transform: translate(-50%, -50%);
+        transition: left 0.4s ease, transform 0.4s ease, top 0.4s ease;
     }
 
     .logo img {
