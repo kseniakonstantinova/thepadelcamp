@@ -1266,17 +1266,24 @@ img {
     }
 
     .header .container {
-        height: 160px;
+        height: 80px;
+        justify-content: center;
     }
 
     .logo.logo-center {
-        position: absolute;
-        left: 50%;
-        transform: translateX(-50%);
+        position: static;
+        transform: none;
     }
 
     .logo img {
-        height: 140px;
+        height: 60px;
+    }
+
+    .header-actions {
+        position: absolute;
+        right: 16px;
+        top: 50%;
+        transform: translateY(-50%);
     }
 
     .header.scrolled .container {
@@ -1288,9 +1295,8 @@ img {
     }
 
     .header.scrolled .logo.logo-center {
-        position: relative;
-        left: 0;
-        transform: translateX(0);
+        position: static;
+        transform: none;
     }
 
     .nav {
@@ -1305,6 +1311,8 @@ img {
         justify-content: center;
         transition: 0.3s ease;
         z-index: 998;
+        opacity: 1;
+        visibility: visible;
     }
 
     .nav.active {
