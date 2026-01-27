@@ -1312,7 +1312,7 @@ img {
     }
 
     .header .container {
-        height: 120px;
+        height: 170px;
         justify-content: center;
     }
 
@@ -1320,12 +1320,12 @@ img {
         position: absolute;
         left: 50%;
         transform: translateX(-50%);
-        transition: all 0.4s ease;
+        transition: left 0.4s ease, transform 0.4s ease;
     }
 
     .logo img {
-        height: 100px;
-        transition: all 0.4s ease;
+        height: 150px;
+        transition: height 0.4s ease;
     }
 
     .header-actions {
@@ -1344,7 +1344,6 @@ img {
     }
 
     .header.scrolled .logo.logo-center {
-        position: absolute;
         left: 16px;
         transform: translateX(0);
     }
