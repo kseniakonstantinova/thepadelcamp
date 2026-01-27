@@ -339,7 +339,9 @@ img {
     margin-bottom: 24px;
     opacity: 0;
     transform: translateY(20px);
+    -webkit-animation: fadeInUp 0.8s ease forwards;
     animation: fadeInUp 0.8s ease forwards;
+    -webkit-animation-delay: 0.1s;
     animation-delay: 0.1s;
 }
 
@@ -352,7 +354,9 @@ img {
     margin-bottom: 32px;
     opacity: 0;
     transform: translateY(20px);
+    -webkit-animation: fadeInUp 0.8s ease forwards;
     animation: fadeInUp 0.8s ease forwards;
+    -webkit-animation-delay: 0.2s;
     animation-delay: 0.2s;
 }
 
@@ -364,11 +368,28 @@ img {
     margin-bottom: 40px;
     opacity: 0;
     transform: translateY(20px);
+    -webkit-animation: fadeInUp 0.8s ease forwards;
     animation: fadeInUp 0.8s ease forwards;
+    -webkit-animation-delay: 0.3s;
     animation-delay: 0.3s;
 }
 
 @keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@-webkit-keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
     to {
         opacity: 1;
         transform: translateY(0);
@@ -380,7 +401,9 @@ img {
     gap: 16px;
     margin-bottom: 80px;
     opacity: 0;
+    -webkit-animation: fadeInUp 0.8s ease forwards;
     animation: fadeInUp 0.8s ease forwards;
+    -webkit-animation-delay: 0.4s;
     animation-delay: 0.4s;
 }
 
