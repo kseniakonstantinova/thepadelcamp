@@ -186,12 +186,8 @@ img {
     display: flex;
     align-items: center;
     justify-content: space-between;
-    height: 160px;
+    height: 180px;
     position: relative;
-}
-
-.header-left {
-    width: 100px;
 }
 
 .logo {
@@ -207,7 +203,7 @@ img {
 }
 
 .logo img {
-    height: 144px;
+    height: 160px;
     width: auto;
     transition: all 0.3s ease;
 }
@@ -225,10 +221,6 @@ img {
 
 .header.scrolled .container {
     height: 70px;
-}
-
-.header.scrolled .header-left {
-    display: none;
 }
 
 .nav-list {
@@ -1261,11 +1253,7 @@ img {
     }
 
     .header .container {
-        height: 140px;
-    }
-
-    .header-left {
-        display: none;
+        height: 160px;
     }
 
     .logo.logo-center {
@@ -1275,7 +1263,7 @@ img {
     }
 
     .logo img {
-        height: 120px;
+        height: 140px;
     }
 
     .header.scrolled .container {
