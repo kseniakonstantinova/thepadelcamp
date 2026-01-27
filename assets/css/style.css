@@ -1271,8 +1271,9 @@ img {
     }
 
     .logo.logo-center {
-        position: static;
-        transform: none;
+        position: absolute;
+        left: 50%;
+        transform: translateX(-50%);
     }
 
     .logo img {
@@ -1295,8 +1296,9 @@ img {
     }
 
     .header.scrolled .logo.logo-center {
-        position: static;
-        transform: none;
+        position: relative;
+        left: 0;
+        transform: translateX(0);
     }
 
     .nav {
