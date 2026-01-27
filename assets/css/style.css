@@ -363,8 +363,9 @@ img {
 }
 
 .hero-meta {
-    display: flex;
-    gap: 40px;
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 24px;
     padding-top: 40px;
     border-top: none;
 }
@@ -372,7 +373,7 @@ img {
 .meta-item {
     display: flex;
     flex-direction: column;
-    padding: 24px 32px;
+    padding: 24px;
     background: var(--glass-bg);
     backdrop-filter: blur(var(--glass-blur));
     -webkit-backdrop-filter: blur(var(--glass-blur));
@@ -382,7 +383,7 @@ img {
 }
 
 .meta-value {
-    font-size: 48px;
+    font-size: 36px;
     font-weight: 700;
     line-height: 1;
     letter-spacing: -0.02em;
@@ -1357,8 +1358,20 @@ img {
     }
 
     .hero-meta {
-        flex-wrap: wrap;
-        gap: 32px;
+        grid-template-columns: repeat(2, 1fr);
+        gap: 16px;
+    }
+
+    .meta-item {
+        padding: 20px 16px;
+    }
+
+    .meta-value {
+        font-size: 28px;
+    }
+
+    .meta-label {
+        font-size: 11px;
     }
 
     .dates-grid {
