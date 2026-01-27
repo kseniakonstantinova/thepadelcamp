@@ -186,7 +186,7 @@ img {
     display: flex;
     align-items: center;
     justify-content: space-between;
-    height: 180px;
+    height: 25vh;
     position: relative;
 }
 
@@ -203,8 +203,9 @@ img {
 }
 
 .logo img {
-    height: 160px;
+    height: 22vh;
     width: auto;
+    object-fit: contain;
     transition: all 0.3s ease;
 }
 
@@ -221,6 +222,18 @@ img {
 
 .header.scrolled .container {
     height: 70px;
+}
+
+/* Hide nav on desktop initially, show on scroll */
+.nav {
+    opacity: 0;
+    visibility: hidden;
+    transition: all 0.3s ease;
+}
+
+.header.scrolled .nav {
+    opacity: 1;
+    visibility: visible;
 }
 
 .nav-list {
@@ -295,7 +308,7 @@ img {
     display: flex;
     align-items: center;
     background: linear-gradient(135deg, #f5f5f5 0%, #e8e8e8 50%, #f0f0f0 100%);
-    padding: 120px 24px 80px;
+    padding: calc(25vh + 40px) 24px 80px;
     position: relative;
     overflow: hidden;
 }
