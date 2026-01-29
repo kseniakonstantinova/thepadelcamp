@@ -79,8 +79,8 @@ function initSmoothScroll() {
  * Countdown Timer
  */
 function initCountdown() {
-    // Camp start date: March 6, 2026
-    const campDate = new Date('March 6, 2026 09:00:00').getTime();
+    // Camp start date: April 13, 2026
+    const campDate = new Date('April 13, 2026 09:00:00').getTime();
 
     const daysEl = document.getElementById('days');
     const hoursEl = document.getElementById('hours');
@@ -234,7 +234,7 @@ function initContactForm() {
     if (bookLimassol) {
         bookLimassol.addEventListener('click', function(e) {
             e.preventDefault();
-            const message = encodeURIComponent('Hi! I would like to book a spot for the Limassol 5-Day Padel Camp (March 6-10, 2026). Please send me the payment details.');
+            const message = encodeURIComponent('Hi! I would like to book a spot for the 5-Day Padel Camp in Limassol (April 13-17, 2026). Please send me the payment details.');
             window.open(`https://wa.me/${whatsappNumber}?text=${message}`, '_blank');
         });
     }
@@ -242,15 +242,7 @@ function initContactForm() {
     if (bookLarnaca) {
         bookLarnaca.addEventListener('click', function(e) {
             e.preventDefault();
-            const message = encodeURIComponent('Hi! I would like to book a spot for the Larnaca 3-Day Padel Camp (March 10-12, 2026). Please send me the payment details.');
-            window.open(`https://wa.me/${whatsappNumber}?text=${message}`, '_blank');
-        });
-    }
-
-    if (bookBoth) {
-        bookBoth.addEventListener('click', function(e) {
-            e.preventDefault();
-            const message = encodeURIComponent('Hi! I would like to book the Full Experience package (both Limassol and Larnaca camps, March 6-12, 2026). Please send me the payment details.');
+            const message = encodeURIComponent('Hi! I would like to book a spot for the 3-Day Padel Camp in Limassol (April 17-19, 2026). Please send me the payment details.');
             window.open(`https://wa.me/${whatsappNumber}?text=${message}`, '_blank');
         });
     }
