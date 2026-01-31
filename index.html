@@ -23,7 +23,10 @@
                 <ul class="nav-list">
                     <li><a href="#program">Program</a></li>
                     <li><a href="#coaches">Coaches</a></li>
+                    <li><a href="#venue">Venue</a></li>
+                    <li><a href="#services">Services</a></li>
                     <li><a href="#pricing">Pricing</a></li>
+                    <li><a href="#approach">Our Approach</a></li>
                     <li><a href="#faq">FAQ</a></li>
                 </ul>
             </nav>
@@ -305,6 +308,11 @@
                         <span class="coach-flag">Spain</span>
                         <h3 class="coach-name">Head Coach</h3>
                         <p class="coach-bio">Spanish Padel Federation Certified. 10+ years coaching experience. Former professional player.</p>
+                        <ul class="coach-credentials">
+                            <li>Spanish Padel Federation Level 3</li>
+                            <li>Former Top 100 WPT Player</li>
+                            <li>500+ students trained</li>
+                        </ul>
                     </div>
                 </div>
                 <div class="coach-card">
@@ -317,11 +325,110 @@
                         <span class="coach-flag">Spain</span>
                         <h3 class="coach-name">Technical Coach</h3>
                         <p class="coach-bio">WPT training experience. Technical development specialist. Tactical analysis expert.</p>
+                        <ul class="coach-credentials">
+                            <li>WPT Academy Trainer</li>
+                            <li>Video Analysis Specialist</li>
+                            <li>Youth Development Expert</li>
+                        </ul>
                     </div>
                 </div>
             </div>
         </div>
     </section>
+
+    <!-- Venue Section -->
+    <section class="venue-section" id="venue">
+        <div class="container">
+            <div class="venue-header">
+                <h2 class="section-title">THE VENUE</h2>
+                <p class="section-subtitle">Premium padel facility in the heart of Limassol</p>
+            </div>
+            <div class="venue-content">
+                <div class="venue-info">
+                    <div class="venue-features">
+                        <div class="venue-feature">
+                            <span class="venue-icon">01</span>
+                            <div>
+                                <h4>Professional Courts</h4>
+                                <p>4 premium panoramic padel courts with professional lighting</p>
+                            </div>
+                        </div>
+                        <div class="venue-feature">
+                            <span class="venue-icon">02</span>
+                            <div>
+                                <h4>Modern Facilities</h4>
+                                <p>Locker rooms, showers, and equipment storage</p>
+                            </div>
+                        </div>
+                        <div class="venue-feature">
+                            <span class="venue-icon">03</span>
+                            <div>
+                                <h4>Free Parking</h4>
+                                <p>Convenient on-site parking for all participants</p>
+                            </div>
+                        </div>
+                        <div class="venue-feature">
+                            <span class="venue-icon">04</span>
+                            <div>
+                                <h4>Clubhouse & Bar</h4>
+                                <p>Relax between sessions with refreshments and snacks</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="venue-location">
+                        <h4>Training Location</h4>
+                        <p class="venue-tagline">Our camps take place at carefully selected premium facilities.</p>
+                        <p class="venue-host">Host Venue: <strong>The Padel K</strong></p>
+                        <p>Limassol, Cyprus</p>
+                        <a href="https://maps.app.goo.gl/Yn46DQeTiVvnqfENA" target="_blank" class="btn-map">
+                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
+                                <path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/>
+                            </svg>
+                            View on Google Maps
+                        </a>
+                    </div>
+                </div>
+                <div class="venue-gallery">
+                    <div class="venue-gallery-grid">
+                        <div class="venue-thumb" onclick="openVenueModal(0)">
+                            <img src="assets/images/venue/court-1.jpg" alt="Padel Court 1">
+                            <span class="venue-zoom">+</span>
+                        </div>
+                        <div class="venue-thumb" onclick="openVenueModal(1)">
+                            <img src="assets/images/venue/court-2.jpg" alt="Padel Court 2">
+                            <span class="venue-zoom">+</span>
+                        </div>
+                        <div class="venue-thumb" onclick="openVenueModal(2)">
+                            <img src="assets/images/venue/court-3.jpg" alt="Padel Court 3">
+                            <span class="venue-zoom">+</span>
+                        </div>
+                        <div class="venue-thumb" onclick="openVenueModal(3)">
+                            <img src="assets/images/venue/facilities.jpg" alt="Club Facilities">
+                            <span class="venue-zoom">+</span>
+                        </div>
+                        <div class="venue-thumb" onclick="openVenueModal(4)">
+                            <img src="assets/images/venue/clubhouse.jpg" alt="Clubhouse">
+                            <span class="venue-zoom">+</span>
+                        </div>
+                        <div class="venue-thumb" onclick="openVenueModal(5)">
+                            <img src="assets/images/venue/lounge.jpg" alt="Lounge Area">
+                            <span class="venue-zoom">+</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Venue Modal -->
+    <div class="venue-modal" id="venueModal">
+        <button class="venue-modal-close" onclick="closeVenueModal()">&times;</button>
+        <button class="venue-modal-prev" onclick="changeVenueSlide(-1)">&#10094;</button>
+        <button class="venue-modal-next" onclick="changeVenueSlide(1)">&#10095;</button>
+        <div class="venue-modal-content">
+            <img id="venueModalImg" src="" alt="Venue">
+        </div>
+    </div>
 
     <!-- Services Section -->
     <section class="services-section" id="services">
@@ -349,6 +456,41 @@
         </div>
     </section>
 
+    <!-- What's Included Section -->
+    <section class="included-section">
+        <div class="container">
+            <div class="included-header">
+                <h2 class="section-title">WHAT'S INCLUDED</h2>
+            </div>
+            <div class="included-grid">
+                <div class="included-column">
+                    <h4 class="included-title included-yes">Included</h4>
+                    <ul class="included-list">
+                        <li>All training sessions with Spanish coaches</li>
+                        <li>Level assessment and group placement</li>
+                        <li>Physio masterclasses</li>
+                        <li>Americano tournament entry</li>
+                        <li>Celebration party with food & drinks</li>
+                        <li>Training balls provided</li>
+                        <li>Water during sessions</li>
+                        <li>Participation certificate</li>
+                    </ul>
+                </div>
+                <div class="included-column">
+                    <h4 class="included-title included-no">Not Included</h4>
+                    <ul class="included-list not-included">
+                        <li>Accommodation</li>
+                        <li>Flights / Transportation</li>
+                        <li>Travel insurance</li>
+                        <li>Personal padel racket (rental available €10/day)</li>
+                        <li>Private lessons (optional add-on)</li>
+                        <li>Media package (optional add-on)</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
     <!-- Pricing Section -->
     <section class="pricing-section" id="pricing">
         <div class="container">
@@ -358,6 +500,10 @@
             </div>
             <div class="pricing-grid">
                 <div class="price-card featured">
+                    <div class="spots-badge">
+                        <span class="spots-number">18</span>
+                        <span class="spots-text">spots left out of 24</span>
+                    </div>
                     <div class="price-header">
                         <span class="price-location">5-Day Camp</span>
                         <span class="price-duration">Limassol</span>
@@ -379,6 +525,10 @@
                 </div>
 
                 <div class="price-card">
+                    <div class="spots-badge">
+                        <span class="spots-number">18</span>
+                        <span class="spots-text">spots left out of 24</span>
+                    </div>
                     <div class="price-header">
                         <span class="price-location">3-Day Camp</span>
                         <span class="price-duration">Limassol</span>
@@ -397,6 +547,60 @@
                         <li>Certificate</li>
                     </ul>
                     <a href="#" class="btn btn-primary btn-block" id="bookLarnaca">Register 3-Day Camp</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Our Approach Section -->
+    <section class="approach-section" id="approach">
+        <div class="container">
+            <div class="approach-header">
+                <h2 class="section-title">OUR APPROACH</h2>
+                <p class="section-subtitle">What makes our training different</p>
+            </div>
+            <div class="approach-accordion">
+                <div class="approach-item">
+                    <button class="approach-question">
+                        <span>Goals</span>
+                        <span class="approach-icon"></span>
+                    </button>
+                    <div class="approach-answer">
+                        <ul class="approach-list">
+                            <li><strong>Personalized Development</strong> — Every player receives individual attention. We assess your current level and create a tailored improvement plan that targets your specific weaknesses while building on your strengths.</li>
+                            <li><strong>Learn from the Best</strong> — Train under professional coaches from Spain, the global epicenter of padel. Absorb techniques and strategies used at the highest competitive levels.</li>
+                            <li><strong>Real Match Experience</strong> — Theory means nothing without practice. Daily competitive matches let you apply new skills under pressure, building confidence and match intelligence.</li>
+                            <li><strong>Complete Player Growth</strong> — We develop all aspects of your game: technical skills, tactical awareness, physical conditioning, and mental resilience. You leave as a more complete player.</li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="approach-item">
+                    <button class="approach-question">
+                        <span>Methodology</span>
+                        <span class="approach-icon"></span>
+                    </button>
+                    <div class="approach-answer">
+                        <ul class="approach-list">
+                            <li><strong>Attack-First Philosophy</strong> — Modern padel rewards proactive play. We teach you to control the net, dictate rallies, and put opponents under constant pressure with aggressive positioning.</li>
+                            <li><strong>Precision & Mobility</strong> — Master the art of court coverage. Quick feet, smart positioning, and precise shot placement are the foundation of winning padel.</li>
+                            <li><strong>Champion Mindset</strong> — Technical skill alone doesn't win matches. We train mental toughness: staying calm under pressure, recovering from mistakes, and maintaining focus throughout long rallies.</li>
+                            <li><strong>Intensive Immersion</strong> — Multiple daily sessions combine drills, point play, video analysis, and theory. This immersive approach accelerates learning far beyond weekly lessons.</li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="approach-item">
+                    <button class="approach-question">
+                        <span>Cancellation Policy</span>
+                        <span class="approach-icon"></span>
+                    </button>
+                    <div class="approach-answer">
+                        <ul class="approach-list">
+                            <li><strong>30+ days before camp</strong> — Full refund. Cancel for any reason and receive 100% of your payment back.</li>
+                            <li><strong>15–29 days before camp</strong> — 50% refund. We understand plans change, so you'll receive half of your payment back.</li>
+                            <li><strong>Less than 15 days</strong> — No refund available. However, you may transfer your spot to another participant at any time.</li>
+                            <li><strong>Spot transfers</strong> — You can transfer your booking to another person at any time before the camp starts, free of charge. Just let us know the new participant's details.</li>
+                        </ul>
+                    </div>
                 </div>
             </div>
         </div>

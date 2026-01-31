@@ -162,6 +162,25 @@ function initFAQ() {
             }
         });
     });
+
+    // Approach Accordion (Goals/Methodology)
+    const approachItems = document.querySelectorAll('.approach-item');
+
+    approachItems.forEach(item => {
+        const question = item.querySelector('.approach-question');
+
+        question.addEventListener('click', function() {
+            const isActive = item.classList.contains('active');
+
+            // Close all approach items
+            approachItems.forEach(i => i.classList.remove('active'));
+
+            // Open clicked item if it wasn't active
+            if (!isActive) {
+                item.classList.add('active');
+            }
+        });
+    });
 }
 
 /**
@@ -288,6 +307,70 @@ function formatDate(date, locale = 'en') {
     };
     return new Date(date).toLocaleDateString(locale, options);
 }
+
+/**
+ * Venue Gallery Modal
+ */
+const venueImages = [
+    'assets/images/venue/court-1.jpg',
+    'assets/images/venue/court-2.jpg',
+    'assets/images/venue/court-3.jpg',
+    'assets/images/venue/facilities.jpg',
+    'assets/images/venue/clubhouse.jpg',
+    'assets/images/venue/lounge.jpg'
+];
+let currentVenueSlide = 0;
+
+function openVenueModal(index) {
+    currentVenueSlide = index;
+    const modal = document.getElementById('venueModal');
+    const img = document.getElementById('venueModalImg');
+    if (modal && img) {
+        img.src = venueImages[index];
+        modal.classList.add('active');
+        document.body.style.overflow = 'hidden';
+    }
+}
+
+function closeVenueModal() {
+    const modal = document.getElementById('venueModal');
+    if (modal) {
+        modal.classList.remove('active');
+        document.body.style.overflow = '';
+    }
+}
+
+function changeVenueSlide(direction) {
+    currentVenueSlide += direction;
+    if (currentVenueSlide >= venueImages.length) currentVenueSlide = 0;
+    if (currentVenueSlide < 0) currentVenueSlide = venueImages.length - 1;
+
+    const img = document.getElementById('venueModalImg');
+    if (img) {
+        img.src = venueImages[currentVenueSlide];
+    }
+}
+
+// Close modal on escape key
+document.addEventListener('keydown', function(e) {
+    if (e.key === 'Escape') {
+        closeVenueModal();
+    }
+    if (e.key === 'ArrowRight') {
+        changeVenueSlide(1);
+    }
+    if (e.key === 'ArrowLeft') {
+        changeVenueSlide(-1);
+    }
+});
+
+// Close modal on backdrop click
+document.addEventListener('click', function(e) {
+    const modal = document.getElementById('venueModal');
+    if (e.target === modal) {
+        closeVenueModal();
+    }
+});
 
 /**
  * Active Navigation Link Highlight
