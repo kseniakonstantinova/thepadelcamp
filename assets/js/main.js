@@ -519,7 +519,7 @@ document.addEventListener('DOMContentLoaded', function() {
                             📥 Download Payment Details
                         </button>
 
-                        <a href="https://wa.me/35799123456?text=${encodeURIComponent('Hi! I have completed the payment for ' + campName + '. Name: ' + data.fullName)}" target="_blank" class="btn btn-whatsapp btn-block">
+                        <a href="https://wa.me/35797497756?text=${encodeURIComponent('Hi! I have completed the payment for ' + campName + '. Name: ' + data.fullName)}" target="_blank" class="btn btn-whatsapp btn-block">
                             Confirm Payment via WhatsApp
                         </a>
                     </div>
