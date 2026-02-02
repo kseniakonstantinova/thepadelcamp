@@ -243,28 +243,6 @@ function initContactForm() {
         });
     }
 
-    // Booking buttons - redirect to WhatsApp with pre-filled message
-    const bookLimassol = document.getElementById('bookLimassol');
-    const bookLarnaca = document.getElementById('bookLarnaca');
-    const bookBoth = document.getElementById('bookBoth');
-
-    const whatsappNumber = '35799123456'; // Replace with actual number
-
-    if (bookLimassol) {
-        bookLimassol.addEventListener('click', function(e) {
-            e.preventDefault();
-            const message = encodeURIComponent('Hi! I would like to book a spot for the 5-Day Padel Camp in Limassol (April 13-17, 2026). Please send me the payment details.');
-            window.open(`https://wa.me/${whatsappNumber}?text=${message}`, '_blank');
-        });
-    }
-
-    if (bookLarnaca) {
-        bookLarnaca.addEventListener('click', function(e) {
-            e.preventDefault();
-            const message = encodeURIComponent('Hi! I would like to book a spot for the 3-Day Padel Camp in Limassol (April 17-19, 2026). Please send me the payment details.');
-            window.open(`https://wa.me/${whatsappNumber}?text=${message}`, '_blank');
-        });
-    }
 }
 
 /**
@@ -403,3 +381,190 @@ function initActiveNavHighlight() {
 
 // Initialize active nav highlight
 initActiveNavHighlight();
+
+/**
+ * Registration Modal
+ */
+function openRegistrationModal(campType) {
+    const modal = document.getElementById('registrationModal');
+    if (modal) {
+        modal.classList.add('active');
+        document.body.style.overflow = 'hidden';
+
+        // Pre-select camp type if specified
+        if (campType === '5-day') {
+            document.querySelector('input[name="camp"][value="5-day"]').checked = true;
+        } else if (campType === '3-day') {
+            document.querySelector('input[name="camp"][value="3-day"]').checked = true;
+        }
+        updateCampSelection();
+    }
+}
+
+function closeRegistrationModal() {
+    const modal = document.getElementById('registrationModal');
+    if (modal) {
+        modal.classList.remove('active');
+        document.body.style.overflow = '';
+    }
+}
+
+function updateCampSelection() {
+    const selectedCamp = document.querySelector('input[name="camp"]:checked');
+    const infoEl = document.getElementById('selectedCampInfo');
+
+    if (selectedCamp && infoEl) {
+        if (selectedCamp.value === '5-day') {
+            infoEl.textContent = '5-Day Intensive Camp — €800';
+        } else {
+            infoEl.textContent = '3-Day Weekend Camp — €400';
+        }
+    }
+}
+
+// Close registration modal on escape key
+document.addEventListener('keydown', function(e) {
+    if (e.key === 'Escape') {
+        closeRegistrationModal();
+    }
+});
+
+// Close registration modal on backdrop click
+document.addEventListener('click', function(e) {
+    const modal = document.getElementById('registrationModal');
+    if (e.target === modal) {
+        closeRegistrationModal();
+    }
+});
+
+// Registration form submission
+document.addEventListener('DOMContentLoaded', function() {
+    const registrationForm = document.getElementById('registrationForm');
+
+    if (registrationForm) {
+        registrationForm.addEventListener('submit', function(e) {
+            e.preventDefault();
+
+            // Validate at least one goal is selected
+            const goals = document.querySelectorAll('input[name="goals"]:checked');
+            if (goals.length === 0) {
+                alert('Please select at least one goal for the camp.');
+                return;
+            }
+
+            // Collect form data
+            const formData = new FormData(this);
+            const data = {
+                camp: formData.get('camp'),
+                fullName: formData.get('fullName'),
+                phone: formData.get('phone'),
+                email: formData.get('email'),
+                level: formData.get('level'),
+                goals: Array.from(goals).map(g => g.value),
+                skills: formData.get('skills'),
+                tshirt: formData.get('tshirt'),
+                consent: formData.get('consent') ? true : false
+            };
+
+            console.log('Registration data:', data);
+
+            // Create WhatsApp message with form data
+            const campName = data.camp === '5-day' ? '5-Day Intensive Camp (April 13-17)' : '3-Day Weekend Camp (April 17-19)';
+            const price = data.camp === '5-day' ? '€800' : '€400';
+            const priceNum = data.camp === '5-day' ? 800 : 400;
+            const goalsText = data.goals.join('; ');
+
+            // Show payment details screen
+            const modalContent = document.querySelector('.registration-modal-content');
+            modalContent.innerHTML = `
+                <button class="registration-modal-close" onclick="closeRegistrationModal()">&times;</button>
+                <div class="payment-success">
+                    <div class="payment-success-icon">✓</div>
+                    <h2>Registration Submitted!</h2>
+                    <p class="payment-success-subtitle">Thank you, ${data.fullName}!</p>
+
+                    <div class="payment-details-box">
+                        <h3>Payment Details</h3>
+                        <p class="payment-amount">Amount: <strong>€${priceNum}</strong></p>
+                        <p class="payment-camp">${campName}</p>
+
+                        <div class="bank-details">
+                            <div class="bank-detail-row">
+                                <span class="bank-label">Account Name:</span>
+                                <span class="bank-value">ANDREOU ANDREAS</span>
+                            </div>
+                            <div class="bank-detail-row">
+                                <span class="bank-label">IBAN:</span>
+                                <span class="bank-value iban">CY19 0050 0109 0001 0910 5071 8000</span>
+                            </div>
+                            <div class="bank-detail-row">
+                                <span class="bank-label">SWIFT/BIC:</span>
+                                <span class="bank-value">HEBACY2N</span>
+                            </div>
+                            <div class="bank-detail-row">
+                                <span class="bank-label">Bank:</span>
+                                <span class="bank-value">Eurobank Cyprus</span>
+                            </div>
+                        </div>
+
+                        <div class="payment-note">
+                            <strong>Important:</strong> Please include your full name in the payment reference.
+                        </div>
+                    </div>
+
+                    <p class="payment-confirm-text">After completing the transfer, please confirm your payment via WhatsApp:</p>
+
+                    <div class="payment-actions">
+                        <button onclick="downloadPaymentDetails('${data.fullName}', '${campName}', ${priceNum})" class="btn btn-download btn-block">
+                            📥 Download Payment Details
+                        </button>
+
+                        <a href="https://wa.me/35799123456?text=${encodeURIComponent('Hi! I have completed the payment for ' + campName + '. Name: ' + data.fullName)}" target="_blank" class="btn btn-whatsapp btn-block">
+                            Confirm Payment via WhatsApp
+                        </a>
+                    </div>
+                </div>
+            `;
+        });
+    }
+
+    // Update booking buttons to open modal
+    const bookLimassol = document.getElementById('bookLimassol');
+    const bookLarnaca = document.getElementById('bookLarnaca');
+
+    if (bookLimassol) {
+        bookLimassol.addEventListener('click', function(e) {
+            e.preventDefault();
+            openRegistrationModal('5-day');
+        });
+    }
+
+    if (bookLarnaca) {
+        bookLarnaca.addEventListener('click', function(e) {
+            e.preventDefault();
+            openRegistrationModal('3-day');
+        });
+    }
+
+    // Hero CTA buttons
+    const heroCta = document.querySelector('.hero-cta a[href="#pricing"]');
+    if (heroCta) {
+        heroCta.addEventListener('click', function(e) {
+            e.preventDefault();
+            openRegistrationModal('5-day');
+        });
+    }
+});
+
+/**
+ * Download Payment Details PDF
+ */
+function downloadPaymentDetails(fullName, campName, amount) {
+    // Download the bank details PDF certificate
+    const link = document.createElement('a');
+    link.href = 'assets/Padel_Camp_Bank_Details.pdf';
+    link.download = 'Padel_Camp_Bank_Details.pdf';
+    document.body.appendChild(link);
+    link.click();
+    document.body.removeChild(link);
+}
