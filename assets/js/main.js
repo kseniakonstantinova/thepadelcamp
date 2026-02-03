@@ -468,11 +468,11 @@ document.addEventListener('DOMContentLoaded', function() {
 
             console.log('Registration data:', data);
 
-            // Create WhatsApp message with form data
+            // Create payment details
             const campName = data.camp === '5-day' ? '5-Day Intensive Camp (April 13-17)' : '3-Day Weekend Camp (April 17-19)';
-            const price = data.camp === '5-day' ? '€800' : '€400';
             const priceNum = data.camp === '5-day' ? 800 : 400;
-            const goalsText = data.goals.join('; ');
+            const qrImage = data.camp === '5-day' ? 'assets/qr-payment-5day.jpeg' : 'assets/qr-payment-3day.jpeg';
+            const stripeLink = data.camp === '5-day' ? 'https://buy.stripe.com/14A8wRctp9Jh4mdbhOcEw01' : 'https://buy.stripe.com/14A14pbpl6x56ul4TqcEw02';
 
             // Show payment details screen
             const modalContent = document.querySelector('.registration-modal-content');
@@ -484,41 +484,36 @@ document.addEventListener('DOMContentLoaded', function() {
                     <p class="payment-success-subtitle">Thank you, ${data.fullName}!</p>
 
                     <div class="payment-details-box">
-                        <h3>Payment Details</h3>
+                        <h3>Complete Your Payment</h3>
                         <p class="payment-amount">Amount: <strong>€${priceNum}</strong></p>
                         <p class="payment-camp">${campName}</p>
 
-                        <div class="bank-details">
-                            <div class="bank-detail-row">
-                                <span class="bank-label">Account Name:</span>
-                                <span class="bank-value">ANDREOU ANDREAS</span>
+                        <div class="payment-options">
+                            <div class="payment-option">
+                                <h4>Option 1: Pay Online with Stripe</h4>
+                                <p class="payment-option-desc">Secure online payment with card</p>
+                                <a href="${stripeLink}" target="_blank" class="btn btn-primary btn-block">
+                                    💳 Pay with Stripe
+                                </a>
                             </div>
-                            <div class="bank-detail-row">
-                                <span class="bank-label">IBAN:</span>
-                                <span class="bank-value iban">CY19 0050 0109 0001 0910 5071 8000</span>
-                            </div>
-                            <div class="bank-detail-row">
-                                <span class="bank-label">SWIFT/BIC:</span>
-                                <span class="bank-value">HEBACY2N</span>
-                            </div>
-                            <div class="bank-detail-row">
-                                <span class="bank-label">Bank:</span>
-                                <span class="bank-value">Eurobank Cyprus</span>
+
+                            <div class="payment-divider">OR</div>
+
+                            <div class="payment-option">
+                                <h4>Option 2: Bank Transfer</h4>
+                                <p class="payment-option-desc">Scan QR code for payment details</p>
+                                <div class="qr-code-container">
+                                    <img src="${qrImage}" alt="Payment QR Code" class="qr-code">
+                                </div>
                             </div>
                         </div>
 
                         <div class="payment-note">
-                            <strong>Important:</strong> Please include your full name in the payment reference.
+                            <strong>Important:</strong> After payment, please confirm via WhatsApp
                         </div>
                     </div>
 
-                    <p class="payment-confirm-text">After completing the transfer, please confirm your payment via WhatsApp:</p>
-
                     <div class="payment-actions">
-                        <button onclick="downloadPaymentDetails('${data.fullName}', '${campName}', ${priceNum})" class="btn btn-download btn-block">
-                            📥 Download Payment Details
-                        </button>
-
                         <a href="https://wa.me/35797497756?text=${encodeURIComponent('Hi! I have completed the payment for ' + campName + '. Name: ' + data.fullName)}" target="_blank" class="btn btn-whatsapp btn-block">
                             Confirm Payment via WhatsApp
                         </a>

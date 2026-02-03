@@ -1828,7 +1828,7 @@ img {
    CONTACT SECTION
    ======================================== */
 .contact-section {
-    padding: var(--section-spacing) 0;
+    padding: 80px 0;
     background: var(--black);
     color: var(--white);
 }
@@ -1924,6 +1924,29 @@ img {
 .footer-bottom p {
     font-size: 13px;
     color: var(--gray-400);
+}
+
+/* Footer Simple */
+.footer-simple {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 24px 0;
+}
+
+.footer-simple span {
+    font-size: 14px;
+    color: var(--gray-500);
+}
+
+.footer-simple .footer-lang {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.footer-simple .footer-lang span {
+    color: var(--gray-300);
 }
 
 /* ========================================
@@ -2737,12 +2760,84 @@ img {
     font-size: 14px;
     color: #856404;
     line-height: 1.6;
+    margin-top: 24px;
 }
 
 .payment-note strong {
     font-weight: 700;
     display: block;
     margin-bottom: 4px;
+}
+
+/* Payment Options */
+.payment-options {
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+    margin: 24px 0;
+}
+
+.payment-option {
+    padding: 24px;
+    background: var(--gray-50);
+    border-radius: 12px;
+    border: 2px solid var(--gray-200);
+}
+
+.payment-option h4 {
+    font-size: 18px;
+    font-weight: 700;
+    margin-bottom: 8px;
+    color: var(--black);
+}
+
+.payment-option-desc {
+    font-size: 14px;
+    color: var(--gray-500);
+    margin-bottom: 16px;
+}
+
+.payment-divider {
+    text-align: center;
+    font-size: 14px;
+    font-weight: 600;
+    color: var(--gray-400);
+    position: relative;
+}
+
+.payment-divider::before,
+.payment-divider::after {
+    content: '';
+    position: absolute;
+    top: 50%;
+    width: 40%;
+    height: 1px;
+    background: var(--gray-200);
+}
+
+.payment-divider::before {
+    left: 0;
+}
+
+.payment-divider::after {
+    right: 0;
+}
+
+/* QR Code */
+.qr-code-container {
+    display: flex;
+    justify-content: center;
+    margin: 20px 0;
+    padding: 20px;
+    background: white;
+    border-radius: 12px;
+}
+
+.qr-code {
+    max-width: 250px;
+    width: 100%;
+    height: auto;
+    border-radius: 8px;
 }
 
 /* Confirmation Text */
@@ -2845,5 +2940,22 @@ img {
 
     .payment-amount strong {
         font-size: 24px;
+    }
+
+    .payment-option {
+        padding: 16px;
+    }
+
+    .payment-option h4 {
+        font-size: 16px;
+    }
+
+    .qr-code {
+        max-width: 200px;
+    }
+
+    .payment-divider::before,
+    .payment-divider::after {
+        width: 35%;
     }
 }
