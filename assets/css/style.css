@@ -1394,6 +1394,8 @@ img {
     border-radius: 20px;
     box-shadow: var(--glass-shadow);
     transition: transform 0.3s ease, box-shadow 0.3s ease;
+    display: flex;
+    flex-direction: column;
 }
 
 .service-card:hover {
@@ -1412,11 +1414,688 @@ img {
     color: var(--gray-500);
     line-height: 1.6;
     margin-bottom: 24px;
+    flex-grow: 1;
 }
 
 .service-price {
     font-size: 24px;
     font-weight: 700;
+    display: block;
+    margin-bottom: 16px;
+}
+
+/* Service Card with Button */
+.service-card-massage {
+    cursor: pointer;
+}
+
+.service-btn {
+    padding: 12px 24px;
+    font-size: 14px;
+    width: 100%;
+}
+
+.btn-sm {
+    padding: 12px 24px;
+    font-size: 14px;
+}
+
+/* ========================================
+   MASSAGE MODAL
+   ======================================== */
+.massage-modal {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.8);
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+    z-index: 10000;
+    overflow-y: auto;
+    padding: 20px;
+}
+
+.massage-modal.active {
+    display: flex;
+    align-items: flex-start;
+    justify-content: center;
+}
+
+.massage-modal-content {
+    background: var(--white);
+    border-radius: 24px;
+    max-width: 900px;
+    width: 100%;
+    padding: 48px;
+    position: relative;
+    margin: 40px auto;
+    box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
+}
+
+.massage-modal-close {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    width: 44px;
+    height: 44px;
+    border: none;
+    background: var(--gray-100);
+    border-radius: 50%;
+    font-size: 28px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: var(--transition);
+}
+
+.massage-modal-close:hover {
+    background: var(--gray-200);
+}
+
+.massage-modal-title {
+    font-size: 32px;
+    font-weight: 700;
+    text-transform: uppercase;
+    margin-bottom: 8px;
+    text-align: center;
+}
+
+.massage-modal-subtitle {
+    font-size: 16px;
+    color: var(--gray-500);
+    text-align: center;
+    margin-bottom: 40px;
+}
+
+.massage-modal-subtitle a {
+    color: var(--gray-600);
+    text-decoration: underline;
+    transition: color 0.2s ease;
+}
+
+.massage-modal-subtitle a:hover {
+    color: var(--black);
+}
+
+.massage-label {
+    font-size: 20px;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    margin-bottom: 32px;
+    text-align: center;
+    color: var(--gray-600);
+}
+
+/* Single Sessions Grid */
+.massage-single {
+    margin-bottom: 80px;
+}
+
+.massage-sessions-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 24px;
+    max-width: 900px;
+    margin: 0 auto;
+}
+
+.massage-session-card {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 32px 24px;
+    background: var(--glass-bg);
+    backdrop-filter: blur(var(--glass-blur));
+    -webkit-backdrop-filter: blur(var(--glass-blur));
+    border: 1px solid var(--glass-border);
+    border-radius: 20px;
+    box-shadow: var(--glass-shadow);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.massage-session-card:hover {
+    transform: translateY(-4px);
+    box-shadow: var(--glass-shadow-lg);
+}
+
+.massage-session-card.recommended {
+    background: var(--glass-bg-dark);
+    border: 1px solid var(--glass-border-dark);
+    color: var(--white);
+}
+
+.massage-session-card.recommended:hover {
+    background: rgba(0, 0, 0, 0.8);
+}
+
+.session-badge {
+    position: absolute;
+    top: -12px;
+    left: 50%;
+    transform: translateX(-50%);
+    padding: 6px 16px;
+    background: var(--accent);
+    color: var(--white);
+    font-size: 12px;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    border-radius: 20px;
+    white-space: nowrap;
+}
+
+.session-duration {
+    font-size: 18px;
+    font-weight: 500;
+    color: var(--gray-500);
+    margin-bottom: 8px;
+}
+
+.massage-session-card.recommended .session-duration {
+    color: var(--gray-400);
+}
+
+.session-price {
+    font-size: 48px;
+    font-weight: 700;
+    letter-spacing: -0.02em;
+    line-height: 1;
+    margin-bottom: 8px;
+}
+
+.session-per-min {
+    font-size: 14px;
+    color: var(--gray-400);
+}
+
+.massage-session-card.recommended .session-per-min {
+    color: var(--gray-500);
+}
+
+/* Massage Tabs */
+.massage-tabs {
+    display: flex;
+    justify-content: center;
+    gap: 8px;
+    margin-bottom: 32px;
+}
+
+.massage-tab-btn {
+    padding: 14px 32px;
+    font-family: var(--font-primary);
+    font-size: 14px;
+    font-weight: 500;
+    color: var(--gray-500);
+    background: var(--glass-bg);
+    backdrop-filter: blur(var(--glass-blur-sm));
+    -webkit-backdrop-filter: blur(var(--glass-blur-sm));
+    border: 1px solid var(--glass-border-light);
+    border-radius: 30px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.massage-tab-btn:hover {
+    color: var(--black);
+    background: var(--glass-bg);
+    box-shadow: var(--glass-shadow);
+}
+
+.massage-tab-btn.active {
+    color: var(--white);
+    background: var(--glass-bg-dark);
+    border: 1px solid var(--glass-border-dark);
+    backdrop-filter: blur(var(--glass-blur));
+    -webkit-backdrop-filter: blur(var(--glass-blur));
+}
+
+/* Tab Content */
+.massage-tab-content {
+    display: none;
+}
+
+.massage-tab-content.active {
+    display: block;
+}
+
+/* Packages Grid */
+.massage-packages-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 24px;
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+.massage-package-card {
+    position: relative;
+    padding: 40px;
+    background: var(--glass-bg);
+    backdrop-filter: blur(var(--glass-blur));
+    -webkit-backdrop-filter: blur(var(--glass-blur));
+    border: 1px solid var(--glass-border);
+    border-radius: 24px;
+    box-shadow: var(--glass-shadow);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.massage-package-card:hover {
+    transform: translateY(-6px);
+    box-shadow: var(--glass-shadow-lg);
+}
+
+.massage-package-card.featured {
+    background: var(--glass-bg-dark);
+    border: 1px solid var(--glass-border-dark);
+    color: var(--white);
+}
+
+.massage-package-card.featured:hover {
+    background: rgba(0, 0, 0, 0.8);
+}
+
+.package-badge {
+    position: absolute;
+    top: -12px;
+    left: 50%;
+    transform: translateX(-50%);
+    padding: 6px 16px;
+    background: var(--accent);
+    color: var(--white);
+    font-size: 12px;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    border-radius: 20px;
+    white-space: nowrap;
+}
+
+.package-header {
+    margin-bottom: 20px;
+}
+
+.package-header h4 {
+    font-size: 24px;
+    font-weight: 700;
+    margin-bottom: 4px;
+}
+
+.package-sessions {
+    font-size: 16px;
+    color: var(--gray-500);
+}
+
+.massage-package-card.featured .package-sessions {
+    color: var(--gray-400);
+}
+
+.package-price {
+    margin-bottom: 16px;
+}
+
+.package-amount {
+    font-size: 48px;
+    font-weight: 700;
+    letter-spacing: -0.02em;
+    line-height: 1;
+    display: block;
+}
+
+.package-savings {
+    font-size: 14px;
+    font-weight: 600;
+    color: #10b981;
+    display: block;
+    margin-top: 8px;
+}
+
+.massage-package-card.featured .package-savings {
+    color: #34d399;
+}
+
+.package-desc {
+    font-size: 15px;
+    color: var(--gray-500);
+    line-height: 1.5;
+}
+
+.massage-package-card.featured .package-desc {
+    color: var(--gray-400);
+}
+
+/* Booking Info */
+.massage-booking-info {
+    text-align: center;
+    margin-bottom: 40px;
+    padding: 16px 24px;
+    background: var(--gray-100);
+    border-radius: 12px;
+}
+
+.massage-booking-info p {
+    font-size: 15px;
+    color: var(--gray-600);
+    margin: 0;
+}
+
+/* Booking Calendar */
+.massage-calendar {
+    margin-top: 20px;
+}
+
+.calendar-wrapper {
+    overflow-x: auto;
+    margin-bottom: 24px;
+    border: 1px solid var(--glass-border);
+    border-radius: 16px;
+    background: var(--white);
+}
+
+.calendar-grid {
+    min-width: 700px;
+}
+
+.calendar-header {
+    display: grid;
+    grid-template-columns: 60px repeat(7, 1fr);
+    background: var(--gray-100);
+    border-bottom: 1px solid var(--glass-border);
+}
+
+.calendar-time-header {
+    padding: 12px 8px;
+    font-size: 12px;
+    font-weight: 600;
+    color: var(--gray-500);
+    text-align: center;
+}
+
+.calendar-day-header {
+    padding: 12px 8px;
+    font-size: 13px;
+    font-weight: 600;
+    color: var(--gray-700);
+    text-align: center;
+    border-left: 1px solid var(--glass-border);
+}
+
+.calendar-body {
+    max-height: 400px;
+    overflow-y: auto;
+}
+
+.calendar-row {
+    display: grid;
+    grid-template-columns: 60px repeat(7, 1fr);
+    border-bottom: 1px solid var(--gray-200);
+}
+
+.calendar-row:last-child {
+    border-bottom: none;
+}
+
+.calendar-time {
+    padding: 8px;
+    font-size: 12px;
+    font-weight: 500;
+    color: var(--gray-500);
+    text-align: center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: var(--gray-50);
+}
+
+.calendar-slot {
+    padding: 8px 4px;
+    min-height: 36px;
+    border-left: 1px solid var(--gray-200);
+    cursor: pointer;
+    transition: all 0.2s ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.calendar-slot:hover {
+    background: var(--gray-100);
+}
+
+.calendar-slot.selected {
+    background: var(--black);
+    color: var(--white);
+}
+
+.calendar-slot.unavailable {
+    background: var(--gray-100);
+    color: var(--gray-400);
+    cursor: not-allowed;
+}
+
+.calendar-slot.unavailable:hover {
+    background: var(--gray-100);
+}
+
+.calendar-selection {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    padding: 16px;
+    background: var(--gray-100);
+    border-radius: 12px;
+}
+
+.selection-label {
+    font-size: 14px;
+    color: var(--gray-500);
+}
+
+.selection-value {
+    font-size: 14px;
+    font-weight: 600;
+    color: var(--black);
+}
+
+/* CTA */
+.massage-cta {
+    text-align: center;
+    margin-top: 60px;
+    padding-top: 40px;
+    border-top: 1px solid var(--glass-border-light);
+}
+
+.massage-cta p {
+    font-size: 16px;
+    color: var(--gray-500);
+    margin-bottom: 20px;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    .massage-modal-content {
+        padding: 24px;
+        margin: 20px auto;
+    }
+
+    .massage-modal-title {
+        font-size: 24px;
+        padding-right: 40px;
+    }
+
+    .massage-sessions-grid {
+        grid-template-columns: 1fr;
+        max-width: 280px;
+    }
+
+    .massage-packages-grid {
+        grid-template-columns: 1fr;
+        max-width: 320px;
+    }
+
+    .massage-tabs {
+        flex-direction: column;
+        max-width: 240px;
+        margin-left: auto;
+        margin-right: auto;
+    }
+
+    .massage-package-card {
+        padding: 24px 20px;
+    }
+
+    .package-amount {
+        font-size: 36px;
+    }
+
+    .session-price {
+        font-size: 36px;
+    }
+
+    .massage-label {
+        font-size: 16px;
+    }
+
+    .calendar-wrapper {
+        margin: 0 -12px 24px;
+        border-radius: 0;
+        border-left: none;
+        border-right: none;
+    }
+
+    .calendar-grid {
+        min-width: 600px;
+    }
+
+    .calendar-header {
+        grid-template-columns: 50px repeat(7, 1fr);
+    }
+
+    .calendar-row {
+        grid-template-columns: 50px repeat(7, 1fr);
+    }
+
+    .calendar-day-header {
+        font-size: 11px;
+        padding: 10px 4px;
+    }
+
+    .calendar-time {
+        font-size: 11px;
+        padding: 6px 4px;
+    }
+
+    .calendar-slot {
+        min-height: 32px;
+        padding: 6px 2px;
+    }
+}
+
+/* ========================================
+   MASSAGE BOOKING FORM MODAL
+   ======================================== */
+.massage-booking-modal {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.8);
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+    z-index: 10001;
+    overflow-y: auto;
+    padding: 20px;
+}
+
+.massage-booking-modal.active {
+    display: flex;
+    align-items: flex-start;
+    justify-content: center;
+}
+
+.massage-booking-modal-content {
+    background: var(--white);
+    border-radius: 24px;
+    max-width: 600px;
+    width: 100%;
+    padding: 48px;
+    position: relative;
+    margin: 40px auto;
+    box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
+}
+
+.massage-booking-subtitle {
+    font-size: 18px;
+    font-weight: 600;
+    color: var(--gray-600);
+    text-align: center;
+    margin-bottom: 32px;
+}
+
+.massage-booking-form .form-group {
+    margin-bottom: 24px;
+}
+
+.massage-booking-form .form-label {
+    display: block;
+    font-size: 14px;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    margin-bottom: 8px;
+    color: var(--gray-700);
+}
+
+.massage-booking-form .form-input {
+    width: 100%;
+    padding: 16px 20px;
+    border: 2px solid var(--gray-200);
+    border-radius: 12px;
+    font-size: 16px;
+    font-family: var(--font-primary);
+    transition: border-color 0.2s ease;
+}
+
+.massage-booking-form .form-input:focus {
+    outline: none;
+    border-color: var(--black);
+}
+
+.massage-booking-form textarea.form-input {
+    resize: vertical;
+    min-height: 100px;
+}
+
+.massage-booking-success-info {
+    background: var(--gray-100);
+    padding: 24px;
+    border-radius: 12px;
+    margin: 24px 0;
+    text-align: left;
+}
+
+.massage-booking-success-info p {
+    margin-bottom: 12px;
+    line-height: 1.6;
+}
+
+.massage-booking-success-info p:last-child {
+    margin-bottom: 0;
+}
+
+@media (max-width: 768px) {
+    .massage-booking-modal-content {
+        padding: 24px;
+        margin: 20px auto;
+    }
 }
 
 /* ========================================

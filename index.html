@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>The Padel Camp Cyprus 2026 | Train with Spanish Pros</title>
-    <meta name="description" content="Intensive Padel Camp in Limassol, Cyprus with Professional Spanish Coaches. April 13-19, 2026. 5-day and 3-day options available. Only 24 spots.">
+    <meta name="description" content="Intensive Padel Camp in Limassol, Cyprus with Professional Spanish Coaches. April 13-19, 2026. 5-day and 3-day options available.">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Helvetica+Neue:wght@400;500;700;900&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
@@ -56,10 +56,6 @@
                 </div>
             </div>
             <div class="hero-meta">
-                <div class="meta-item">
-                    <span class="meta-value">Limited</span>
-                    <span class="meta-label">Spots Available</span>
-                </div>
                 <div class="meta-item">
                     <span class="meta-value">1:4</span>
                     <span class="meta-label">Coach per Players</span>
@@ -193,7 +189,7 @@
                         </div>
                         <div class="day-content">
                             <div class="session">
-                                <span class="time">Evening session</span>
+                                <span class="time">Evening session (2 hours)</span>
                                 <span class="activity">Level Assessment + Training</span>
                             </div>
                         </div>
@@ -206,11 +202,11 @@
                         </div>
                         <div class="day-content">
                             <div class="session">
-                                <span class="time">Morning</span>
+                                <span class="time">Morning (1.5h + 45min)</span>
                                 <span class="activity">Training Sessions + Physio training</span>
                             </div>
                             <div class="session">
-                                <span class="time">Afternoon</span>
+                                <span class="time">Evening (1.5 hours)</span>
                                 <span class="activity">Intensive Training</span>
                             </div>
                         </div>
@@ -241,7 +237,7 @@
                         </div>
                         <div class="day-content">
                             <div class="session">
-                                <span class="time">17:00—21:00</span>
+                                <span class="time">Evening session (2 hours)</span>
                                 <span class="activity">Level Assessment + Training</span>
                             </div>
                         </div>
@@ -254,11 +250,11 @@
                         </div>
                         <div class="day-content">
                             <div class="session">
-                                <span class="time">Morning</span>
+                                <span class="time">Morning (1.5h + 45min)</span>
                                 <span class="activity">Intensive Training + Physio training</span>
                             </div>
                             <div class="session">
-                                <span class="time">Afternoon</span>
+                                <span class="time">Evening (1.5 hours)</span>
                                 <span class="activity">Intensive Training Sessions</span>
                             </div>
                         </div>
@@ -271,12 +267,12 @@
                         </div>
                         <div class="day-content">
                             <div class="session">
-                                <span class="time">Morning</span>
-                                <span class="activity">Intensive Training + Physio training</span>
+                                <span class="time">Morning (1.5h + 45min)</span>
+                                <span class="activity">Training Session + Physio training</span>
                             </div>
                             <div class="session">
-                                <span class="time">Afternoon</span>
-                                <span class="activity">Intensive Training Sessions</span>
+                                <span class="time">Evening (1.5 hours)</span>
+                                <span class="activity">Training Session</span>
                             </div>
                         </div>
                     </div>
@@ -344,22 +340,143 @@
             <div class="services-grid">
                 <div class="service-card">
                     <h3>Media Package</h3>
-                    <p>Professional photos & video of your training. Perfect for game analysis.</p>
-                    <span class="service-price">€99</span>
-                </div>
-                <div class="service-card">
-                    <h3>Sports Massage</h3>
-                    <p>45-min recovery session with licensed therapist. On-site service.</p>
-                    <span class="service-price">€60 / session</span>
+                    <p>Capture every epic moment! Get our Audio-Visual Package with 15-20 professional photos and a dinamic Reel(1,5-2min), plus 2-3 short clips - perfect for making your friends wish they were here. Limited slots available.</p>
+                    <span class="service-price">€130</span>
+                    <button class="btn btn-primary btn-sm service-btn" onclick="openServiceBookingForm('Media Package', 130)">Book & Pay</button>
                 </div>
                 <div class="service-card">
                     <h3>Private Lesson</h3>
                     <p>1-on-1 or 2-on-1 with Spanish coaches. Personalized focus.</p>
-                    <span class="service-price">€80 / hour</span>
+                    <span class="service-price">€70 / hour</span>
+                    <button class="btn btn-primary btn-sm service-btn" onclick="openServiceBookingForm('Private Lesson', 70)">Book & Pay</button>
+                </div>
+                <div class="service-card service-card-massage" onclick="openMassageModal()">
+                    <h3>Massage & Recovery</h3>
+                    <p>Professional sports massage sessions of 30, 45, or 60 minutes. Available at the club between morning and evening training sessions.</p>
+                    <span class="service-price">from €45</span>
+                    <button class="btn btn-primary btn-sm service-btn">View Options</button>
                 </div>
             </div>
         </div>
     </section>
+
+    <!-- Massage Modal -->
+    <div class="massage-modal" id="massageModal">
+        <div class="massage-modal-content">
+            <button class="massage-modal-close" onclick="closeMassageModal()">&times;</button>
+            <h2 class="massage-modal-title">Massage & Recovery</h2>
+            <p class="massage-modal-subtitle">By <a href="https://righttrackphysio.com.cy/pages/tony-profile.html" target="_blank">Antonis Petri</a> · <a href="https://righttrackphysio.com.cy/" target="_blank">Right Track Rehabilitation & Performance Center</a></p>
+
+            <!-- Single Sessions -->
+            <div class="massage-single">
+                <h4 class="massage-label">Single Sessions</h4>
+                <div class="massage-sessions-grid">
+                    <div class="massage-session-card">
+                        <span class="session-duration">30 min</span>
+                        <span class="session-price">€45</span>
+                        <button class="btn btn-primary btn-sm" style="margin-top: 10px;" onclick="openMassageBookingForm(30, 45)">Book & Pay</button>
+                    </div>
+                    <div class="massage-session-card">
+                        <span class="session-duration">45 min</span>
+                        <span class="session-price">€60</span>
+                        <button class="btn btn-primary btn-sm" style="margin-top: 10px;" onclick="openMassageBookingForm(45, 60)">Book & Pay</button>
+                    </div>
+                    <div class="massage-session-card">
+                        <span class="session-duration">60 min</span>
+                        <span class="session-price">€75</span>
+                        <button class="btn btn-primary btn-sm" style="margin-top: 10px;" onclick="openMassageBookingForm(60, 75)">Book & Pay</button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Booking Info -->
+            <div class="massage-booking-info">
+                <p><strong>How it works:</strong></p>
+                <ol style="text-align: left; padding-left: 20px; margin: 10px 0;">
+                    <li>Select and prepay for your preferred session duration</li>
+                    <li>Antonis will contact you to schedule the exact time</li>
+                    <li>Sessions available between morning and evening training</li>
+                </ol>
+            </div>
+
+        </div>
+    </div>
+
+    <!-- Service Booking Form Modal -->
+    <div class="massage-booking-modal" id="serviceBookingModal">
+        <div class="massage-booking-modal-content">
+            <button class="massage-modal-close" onclick="closeServiceBookingModal()">&times;</button>
+            <h2 class="massage-modal-title" id="serviceBookingTitle">Book Service</h2>
+            <p class="massage-booking-subtitle" id="selectedServiceInfo">Service — €0</p>
+
+            <form id="serviceBookingForm" class="massage-booking-form">
+                <input type="hidden" id="serviceName" name="serviceName" value="">
+                <input type="hidden" id="servicePrice" name="servicePrice" value="">
+
+                <div class="form-group">
+                    <label class="form-label" for="serviceBookingName">Full Name *</label>
+                    <input type="text" id="serviceBookingName" name="serviceBookingName" class="form-input" required placeholder="Enter your full name">
+                </div>
+
+                <div class="form-group">
+                    <label class="form-label" for="serviceBookingPhone">Phone *</label>
+                    <input type="tel" id="serviceBookingPhone" name="serviceBookingPhone" class="form-input" required placeholder="+357 99 123 456">
+                </div>
+
+                <div class="form-group">
+                    <label class="form-label" for="serviceBookingEmail">Email *</label>
+                    <input type="email" id="serviceBookingEmail" name="serviceBookingEmail" class="form-input" required placeholder="your@email.com">
+                </div>
+
+                <div class="form-group">
+                    <label class="form-label" for="serviceBookingNotes">Additional Notes (optional)</label>
+                    <textarea id="serviceBookingNotes" name="serviceBookingNotes" class="form-input" rows="3" placeholder="Any preferences or special requests..."></textarea>
+                </div>
+
+                <button type="submit" class="btn btn-primary btn-block btn-submit">
+                    Submit Booking Request
+                </button>
+            </form>
+        </div>
+    </div>
+
+    <!-- Massage Booking Form Modal -->
+    <div class="massage-booking-modal" id="massageBookingModal">
+        <div class="massage-booking-modal-content">
+            <button class="massage-modal-close" onclick="closeMassageBookingModal()">&times;</button>
+            <h2 class="massage-modal-title">Book Massage Session</h2>
+            <p class="massage-booking-subtitle" id="selectedMassageInfo">30 min — €45</p>
+
+            <form id="massageBookingForm" class="massage-booking-form">
+                <input type="hidden" id="massageDuration" name="massageDuration" value="30">
+                <input type="hidden" id="massagePrice" name="massagePrice" value="45">
+
+                <div class="form-group">
+                    <label class="form-label" for="massageName">Full Name *</label>
+                    <input type="text" id="massageName" name="massageName" class="form-input" required placeholder="Enter your full name">
+                </div>
+
+                <div class="form-group">
+                    <label class="form-label" for="massagePhone">Phone *</label>
+                    <input type="tel" id="massagePhone" name="massagePhone" class="form-input" required placeholder="+357 99 123 456">
+                </div>
+
+                <div class="form-group">
+                    <label class="form-label" for="massageEmail">Email *</label>
+                    <input type="email" id="massageEmail" name="massageEmail" class="form-input" required placeholder="your@email.com">
+                </div>
+
+                <div class="form-group">
+                    <label class="form-label" for="massageNotes">Additional Notes (optional)</label>
+                    <textarea id="massageNotes" name="massageNotes" class="form-input" rows="3" placeholder="Any preferences or special requests..."></textarea>
+                </div>
+
+                <button type="submit" class="btn btn-primary btn-block btn-submit">
+                    Submit Booking Request
+                </button>
+            </form>
+        </div>
+    </div>
 
     <!-- What's Included Section -->
     <section class="included-section">
@@ -389,6 +506,7 @@
                         <li>Personal padel racket (rental available €10/day)</li>
                         <li>Private lessons (optional add-on)</li>
                         <li>Media package (optional add-on)</li>
+                        <li>Massage & recovery (optional add-on)</li>
                     </ul>
                 </div>
             </div>
@@ -404,10 +522,6 @@
             </div>
             <div class="pricing-grid">
                 <div class="price-card featured">
-                    <div class="spots-badge">
-                        <span class="spots-number">18</span>
-                        <span class="spots-text">spots left out of 24</span>
-                    </div>
                     <div class="price-header">
                         <span class="price-location">5-Day Camp</span>
                         <span class="price-duration">Limassol</span>
@@ -429,10 +543,6 @@
                 </div>
 
                 <div class="price-card">
-                    <div class="spots-badge">
-                        <span class="spots-number">18</span>
-                        <span class="spots-text">spots left out of 24</span>
-                    </div>
                     <div class="price-header">
                         <span class="price-location">3-Day Camp</span>
                         <span class="price-duration">Limassol</span>
@@ -446,8 +556,7 @@
                         <li>3 days intensive training</li>
                         <li>Spanish professional coaches</li>
                         <li>Physio training</li>
-                        <li>Americano tournament</li>
-                        <li>Prizes for top 3 winners</li>
+                        <li>Morning & evening sessions</li>
                         <li>Individual evaluation report</li>
                     </ul>
                     <a href="#" class="btn btn-primary btn-block" id="bookLarnaca">Register 3-Day Camp</a>

@@ -9,6 +9,7 @@ document.addEventListener('DOMContentLoaded', function() {
     initSmoothScroll();
     initCountdown();
     initProgramTabs();
+    initMassageCalendar();
     initFAQ();
     initHeaderScroll();
     initContactForm();
@@ -139,6 +140,121 @@ function initProgramTabs() {
             }
         });
     });
+}
+
+/**
+ * Massage Booking Calendar (Simplified - no calendar needed)
+ */
+function initMassageCalendar() {
+    // Calendar no longer needed - booking handled directly through session cards
+}
+
+/**
+ * Service Booking Form Modal
+ */
+function openServiceBookingForm(serviceName, price) {
+    const modal = document.getElementById('serviceBookingModal');
+    const titleEl = document.getElementById('serviceBookingTitle');
+    const infoEl = document.getElementById('selectedServiceInfo');
+    const serviceNameInput = document.getElementById('serviceName');
+    const priceInput = document.getElementById('servicePrice');
+
+    if (modal && infoEl && serviceNameInput && priceInput) {
+        // Update the displayed info
+        const isRussian = document.documentElement.lang === 'ru';
+
+        if (titleEl) {
+            titleEl.textContent = isRussian ? 'Забронировать услугу' : 'Book Service';
+        }
+
+        const priceText = serviceName.includes('hour') || serviceName.includes('час')
+            ? `€${price} / ${isRussian ? 'час' : 'hour'}`
+            : `€${price}`;
+
+        infoEl.textContent = `${serviceName} — ${priceText}`;
+
+        // Set hidden form values
+        serviceNameInput.value = serviceName;
+        priceInput.value = price;
+
+        // Open booking form modal
+        modal.classList.add('active');
+        document.body.style.overflow = 'hidden';
+    }
+}
+
+function closeServiceBookingModal() {
+    const modal = document.getElementById('serviceBookingModal');
+    if (modal) {
+        modal.classList.remove('active');
+        document.body.style.overflow = '';
+
+        // Reset form
+        const form = document.getElementById('serviceBookingForm');
+        if (form) {
+            form.reset();
+        }
+    }
+}
+
+/**
+ * Massage Booking Form Modal
+ */
+function openMassageBookingForm(duration, price) {
+    const modal = document.getElementById('massageBookingModal');
+    const infoEl = document.getElementById('selectedMassageInfo');
+    const durationInput = document.getElementById('massageDuration');
+    const priceInput = document.getElementById('massagePrice');
+
+    if (modal && infoEl && durationInput && priceInput) {
+        // Update the displayed info
+        const isRussian = document.documentElement.lang === 'ru';
+        infoEl.textContent = isRussian ? `${duration} мин — €${price}` : `${duration} min — €${price}`;
+
+        // Set hidden form values
+        durationInput.value = duration;
+        priceInput.value = price;
+
+        // Close main massage modal if open
+        closeMassageModal();
+
+        // Open booking form modal
+        modal.classList.add('active');
+        document.body.style.overflow = 'hidden';
+    }
+}
+
+function closeMassageBookingModal() {
+    const modal = document.getElementById('massageBookingModal');
+    if (modal) {
+        modal.classList.remove('active');
+        document.body.style.overflow = '';
+
+        // Reset form
+        const form = document.getElementById('massageBookingForm');
+        if (form) {
+            form.reset();
+        }
+    }
+}
+
+/**
+ * Massage Modal
+ */
+function openMassageModal() {
+    const modal = document.getElementById('massageModal');
+    if (modal) {
+        modal.classList.add('active');
+        document.body.style.overflow = 'hidden';
+    }
+}
+
+function closeMassageModal() {
+    const modal = document.getElementById('massageModal');
+    if (modal) {
+        modal.classList.remove('active');
+        document.body.style.overflow = '';
+    }
 }
 
 /**
@@ -333,6 +449,9 @@ function changeVenueSlide(direction) {
 document.addEventListener('keydown', function(e) {
     if (e.key === 'Escape') {
         closeVenueModal();
+        closeMassageModal();
+        closeMassageBookingModal();
+        closeServiceBookingModal();
     }
     if (e.key === 'ArrowRight') {
         changeVenueSlide(1);
@@ -344,9 +463,21 @@ document.addEventListener('keydown', function(e) {
 
 // Close modal on backdrop click
 document.addEventListener('click', function(e) {
-    const modal = document.getElementById('venueModal');
-    if (e.target === modal) {
+    const venueModal = document.getElementById('venueModal');
+    const massageModal = document.getElementById('massageModal');
+    const massageBookingModal = document.getElementById('massageBookingModal');
+    const serviceBookingModal = document.getElementById('serviceBookingModal');
+    if (e.target === venueModal) {
         closeVenueModal();
+    }
+    if (e.target === massageModal) {
+        closeMassageModal();
+    }
+    if (e.target === massageBookingModal) {
+        closeMassageBookingModal();
+    }
+    if (e.target === serviceBookingModal) {
+        closeServiceBookingModal();
     }
 });
 
@@ -547,6 +678,126 @@ document.addEventListener('DOMContentLoaded', function() {
         heroCta.addEventListener('click', function(e) {
             e.preventDefault();
             openRegistrationModal('5-day');
+        });
+    }
+
+    // Service Booking Form Submission
+    const serviceBookingForm = document.getElementById('serviceBookingForm');
+    if (serviceBookingForm) {
+        serviceBookingForm.addEventListener('submit', function(e) {
+            e.preventDefault();
+
+            // Collect form data
+            const formData = new FormData(this);
+            const data = {
+                service: formData.get('serviceName'),
+                price: formData.get('servicePrice'),
+                name: formData.get('serviceBookingName'),
+                phone: formData.get('serviceBookingPhone'),
+                email: formData.get('serviceBookingEmail'),
+                notes: formData.get('serviceBookingNotes')
+            };
+
+            console.log('Service booking data:', data);
+
+            // Determine language
+            const isRussian = document.documentElement.lang === 'ru';
+
+            const priceText = data.service.includes('hour') || data.service.includes('час')
+                ? `€${data.price} / ${isRussian ? 'час' : 'hour'}`
+                : `€${data.price}`;
+
+            // Show success message
+            const modalContent = document.querySelector('#serviceBookingModal .massage-booking-modal-content');
+            modalContent.innerHTML = `
+                <button class="massage-modal-close" onclick="closeServiceBookingModal()">&times;</button>
+                <div class="payment-success">
+                    <div class="payment-success-icon">✓</div>
+                    <h2>${isRussian ? 'Запрос отправлен!' : 'Booking Request Submitted!'}</h2>
+                    <p class="payment-success-subtitle">${isRussian ? 'Спасибо' : 'Thank you'}, ${data.name}!</p>
+
+                    <div class="payment-details-box">
+                        <h3>${isRussian ? 'Что дальше?' : 'What\'s Next?'}</h3>
+                        <p class="payment-camp">${data.service} — ${priceText}</p>
+
+                        <div class="massage-booking-success-info">
+                            <p>${isRussian
+                                ? 'Мы свяжемся с вами в ближайшее время для подтверждения бронирования.'
+                                : 'We will contact you shortly to confirm your booking.'}</p>
+                            <p><strong>${isRussian ? 'Мы свяжемся с вами по:' : 'We will contact you at:'}</strong></p>
+                            <p>📞 ${data.phone}<br>✉️ ${data.email}</p>
+                        </div>
+
+                        <div class="payment-note">
+                            ${isRussian
+                                ? '<strong>Примечание:</strong> Оплата будет произведена после подтверждения.'
+                                : '<strong>Note:</strong> Payment will be arranged after confirmation.'}
+                        </div>
+                    </div>
+
+                    <button onclick="closeServiceBookingModal()" class="btn btn-primary btn-block">
+                        ${isRussian ? 'Закрыть' : 'Close'}
+                    </button>
+                </div>
+            `;
+        });
+    }
+
+    // Massage Booking Form Submission
+    const massageBookingForm = document.getElementById('massageBookingForm');
+    if (massageBookingForm) {
+        massageBookingForm.addEventListener('submit', function(e) {
+            e.preventDefault();
+
+            // Collect form data
+            const formData = new FormData(this);
+            const data = {
+                duration: formData.get('massageDuration'),
+                price: formData.get('massagePrice'),
+                name: formData.get('massageName'),
+                phone: formData.get('massagePhone'),
+                email: formData.get('massageEmail'),
+                notes: formData.get('massageNotes')
+            };
+
+            console.log('Massage booking data:', data);
+
+            // Determine language
+            const isRussian = document.documentElement.lang === 'ru';
+
+            // Show success message
+            const modalContent = document.querySelector('.massage-booking-modal-content');
+            modalContent.innerHTML = `
+                <button class="massage-modal-close" onclick="closeMassageBookingModal()">&times;</button>
+                <div class="payment-success">
+                    <div class="payment-success-icon">✓</div>
+                    <h2>${isRussian ? 'Запрос отправлен!' : 'Booking Request Submitted!'}</h2>
+                    <p class="payment-success-subtitle">${isRussian ? 'Спасибо' : 'Thank you'}, ${data.name}!</p>
+
+                    <div class="payment-details-box">
+                        <h3>${isRussian ? 'Что дальше?' : 'What\'s Next?'}</h3>
+                        <p class="payment-camp">${data.duration} ${isRussian ? 'мин — €' : 'min — €'}${data.price}</p>
+
+                        <div class="massage-booking-success-info">
+                            <p>${isRussian
+                                ? 'Антонис свяжется с вами в ближайшее время для согласования точного времени вашего сеанса массажа.'
+                                : 'Antonis will contact you shortly to schedule the exact time of your massage session.'}</p>
+                            <p><strong>${isRussian ? 'Мы свяжемся с вами по:' : 'We will contact you at:'}</strong></p>
+                            <p>📞 ${data.phone}<br>✉️ ${data.email}</p>
+                        </div>
+
+                        <div class="payment-note">
+                            ${isRussian
+                                ? '<strong>Примечание:</strong> Оплата будет произведена после подтверждения времени сеанса.'
+                                : '<strong>Note:</strong> Payment will be arranged after confirming your session time.'}
+                        </div>
+                    </div>
+
+                    <button onclick="closeMassageBookingModal()" class="btn btn-primary btn-block">
+                        ${isRussian ? 'Закрыть' : 'Close'}
+                    </button>
+                </div>
+            `;
         });
     }
 });
