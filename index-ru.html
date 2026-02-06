@@ -338,11 +338,11 @@
                 <h2 class="section-title">ДОПОЛНИТЕЛЬНЫЕ УСЛУГИ</h2>
             </div>
             <div class="services-grid">
-                <div class="service-card">
+                <div class="service-card" onclick="openMediaPackageModal()">
                     <h3>Медиапакет «На память»</h3>
                     <p>Запечатлите лучшие моменты! 15-20 профессиональных фото + динамичный видео-рил (2-3 шт) для соцсетей. Количество пакетов ограничено.</p>
                     <span class="service-price">€130</span>
-                    <button class="btn btn-primary btn-sm service-btn" onclick="openServiceBookingForm('Медиа пакет', 130)">Забронировать и оплатить</button>
+                    <button class="btn btn-primary btn-sm service-btn">Забронировать и оплатить</button>
                 </div>
                 <div class="service-card">
                     <h3>Индивидуальный урок</h3>
@@ -399,6 +399,41 @@
                 </ol>
             </div>
 
+        </div>
+    </div>
+
+    <!-- Media Package Modal -->
+    <div class="massage-booking-modal" id="mediaPackageModal">
+        <div class="massage-booking-modal-content">
+            <button class="massage-modal-close" onclick="closeMediaPackageModal()">&times;</button>
+            <h2 class="massage-modal-title">Медиапакет «На память»</h2>
+            <p class="massage-booking-subtitle">15-20 фото + видео-рил (2-3 шт) — €130</p>
+
+            <form id="mediaPackageForm" class="massage-booking-form">
+                <div class="form-group">
+                    <label class="form-label" for="mediaPackageName">Полное имя *</label>
+                    <input type="text" id="mediaPackageName" name="mediaPackageName" class="form-input" required placeholder="Введите ваше полное имя">
+                </div>
+
+                <div class="form-group">
+                    <label class="form-label" for="mediaPackagePhone">Телефон *</label>
+                    <input type="tel" id="mediaPackagePhone" name="mediaPackagePhone" class="form-input" required placeholder="+357 99 123 456">
+                </div>
+
+                <div class="form-group">
+                    <label class="form-label" for="mediaPackageEmail">Email *</label>
+                    <input type="email" id="mediaPackageEmail" name="mediaPackageEmail" class="form-input" required placeholder="your@email.com">
+                </div>
+
+                <div class="form-group">
+                    <label class="form-label" for="mediaPackageNotes">Дополнительные заметки (опционально)</label>
+                    <textarea id="mediaPackageNotes" name="mediaPackageNotes" class="form-input" rows="2" placeholder="Любые пожелания..."></textarea>
+                </div>
+
+                <button type="submit" class="btn btn-primary btn-block btn-submit">
+                    Продолжить к оплате
+                </button>
+            </form>
         </div>
     </div>
 

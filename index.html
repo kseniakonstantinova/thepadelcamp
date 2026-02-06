@@ -338,11 +338,11 @@
                 <h2 class="section-title">EXTRA SERVICES</h2>
             </div>
             <div class="services-grid">
-                <div class="service-card">
+                <div class="service-card" onclick="openMediaPackageModal()">
                     <h3>Media Package</h3>
                     <p>Capture every epic moment! Get our Audio-Visual Package with 15-20 professional photos and a dinamic Reel(1,5-2min), plus 2-3 short clips - perfect for making your friends wish they were here. Limited slots available.</p>
                     <span class="service-price">€130</span>
-                    <button class="btn btn-primary btn-sm service-btn" onclick="openServiceBookingForm('Media Package', 130)">Book & Pay</button>
+                    <button class="btn btn-primary btn-sm service-btn">Book & Pay</button>
                 </div>
                 <div class="service-card">
                     <h3>Private Lesson</h3>
@@ -399,6 +399,41 @@
                 </ol>
             </div>
 
+        </div>
+    </div>
+
+    <!-- Media Package Modal -->
+    <div class="massage-booking-modal" id="mediaPackageModal">
+        <div class="massage-booking-modal-content">
+            <button class="massage-modal-close" onclick="closeMediaPackageModal()">&times;</button>
+            <h2 class="massage-modal-title">Media Package</h2>
+            <p class="massage-booking-subtitle">15-20 photos + video reel (2-3 clips) — €130</p>
+
+            <form id="mediaPackageForm" class="massage-booking-form">
+                <div class="form-group">
+                    <label class="form-label" for="mediaPackageName">Full Name *</label>
+                    <input type="text" id="mediaPackageName" name="mediaPackageName" class="form-input" required placeholder="Enter your full name">
+                </div>
+
+                <div class="form-group">
+                    <label class="form-label" for="mediaPackagePhone">Phone *</label>
+                    <input type="tel" id="mediaPackagePhone" name="mediaPackagePhone" class="form-input" required placeholder="+357 99 123 456">
+                </div>
+
+                <div class="form-group">
+                    <label class="form-label" for="mediaPackageEmail">Email *</label>
+                    <input type="email" id="mediaPackageEmail" name="mediaPackageEmail" class="form-input" required placeholder="your@email.com">
+                </div>
+
+                <div class="form-group">
+                    <label class="form-label" for="mediaPackageNotes">Additional Notes (optional)</label>
+                    <textarea id="mediaPackageNotes" name="mediaPackageNotes" class="form-input" rows="2" placeholder="Any preferences..."></textarea>
+                </div>
+
+                <button type="submit" class="btn btn-primary btn-block btn-submit">
+                    Continue to Payment
+                </button>
+            </form>
         </div>
     </div>
 

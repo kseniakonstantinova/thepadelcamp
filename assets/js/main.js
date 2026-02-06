@@ -258,6 +258,25 @@ function closeMassageModal() {
 }
 
 /**
+ * Media Package Modal
+ */
+function openMediaPackageModal() {
+    const modal = document.getElementById('mediaPackageModal');
+    if (modal) {
+        modal.classList.add('active');
+        document.body.style.overflow = 'hidden';
+    }
+}
+
+function closeMediaPackageModal() {
+    const modal = document.getElementById('mediaPackageModal');
+    if (modal) {
+        modal.classList.remove('active');
+        document.body.style.overflow = '';
+    }
+}
+
+/**
  * FAQ Accordion
  */
 function initFAQ() {
@@ -452,6 +471,7 @@ document.addEventListener('keydown', function(e) {
         closeMassageModal();
         closeMassageBookingModal();
         closeServiceBookingModal();
+        closeMediaPackageModal();
     }
     if (e.key === 'ArrowRight') {
         changeVenueSlide(1);
@@ -467,6 +487,7 @@ document.addEventListener('click', function(e) {
     const massageModal = document.getElementById('massageModal');
     const massageBookingModal = document.getElementById('massageBookingModal');
     const serviceBookingModal = document.getElementById('serviceBookingModal');
+    const mediaPackageModal = document.getElementById('mediaPackageModal');
     if (e.target === venueModal) {
         closeVenueModal();
     }
@@ -478,6 +499,9 @@ document.addEventListener('click', function(e) {
     }
     if (e.target === serviceBookingModal) {
         closeServiceBookingModal();
+    }
+    if (e.target === mediaPackageModal) {
+        closeMediaPackageModal();
     }
 });
 
@@ -765,37 +789,129 @@ document.addEventListener('DOMContentLoaded', function() {
             // Determine language
             const isRussian = document.documentElement.lang === 'ru';
 
-            // Show success message
-            const modalContent = document.querySelector('.massage-booking-modal-content');
+            // Select Stripe link and QR based on price
+            let stripeLink, qrImage;
+            if (data.price === '75') {
+                stripeLink = 'https://buy.stripe.com/14AeVfeBx2gPaKBclScEw07';
+                qrImage = 'assets/massage-75-qr.jpeg';
+            } else if (data.price === '60') {
+                stripeLink = 'https://buy.stripe.com/4gMcN79hdaNlaKB1HecEw08';
+                qrImage = 'assets/massage-60-qr.jpeg';
+            } else {
+                // Default to €45 link for 30 min
+                stripeLink = 'https://buy.stripe.com/6oU5kF2SP08H05X71ycEw09';
+                qrImage = 'assets/massage-qr.jpeg';
+            }
+
+            // Show payment options
+            const modalContent = document.querySelector('#massageBookingModal .massage-booking-modal-content');
             modalContent.innerHTML = `
                 <button class="massage-modal-close" onclick="closeMassageBookingModal()">&times;</button>
                 <div class="payment-success">
                     <div class="payment-success-icon">✓</div>
-                    <h2>${isRussian ? 'Запрос отправлен!' : 'Booking Request Submitted!'}</h2>
-                    <p class="payment-success-subtitle">${isRussian ? 'Спасибо' : 'Thank you'}, ${data.name}!</p>
+                    <h2>${isRussian ? 'Спасибо' : 'Thank you'}, ${data.name}!</h2>
+                    <p class="payment-success-subtitle">${isRussian ? 'Массаж' : 'Massage'} ${data.duration} ${isRussian ? 'мин' : 'min'} — €${data.price}</p>
 
                     <div class="payment-details-box">
-                        <h3>${isRussian ? 'Что дальше?' : 'What\'s Next?'}</h3>
-                        <p class="payment-camp">${data.duration} ${isRussian ? 'мин — €' : 'min — €'}${data.price}</p>
+                        <h3>${isRussian ? 'Выберите способ оплаты' : 'Choose Payment Method'}</h3>
 
-                        <div class="massage-booking-success-info">
-                            <p>${isRussian
-                                ? 'Антонис свяжется с вами в ближайшее время для согласования точного времени вашего сеанса массажа.'
-                                : 'Antonis will contact you shortly to schedule the exact time of your massage session.'}</p>
-                            <p><strong>${isRussian ? 'Мы свяжемся с вами по:' : 'We will contact you at:'}</strong></p>
-                            <p>📞 ${data.phone}<br>✉️ ${data.email}</p>
+                        <div class="payment-options">
+                            <div class="payment-option">
+                                <h4>${isRussian ? 'Вариант 1: Оплата онлайн' : 'Option 1: Pay Online'}</h4>
+                                <p class="payment-option-desc">${isRussian ? 'Безопасная оплата картой' : 'Secure card payment'}</p>
+                                <a href="${stripeLink}" target="_blank" class="btn btn-primary btn-block">
+                                    💳 ${isRussian ? 'Оплатить через Stripe' : 'Pay with Stripe'}
+                                </a>
+                            </div>
+
+                            <div class="payment-divider">${isRussian ? 'ИЛИ' : 'OR'}</div>
+
+                            <div class="payment-option">
+                                <h4>${isRussian ? 'Вариант 2: Банковский перевод' : 'Option 2: Bank Transfer'}</h4>
+                                <p class="payment-option-desc">${isRussian ? 'Отсканируйте QR-код' : 'Scan QR code for details'}</p>
+                                <div class="qr-code-container">
+                                    <img src="${qrImage}" alt="Payment QR Code" class="qr-code">
+                                </div>
+                            </div>
                         </div>
 
                         <div class="payment-note">
-                            ${isRussian
-                                ? '<strong>Примечание:</strong> Оплата будет произведена после подтверждения времени сеанса.'
-                                : '<strong>Note:</strong> Payment will be arranged after confirming your session time.'}
+                            <strong>${isRussian ? 'Важно:' : 'Important:'}</strong> ${isRussian ? 'После оплаты подтвердите через WhatsApp' : 'After payment, please confirm via WhatsApp'}
                         </div>
                     </div>
 
-                    <button onclick="closeMassageBookingModal()" class="btn btn-primary btn-block">
-                        ${isRussian ? 'Закрыть' : 'Close'}
-                    </button>
+                    <div class="payment-actions" style="margin-top: 20px;">
+                        <a href="https://wa.me/35797497756?text=${encodeURIComponent((isRussian ? 'Привет! Я оплатил(а) массаж (' + data.duration + ' мин, €' + data.price + '). Имя: ' : 'Hi! I have paid for massage (' + data.duration + ' min, €' + data.price + '). Name: ') + data.name)}" target="_blank" class="btn btn-whatsapp btn-block">
+                            ${isRussian ? 'Подтвердить оплату через WhatsApp' : 'Confirm Payment via WhatsApp'}
+                        </a>
+                    </div>
+                </div>
+            `;
+        });
+    }
+
+    // Media Package Form Submission
+    const mediaPackageForm = document.getElementById('mediaPackageForm');
+    if (mediaPackageForm) {
+        mediaPackageForm.addEventListener('submit', function(e) {
+            e.preventDefault();
+
+            // Collect form data
+            const formData = new FormData(this);
+            const data = {
+                name: formData.get('mediaPackageName'),
+                phone: formData.get('mediaPackagePhone'),
+                email: formData.get('mediaPackageEmail'),
+                notes: formData.get('mediaPackageNotes')
+            };
+
+            console.log('Media Package booking data:', data);
+
+            // Determine language
+            const isRussian = document.documentElement.lang === 'ru';
+
+            // Show payment options
+            const modalContent = document.querySelector('#mediaPackageModal .massage-booking-modal-content');
+            modalContent.innerHTML = `
+                <button class="massage-modal-close" onclick="closeMediaPackageModal()">&times;</button>
+                <div class="payment-success">
+                    <div class="payment-success-icon">✓</div>
+                    <h2>${isRussian ? 'Спасибо' : 'Thank you'}, ${data.name}!</h2>
+                    <p class="payment-success-subtitle">${isRussian ? 'Медиапакет «На память» — €130' : 'Media Package — €130'}</p>
+
+                    <div class="payment-details-box">
+                        <h3>${isRussian ? 'Выберите способ оплаты' : 'Choose Payment Method'}</h3>
+
+                        <div class="payment-options">
+                            <div class="payment-option">
+                                <h4>${isRussian ? 'Вариант 1: Оплата онлайн' : 'Option 1: Pay Online'}</h4>
+                                <p class="payment-option-desc">${isRussian ? 'Безопасная оплата картой' : 'Secure card payment'}</p>
+                                <a href="https://buy.stripe.com/9B65kF8d9bRpbOFclScEw0a" target="_blank" class="btn btn-primary btn-block">
+                                    💳 ${isRussian ? 'Оплатить через Stripe' : 'Pay with Stripe'}
+                                </a>
+                            </div>
+
+                            <div class="payment-divider">${isRussian ? 'ИЛИ' : 'OR'}</div>
+
+                            <div class="payment-option">
+                                <h4>${isRussian ? 'Вариант 2: Банковский перевод' : 'Option 2: Bank Transfer'}</h4>
+                                <p class="payment-option-desc">${isRussian ? 'Отсканируйте QR-код' : 'Scan QR code for details'}</p>
+                                <div class="qr-code-container">
+                                    <img src="assets/media-package-qr.jpeg" alt="Payment QR Code" class="qr-code">
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="payment-note">
+                            <strong>${isRussian ? 'Важно:' : 'Important:'}</strong> ${isRussian ? 'После оплаты подтвердите через WhatsApp' : 'After payment, please confirm via WhatsApp'}
+                        </div>
+                    </div>
+
+                    <div class="payment-actions" style="margin-top: 20px;">
+                        <a href="https://wa.me/35797497756?text=${encodeURIComponent((isRussian ? 'Привет! Я оплатил(а) медиапакет (€130). Имя: ' : 'Hi! I have paid for Media Package (€130). Name: ') + data.name)}" target="_blank" class="btn btn-whatsapp btn-block">
+                            ${isRussian ? 'Подтвердить оплату через WhatsApp' : 'Confirm Payment via WhatsApp'}
+                        </a>
+                    </div>
                 </div>
             `;
         });
