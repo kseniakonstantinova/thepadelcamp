@@ -2725,7 +2725,7 @@ img {
         display: flex;
         flex-direction: column;
         gap: 4px;
-        z-index: 10;
+        z-index: 1001;
         position: absolute;
         left: 16px;
         top: 50%;
@@ -2734,12 +2734,13 @@ img {
     }
 
     .lang-switch-mobile a {
-        font-size: 13px;
+        font-size: 14px;
         font-weight: 600;
         color: var(--gray-500);
-        padding: 4px 8px;
+        padding: 8px 12px;
         border-radius: 4px;
         transition: var(--transition);
+        display: block;
     }
 
     .lang-switch-mobile a:hover,
