@@ -2810,7 +2810,7 @@ img {
         align-items: center;
         justify-content: center;
         transition: 0.3s ease;
-        z-index: 998;
+        z-index: 1002;
         opacity: 1;
         visibility: visible;
     }
@@ -2831,7 +2831,7 @@ img {
 
     .mobile-menu-btn {
         display: flex;
-        z-index: 999;
+        z-index: 1003;
     }
 
     .mobile-menu-btn.active span:first-child {

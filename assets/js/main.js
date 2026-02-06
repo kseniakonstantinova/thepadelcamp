@@ -22,7 +22,7 @@ document.addEventListener('DOMContentLoaded', function() {
 function initMobileMenu() {
     const mobileMenuBtn = document.getElementById('mobileMenuBtn');
     const nav = document.getElementById('nav');
-    const navLinks = document.querySelectorAll('.nav-link');
+    const navLinks = document.querySelectorAll('.nav-list a');
 
     if (mobileMenuBtn && nav) {
         mobileMenuBtn.addEventListener('click', function() {
