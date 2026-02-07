@@ -626,7 +626,7 @@ document.addEventListener('DOMContentLoaded', function() {
             // Create payment details
             const campName = data.camp === '5-day' ? '5-Day Intensive Camp (April 13-17)' : '3-Day Weekend Camp (April 17-19)';
             const priceNum = data.camp === '5-day' ? 800 : 400;
-            const qrImage = data.camp === '5-day' ? 'assets/qr-payment-5day.jpeg' : 'assets/qr-payment-3day.jpeg';
+            const qrImage = data.camp === '5-day' ? 'assets/qr/qr-payment-5day.jpeg' : 'assets/qr/qr-payment-3day.jpeg';
             const stripeLink = data.camp === '5-day' ? 'https://buy.stripe.com/14A8wRctp9Jh4mdbhOcEw01' : 'https://buy.stripe.com/14A14pbpl6x56ul4TqcEw02';
 
             // Show payment details screen
@@ -793,14 +793,14 @@ document.addEventListener('DOMContentLoaded', function() {
             let stripeLink, qrImage;
             if (data.price === '75') {
                 stripeLink = 'https://buy.stripe.com/14AeVfeBx2gPaKBclScEw07';
-                qrImage = 'assets/massage-75-qr.jpeg';
+                qrImage = 'assets/qr/massage-75-qr.jpeg';
             } else if (data.price === '60') {
                 stripeLink = 'https://buy.stripe.com/4gMcN79hdaNlaKB1HecEw08';
-                qrImage = 'assets/massage-60-qr.jpeg';
+                qrImage = 'assets/qr/massage-60-qr.jpeg';
             } else {
                 // Default to €45 link for 30 min
                 stripeLink = 'https://buy.stripe.com/6oU5kF2SP08H05X71ycEw09';
-                qrImage = 'assets/massage-qr.jpeg';
+                qrImage = 'assets/qr/massage-qr.jpeg';
             }
 
             // Show payment options
@@ -897,7 +897,7 @@ document.addEventListener('DOMContentLoaded', function() {
                                 <h4>${isRussian ? 'Вариант 2: Банковский перевод' : 'Option 2: Bank Transfer'}</h4>
                                 <p class="payment-option-desc">${isRussian ? 'Отсканируйте QR-код' : 'Scan QR code for details'}</p>
                                 <div class="qr-code-container">
-                                    <img src="assets/media-package-qr.jpeg" alt="Payment QR Code" class="qr-code">
+                                    <img src="assets/qr/media-package-qr.jpeg" alt="Payment QR Code" class="qr-code">
                                 </div>
                             </div>
                         </div>
