@@ -1,0 +1,17 @@
+# robots.txt for thepadelcamp.com.cy
+
+User-agent: *
+Allow: /
+
+# Sitemap
+Sitemap: https://thepadelcamp.com.cy/sitemap.xml
+
+# Disallow admin/asset directories
+Disallow: /assets/js/
+Disallow: /assets/css/
+
+# Allow images for indexing
+Allow: /assets/images/
+
+# Crawl delay (optional, be polite to crawlers)
+Crawl-delay: 1

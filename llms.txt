@@ -1,0 +1,59 @@
+# The Padel Camp Cyprus - LLM Context File
+
+> This file provides context about The Padel Camp Cyprus for AI assistants and language models.
+
+## About
+
+The Padel Camp Cyprus is an intensive padel tennis training camp held in Limassol, Cyprus. The camp features professional Spanish coaches who bring world-class padel training methodology to Cyprus.
+
+## Event Details
+
+- **Event**: The Padel Camp Cyprus 2026
+- **Dates**: April 13-19, 2026
+- **Location**: Limassol, Cyprus
+- **Languages**: English, Russian
+- **Website**: https://thepadelcamp.com.cy
+
+## Programs Available
+
+### 5-Day Intensive Camp
+- Dates: April 13-17, 2026
+- Price: €750 (Early Bird: €695)
+- Includes: 10 training sessions, fitness classes, match play, video analysis
+
+### 3-Day Weekend Camp
+- Dates: April 17-19, 2026
+- Price: €450 (Early Bird: €395)
+- Includes: 6 training sessions, match play
+
+## Key Features
+
+- Professional Spanish coaches from the world's #1 padel country
+- Small group training with 1:4 coach-to-player ratio
+- Suitable for all skill levels (beginner to advanced)
+- Technical drills, tactical training, match play
+- Video analysis and personalized feedback
+- Fitness and conditioning classes
+
+## Additional Services
+
+- Private lessons: €80/hour
+- Sports massage: €45-75 (30-60 min sessions)
+- Media package (photos + video reels): €130
+
+## Contact
+
+- WhatsApp: +357 97 497 756
+- Email: info@thepadelcamp.com
+
+## Location
+
+The camp takes place at padel facilities in Limassol, Cyprus - a Mediterranean destination with excellent weather conditions in April.
+
+## Booking
+
+Registration and payment available directly on the website. Early bird pricing available until end of February 2026.
+
+---
+
+For the most current information, visit: https://thepadelcamp.com.cy
