@@ -3,6 +3,21 @@
  * ===================================
  */
 
+// Google Apps Script URL для отправки данных
+const GOOGLE_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbyRFc1LgrjR1okUiCvZRepdiKKhM0u_BcIfJz0pfpJhnqDvkXpHCeUUQYiEVpt18CvLOA/exec';
+
+// Функция для отправки данных в Google Sheets + Telegram
+function sendToGoogleSheets(data) {
+    return fetch(GOOGLE_SCRIPT_URL, {
+        method: 'POST',
+        mode: 'no-cors',
+        headers: {
+            'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(data)
+    });
+}
+
 document.addEventListener('DOMContentLoaded', function() {
     // Initialize all modules
     initMobileMenu();
@@ -610,6 +625,7 @@ document.addEventListener('DOMContentLoaded', function() {
             // Collect form data
             const formData = new FormData(this);
             const data = {
+                type: 'camp',
                 camp: formData.get('camp'),
                 fullName: formData.get('fullName'),
                 phone: formData.get('phone'),
@@ -622,6 +638,9 @@ document.addEventListener('DOMContentLoaded', function() {
             };
 
             console.log('Registration data:', data);
+
+            // Отправляем данные в Google Sheets + Telegram
+            sendToGoogleSheets(data).catch(err => console.log('Send error:', err));
 
             // Create payment details
             const campName = data.camp === '5-day' ? '5-Day Intensive Camp (April 13-17)' : '3-Day Weekend Camp (April 17-19)';
@@ -714,6 +733,7 @@ document.addEventListener('DOMContentLoaded', function() {
             // Collect form data
             const formData = new FormData(this);
             const data = {
+                type: 'service',
                 service: formData.get('serviceName'),
                 price: formData.get('servicePrice'),
                 name: formData.get('serviceBookingName'),
@@ -723,6 +743,9 @@ document.addEventListener('DOMContentLoaded', function() {
             };
 
             console.log('Service booking data:', data);
+
+            // Отправляем данные в Google Sheets + Telegram
+            sendToGoogleSheets(data).catch(err => console.log('Send error:', err));
 
             // Determine language
             const isRussian = document.documentElement.lang === 'ru';
@@ -776,6 +799,7 @@ document.addEventListener('DOMContentLoaded', function() {
             // Collect form data
             const formData = new FormData(this);
             const data = {
+                type: 'massage',
                 duration: formData.get('massageDuration'),
                 price: formData.get('massagePrice'),
                 name: formData.get('massageName'),
@@ -785,6 +809,9 @@ document.addEventListener('DOMContentLoaded', function() {
             };
 
             console.log('Massage booking data:', data);
+
+            // Отправляем данные в Google Sheets + Telegram
+            sendToGoogleSheets(data).catch(err => console.log('Send error:', err));
 
             // Determine language
             const isRussian = document.documentElement.lang === 'ru';
@@ -859,6 +886,7 @@ document.addEventListener('DOMContentLoaded', function() {
             // Collect form data
             const formData = new FormData(this);
             const data = {
+                type: 'media',
                 name: formData.get('mediaPackageName'),
                 phone: formData.get('mediaPackagePhone'),
                 email: formData.get('mediaPackageEmail'),
@@ -866,6 +894,9 @@ document.addEventListener('DOMContentLoaded', function() {
             };
 
             console.log('Media Package booking data:', data);
+
+            // Отправляем данные в Google Sheets + Telegram
+            sendToGoogleSheets(data).catch(err => console.log('Send error:', err));
 
             // Determine language
             const isRussian = document.documentElement.lang === 'ru';
