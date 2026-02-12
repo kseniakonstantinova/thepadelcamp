@@ -388,6 +388,11 @@ function initContactForm() {
             contactForm.innerHTML = '';
             contactForm.appendChild(successMsg);
 
+            // Track contact form event
+            if (typeof trackContact === 'function') {
+                trackContact();
+            }
+
             // Log data (for development)
             console.log('Form submitted:', data);
         });
@@ -643,9 +648,14 @@ document.addEventListener('DOMContentLoaded', function() {
             // Отправляем данные в Google Sheets + Telegram
             sendToGoogleSheets(data).catch(err => console.log('Send error:', err));
 
+            // Track registration event
+            const priceNum = data.camp === '5-day' ? 800 : 400;
+            if (typeof trackRegistration === 'function') {
+                trackRegistration({ type: 'camp_registration', camp: data.camp, value: priceNum });
+            }
+
             // Create payment details
             const campName = data.camp === '5-day' ? '5-Day Intensive Camp (April 13-17)' : '3-Day Weekend Camp (April 17-19)';
-            const priceNum = data.camp === '5-day' ? 800 : 400;
             const qrImage = data.camp === '5-day' ? 'assets/qr/qr-payment-5day.jpeg' : 'assets/qr/qr-payment-3day.jpeg';
             const stripeLink = data.camp === '5-day' ? 'https://buy.stripe.com/14A8wRctp9Jh4mdbhOcEw01' : 'https://buy.stripe.com/14A14pbpl6x56ul4TqcEw02';
 
@@ -749,6 +759,11 @@ document.addEventListener('DOMContentLoaded', function() {
             // Отправляем данные в Google Sheets + Telegram
             sendToGoogleSheets(data).catch(err => console.log('Send error:', err));
 
+            // Track service booking event
+            if (typeof trackBooking === 'function') {
+                trackBooking(data.service, parseFloat(data.price) || 0);
+            }
+
             // Determine language
             const isRussian = document.documentElement.lang === 'ru';
 
@@ -815,6 +830,11 @@ document.addEventListener('DOMContentLoaded', function() {
 
             // Отправляем данные в Google Sheets + Telegram
             sendToGoogleSheets(data).catch(err => console.log('Send error:', err));
+
+            // Track massage booking event
+            if (typeof trackBooking === 'function') {
+                trackBooking('massage_' + data.duration, parseFloat(data.price) || 0);
+            }
 
             // Determine language
             const isRussian = document.documentElement.lang === 'ru';
@@ -901,6 +921,11 @@ document.addEventListener('DOMContentLoaded', function() {
 
             // Отправляем данные в Google Sheets + Telegram
             sendToGoogleSheets(data).catch(err => console.log('Send error:', err));
+
+            // Track media package booking event
+            if (typeof trackBooking === 'function') {
+                trackBooking('media_package', 150);
+            }
 
             // Determine language
             const isRussian = document.documentElement.lang === 'ru';
