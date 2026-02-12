@@ -634,7 +634,8 @@ document.addEventListener('DOMContentLoaded', function() {
                 goals: Array.from(goals).map(g => g.value),
                 skills: formData.get('skills'),
                 tshirt: formData.get('tshirt'),
-                consent: formData.get('consent') ? true : false
+                consent: formData.get('consent') ? true : false,
+                lang: document.documentElement.lang || 'en'
             };
 
             console.log('Registration data:', data);
@@ -739,7 +740,8 @@ document.addEventListener('DOMContentLoaded', function() {
                 name: formData.get('serviceBookingName'),
                 phone: formData.get('serviceBookingPhone'),
                 email: formData.get('serviceBookingEmail'),
-                notes: formData.get('serviceBookingNotes')
+                notes: formData.get('serviceBookingNotes'),
+                lang: document.documentElement.lang || 'en'
             };
 
             console.log('Service booking data:', data);
@@ -805,7 +807,8 @@ document.addEventListener('DOMContentLoaded', function() {
                 name: formData.get('massageName'),
                 phone: formData.get('massagePhone'),
                 email: formData.get('massageEmail'),
-                notes: formData.get('massageNotes')
+                notes: formData.get('massageNotes'),
+                lang: document.documentElement.lang || 'en'
             };
 
             console.log('Massage booking data:', data);
@@ -890,7 +893,8 @@ document.addEventListener('DOMContentLoaded', function() {
                 name: formData.get('mediaPackageName'),
                 phone: formData.get('mediaPackagePhone'),
                 email: formData.get('mediaPackageEmail'),
-                notes: formData.get('mediaPackageNotes')
+                notes: formData.get('mediaPackageNotes'),
+                lang: document.documentElement.lang || 'en'
             };
 
             console.log('Media Package booking data:', data);
