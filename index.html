@@ -85,10 +85,20 @@
                 "validFrom": "2025-01-01"
             }
         ],
-        "performer": {
-            "@type": "Organization",
-            "name": "Professional Spanish Padel Coaches"
-        },
+        "performer": [
+            {
+                "@type": "Person",
+                "name": "David Antolin",
+                "jobTitle": "Head Coach",
+                "nationality": "Spanish"
+            },
+            {
+                "@type": "Person",
+                "name": "Pedro Sousa Martinez",
+                "jobTitle": "Coach",
+                "nationality": "Spanish"
+            }
+        ],
         "sport": "Padel",
         "inLanguage": ["en", "ru"]
     }
@@ -370,11 +380,64 @@
         <div class="container">
             <div class="coaches-header">
                 <h2 class="section-title">THE COACHES</h2>
+                <p class="coaches-subtitle">Professional coaches with international experience. Every drill, every tip, and every strategy comes from real match situations.</p>
             </div>
-            <div class="coaches-description">
-                <h3>Professional Coaches with International Experience</h3>
-                <p>Our coaching team consists of elite professionals who have competed and trained at the highest levels of padel. They bring years of experience from international circuits, combining deep technical knowledge with proven training methods.</p>
-                <p>Under their guidance, you'll receive individualized feedback, learn to perform under pressure, and develop skills that translate directly to competitive play. Their firsthand experience in professional tournaments means every drill, every tip, and every strategy comes from real match situations.</p>
+            <div class="coaches-grid">
+                <!-- Head Coach: David Antolin -->
+                <div class="coach-card coach-card--head">
+                    <div class="coach-image">
+                        <img src="assets/images/coaches/david-antolin.jpeg" alt="David Antolin — Head Coach, The Padel Camp" loading="lazy">
+                    </div>
+                    <div class="coach-info">
+                        <span class="coach-flag">🇪🇸 Spain · Head Coach</span>
+                        <h3 class="coach-name">David Antolin</h3>
+                        <p class="coach-bio">An elite coach with over 12 years of experience competing in and organizing padel camps across Europe. His philosophy is built on modern, attacking padel rooted in Spanish technique and tactical intelligence. With David, you don't just learn to hit the ball — you learn to read the game and dominate the court.</p>
+                        <ul class="coach-credentials">
+                            <li>12+ years in professional padel</li>
+                            <li>Former pro circuit player (10+ years)</li>
+                            <li>Best World Padel Tour ranking: Top 120</li>
+                            <li>Best FIP ranking: #134 in the world</li>
+                            <li>Experience in 3+ professional clubs</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Coach: Pedro Sousa Martinez -->
+                <div class="coach-card">
+                    <div class="coach-image">
+                        <img src="assets/images/coaches/pedro-sousa-martinez.jpeg" alt="Pedro Sousa Martinez — Professional Padel Coach" loading="lazy">
+                    </div>
+                    <div class="coach-info">
+                        <span class="coach-flag">🇪🇸 Spain</span>
+                        <h3 class="coach-name">Pedro Sousa Martinez</h3>
+                        <p class="coach-bio">A young, dynamic coach bringing fresh energy and cutting-edge knowledge from the elite of world padel. Pedro trained alongside stars like Arturo Coello at the Manu Martín Professional Academy. He knows the fastest route to improvement because he's living it himself.</p>
+                        <ul class="coach-credentials">
+                            <li>Active FIP circuit player (ranking: 462, best: 426)</li>
+                            <li>Best A1 Padel ranking: 173</li>
+                            <li>Galician Champion 2023 (#1 in the region)</li>
+                            <li>Trained with Alvarez Clementi, Pratto & Choya</li>
+                            <li>5+ years coaching across Europe (DK, NL, DE)</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Mystery Coach -->
+                <div class="coach-card coach-card--mystery">
+                    <div class="coach-image">
+                        <div class="mystery-coach-visual">
+                            <span class="mystery-icon">?</span>
+                            <span class="mystery-label">Coming Soon</span>
+                        </div>
+                    </div>
+                    <div class="coach-info">
+                        <span class="coach-flag">🌍 International</span>
+                        <h3 class="coach-name">Special Guest Coach</h3>
+                        <p class="coach-bio">A top-ranked player from the international padel circuit is joining our team for this camp. The big reveal is coming soon — follow us to be the first to know!</p>
+                        <a href="https://www.instagram.com/thepadelcamp/" target="_blank" class="mystery-cta">
+                            Follow for the reveal →
+                        </a>
+                    </div>
+                </div>
             </div>
         </div>
     </section>

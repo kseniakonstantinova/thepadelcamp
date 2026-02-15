@@ -85,10 +85,20 @@
                 "validFrom": "2025-01-01"
             }
         ],
-        "performer": {
-            "@type": "Organization",
-            "name": "Профессиональные испанские тренеры"
-        },
+        "performer": [
+            {
+                "@type": "Person",
+                "name": "David Antolin",
+                "jobTitle": "Head Coach",
+                "nationality": "Spanish"
+            },
+            {
+                "@type": "Person",
+                "name": "Pedro Sousa Martinez",
+                "jobTitle": "Coach",
+                "nationality": "Spanish"
+            }
+        ],
         "sport": "Padel",
         "inLanguage": ["en", "ru"]
     }
@@ -370,11 +380,64 @@
         <div class="container">
             <div class="coaches-header">
                 <h2 class="section-title">ТРЕНЕРЫ</h2>
+                <p class="coaches-subtitle">Профессиональные тренеры с международным опытом. Каждое упражнение, каждый совет и каждая стратегия — из реальных игровых ситуаций.</p>
             </div>
-            <div class="coaches-description">
-                <h3>Профессиональные тренеры с международным опытом</h3>
-                <p>Наша команда тренеров состоит из элитных профессионалов, которые соревновались и тренировали на высших уровнях паддла. Они привносят многолетний опыт международных турниров, сочетая глубокие технические знания с проверенными методами тренировок.</p>
-                <p>Под их руководством вы получите индивидуальную обратную связь, научитесь играть под давлением и разовьете навыки, которые напрямую применимы в соревновательной игре. Их непосредственный опыт профессиональных турниров означает, что каждое упражнение, каждый совет и каждая стратегия исходят из реальных игровых ситуаций.</p>
+            <div class="coaches-grid">
+                <!-- Главный тренер: David Antolin -->
+                <div class="coach-card coach-card--head">
+                    <div class="coach-image">
+                        <img src="assets/images/coaches/david-antolin.jpeg" alt="David Antolin — Главный тренер, The Padel Camp" loading="lazy">
+                    </div>
+                    <div class="coach-info">
+                        <span class="coach-flag">🇪🇸 Испания · Главный тренер</span>
+                        <h3 class="coach-name">David Antolin</h3>
+                        <p class="coach-bio">Элитный тренер с более чем 12-летним опытом выступлений и организации падель-лагерей по всей Европе. Его философия — современный, атакующий падель, построенный на испанской технике и интеллектуальной тактике. С David вы не просто учитесь бить по мячу — вы учитесь думать на корте и доминировать в игре.</p>
+                        <ul class="coach-credentials">
+                            <li>Более 12 лет в профессиональном паделе</li>
+                            <li>Бывший игрок профтура (более 10 лет)</li>
+                            <li>Лучший рейтинг World Padel Tour: Top 120</li>
+                            <li>Лучший рейтинг FIP: 134-й в мире</li>
+                            <li>Опыт работы в 3+ профессиональных клубах</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Тренер: Pedro Sousa Martinez -->
+                <div class="coach-card">
+                    <div class="coach-image">
+                        <img src="assets/images/coaches/pedro-sousa-martinez.jpeg" alt="Pedro Sousa Martinez — Профессиональный тренер по паделю" loading="lazy">
+                    </div>
+                    <div class="coach-info">
+                        <span class="coach-flag">🇪🇸 Испания</span>
+                        <h3 class="coach-name">Pedro Sousa Martinez</h3>
+                        <p class="coach-bio">Молодой и амбициозный тренер, который привносит энергию и самые современные знания из элиты мирового паделя. Педро тренировался бок о бок с Артуро Коэльо в академии Ману Мартина. Он знает кратчайший путь к прогрессу, потому что сам его проходит прямо сейчас.</p>
+                        <ul class="coach-credentials">
+                            <li>Действующий игрок FIP (рейтинг: 462, лучший: 426)</li>
+                            <li>Лучший рейтинг A1 Padel: 173</li>
+                            <li>Чемпион Галисии 2023 (№1 в регионе)</li>
+                            <li>Стажировки у Альварес Клементи, Пратто и Чойя</li>
+                            <li>5+ лет тренерской работы в Европе (DK, NL, DE)</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Тайный тренер -->
+                <div class="coach-card coach-card--mystery">
+                    <div class="coach-image">
+                        <div class="mystery-coach-visual">
+                            <span class="mystery-icon">?</span>
+                            <span class="mystery-label">Скоро</span>
+                        </div>
+                    </div>
+                    <div class="coach-info">
+                        <span class="coach-flag">🌍 Международный</span>
+                        <h3 class="coach-name">Специальный приглашённый тренер</h3>
+                        <p class="coach-bio">Топовый игрок международного тура по паделю присоединяется к нашей команде на этот лагерь. Большое раскрытие совсем скоро — подпишитесь, чтобы узнать первыми!</p>
+                        <a href="https://www.instagram.com/thepadelcamp/" target="_blank" class="mystery-cta">
+                            Подпишитесь и узнайте первыми →
+                        </a>
+                    </div>
+                </div>
             </div>
         </div>
     </section>
