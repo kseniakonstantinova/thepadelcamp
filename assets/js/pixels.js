@@ -213,6 +213,90 @@ function trackBooking(serviceName, value) {
     }
 }
 
+// ─── Social & WhatsApp Click Tracking ────────────────────────────
+
+function initSocialClickTracking() {
+    // WhatsApp float button
+    document.querySelectorAll('.whatsapp-float, .btn-whatsapp').forEach(function(el) {
+        el.addEventListener('click', function() {
+            if (localStorage.getItem(CONSENT_KEY) !== 'accepted') return;
+            if (typeof gtag === 'function') {
+                gtag('event', 'click', {
+                    event_category: 'social',
+                    event_label: 'whatsapp',
+                    transport_type: 'beacon'
+                });
+            }
+            if (typeof fbq === 'function') {
+                fbq('trackCustom', 'SocialClick', { platform: 'whatsapp' });
+            }
+        });
+    });
+
+    // Instagram float button
+    document.querySelectorAll('.social-float-instagram').forEach(function(el) {
+        el.addEventListener('click', function() {
+            if (localStorage.getItem(CONSENT_KEY) !== 'accepted') return;
+            if (typeof gtag === 'function') {
+                gtag('event', 'click', {
+                    event_category: 'social',
+                    event_label: 'instagram',
+                    transport_type: 'beacon'
+                });
+            }
+            if (typeof fbq === 'function') {
+                fbq('trackCustom', 'SocialClick', { platform: 'instagram' });
+            }
+        });
+    });
+
+    // Facebook float button
+    document.querySelectorAll('.social-float-facebook').forEach(function(el) {
+        el.addEventListener('click', function() {
+            if (localStorage.getItem(CONSENT_KEY) !== 'accepted') return;
+            if (typeof gtag === 'function') {
+                gtag('event', 'click', {
+                    event_category: 'social',
+                    event_label: 'facebook',
+                    transport_type: 'beacon'
+                });
+            }
+            if (typeof fbq === 'function') {
+                fbq('trackCustom', 'SocialClick', { platform: 'facebook' });
+            }
+        });
+    });
+
+    // Footer social links
+    document.querySelectorAll('.footer-social a').forEach(function(el) {
+        el.addEventListener('click', function() {
+            if (localStorage.getItem(CONSENT_KEY) !== 'accepted') return;
+            var label = el.getAttribute('aria-label') || 'unknown';
+            if (typeof gtag === 'function') {
+                gtag('event', 'click', {
+                    event_category: 'social',
+                    event_label: label.toLowerCase(),
+                    transport_type: 'beacon'
+                });
+            }
+        });
+    });
+
+    // Email button
+    document.querySelectorAll('a[href^="mailto:"]').forEach(function(el) {
+        el.addEventListener('click', function() {
+            if (localStorage.getItem(CONSENT_KEY) !== 'accepted') return;
+            if (typeof gtag === 'function') {
+                gtag('event', 'click', {
+                    event_category: 'social',
+                    event_label: 'email',
+                    transport_type: 'beacon'
+                });
+            }
+        });
+    });
+}
+
 // ─── Initialize ──────────────────────────────────────────────────
 
 document.addEventListener('DOMContentLoaded', function() {
@@ -224,4 +308,7 @@ document.addEventListener('DOMContentLoaded', function() {
         createConsentBanner();
     }
     // If 'declined' — do nothing, no banner, no pixels
+
+    // Always init click tracking (events only fire if consent given)
+    initSocialClickTracking();
 });
