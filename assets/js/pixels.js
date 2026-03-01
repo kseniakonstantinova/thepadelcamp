@@ -10,7 +10,7 @@
  * 3. GADS_ID        → your Google Ads ID (e.g. 'AW-XXXXXXXXX')
  */
 
-const META_PIXEL_ID = '1289267666587104';
+const META_PIXEL_ID = '838994425860514';
 const GA4_ID = 'G-DDFNKFDZHR';
 const GADS_ID = 'YOUR_GOOGLE_ADS_ID';
 
@@ -30,8 +30,8 @@ function createConsentBanner() {
         <div class="cookie-consent-inner">
             <p class="cookie-consent-text">
                 ${isRu
-                    ? 'Мы используем файлы cookie и аналитические инструменты для улучшения работы сайта. Подробнее в нашей <a href="privacy-policy-ru.html">Политике конфиденциальности</a>.'
-                    : 'We use cookies and analytics tools to improve your experience. Learn more in our <a href="privacy-policy.html">Privacy Policy</a>.'}
+                    ? 'Мы используем файлы cookie и аналитические инструменты для улучшения работы сайта. Подробнее в нашей <a href="/ru/privacy-policy.html">Политике конфиденциальности</a>.'
+                    : 'We use cookies and analytics tools to improve your experience. Learn more in our <a href="/privacy-policy.html">Privacy Policy</a>.'}
             </p>
             <div class="cookie-consent-buttons">
                 <button class="cookie-btn cookie-btn-accept" onclick="acceptCookies()">
