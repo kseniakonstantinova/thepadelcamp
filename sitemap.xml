@@ -6,7 +6,7 @@
     <url>
         <loc>https://thepadelcamp.com.cy/</loc>
         <xhtml:link rel="alternate" hreflang="en" href="https://thepadelcamp.com.cy/"/>
-        <xhtml:link rel="alternate" hreflang="ru" href="https://thepadelcamp.com.cy/index-ru.html"/>
+        <xhtml:link rel="alternate" hreflang="ru" href="https://thepadelcamp.com.cy/ru/"/>
         <xhtml:link rel="alternate" hreflang="x-default" href="https://thepadelcamp.com.cy/"/>
         <lastmod>2026-02-07</lastmod>
         <changefreq>weekly</changefreq>
@@ -15,9 +15,9 @@
 
     <!-- Homepage - Russian -->
     <url>
-        <loc>https://thepadelcamp.com.cy/index-ru.html</loc>
+        <loc>https://thepadelcamp.com.cy/ru/</loc>
         <xhtml:link rel="alternate" hreflang="en" href="https://thepadelcamp.com.cy/"/>
-        <xhtml:link rel="alternate" hreflang="ru" href="https://thepadelcamp.com.cy/index-ru.html"/>
+        <xhtml:link rel="alternate" hreflang="ru" href="https://thepadelcamp.com.cy/ru/"/>
         <xhtml:link rel="alternate" hreflang="x-default" href="https://thepadelcamp.com.cy/"/>
         <lastmod>2026-02-07</lastmod>
         <changefreq>weekly</changefreq>
@@ -28,7 +28,7 @@
     <url>
         <loc>https://thepadelcamp.com.cy/privacy-policy.html</loc>
         <xhtml:link rel="alternate" hreflang="en" href="https://thepadelcamp.com.cy/privacy-policy.html"/>
-        <xhtml:link rel="alternate" hreflang="ru" href="https://thepadelcamp.com.cy/privacy-policy-ru.html"/>
+        <xhtml:link rel="alternate" hreflang="ru" href="https://thepadelcamp.com.cy/ru/privacy-policy.html"/>
         <lastmod>2026-02-07</lastmod>
         <changefreq>yearly</changefreq>
         <priority>0.3</priority>
@@ -36,9 +36,9 @@
 
     <!-- Privacy Policy - Russian -->
     <url>
-        <loc>https://thepadelcamp.com.cy/privacy-policy-ru.html</loc>
+        <loc>https://thepadelcamp.com.cy/ru/privacy-policy.html</loc>
         <xhtml:link rel="alternate" hreflang="en" href="https://thepadelcamp.com.cy/privacy-policy.html"/>
-        <xhtml:link rel="alternate" hreflang="ru" href="https://thepadelcamp.com.cy/privacy-policy-ru.html"/>
+        <xhtml:link rel="alternate" hreflang="ru" href="https://thepadelcamp.com.cy/ru/privacy-policy.html"/>
         <lastmod>2026-02-07</lastmod>
         <changefreq>yearly</changefreq>
         <priority>0.3</priority>
@@ -48,7 +48,7 @@
     <url>
         <loc>https://thepadelcamp.com.cy/terms.html</loc>
         <xhtml:link rel="alternate" hreflang="en" href="https://thepadelcamp.com.cy/terms.html"/>
-        <xhtml:link rel="alternate" hreflang="ru" href="https://thepadelcamp.com.cy/terms-ru.html"/>
+        <xhtml:link rel="alternate" hreflang="ru" href="https://thepadelcamp.com.cy/ru/terms.html"/>
         <lastmod>2026-02-07</lastmod>
         <changefreq>yearly</changefreq>
         <priority>0.3</priority>
@@ -56,9 +56,9 @@
 
     <!-- Terms & Conditions - Russian -->
     <url>
-        <loc>https://thepadelcamp.com.cy/terms-ru.html</loc>
+        <loc>https://thepadelcamp.com.cy/ru/terms.html</loc>
         <xhtml:link rel="alternate" hreflang="en" href="https://thepadelcamp.com.cy/terms.html"/>
-        <xhtml:link rel="alternate" hreflang="ru" href="https://thepadelcamp.com.cy/terms-ru.html"/>
+        <xhtml:link rel="alternate" hreflang="ru" href="https://thepadelcamp.com.cy/ru/terms.html"/>
         <lastmod>2026-02-07</lastmod>
         <changefreq>yearly</changefreq>
         <priority>0.3</priority>
