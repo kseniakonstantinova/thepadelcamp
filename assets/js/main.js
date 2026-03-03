@@ -677,7 +677,7 @@ document.addEventListener('DOMContentLoaded', function() {
                             <div class="payment-option">
                                 <h4>Option 1: Pay Online with Stripe</h4>
                                 <p class="payment-option-desc">Secure online payment with card</p>
-                                <a href="${stripeLink}" target="_blank" class="btn btn-primary btn-block">
+                                <a href="${stripeLink}" target="_blank" class="btn btn-primary btn-block" data-purchase-value="${priceNum}" data-purchase-item="${campName}">
                                     💳 Pay with Stripe
                                 </a>
                             </div>
@@ -869,7 +869,7 @@ document.addEventListener('DOMContentLoaded', function() {
                             <div class="payment-option">
                                 <h4>${isRussian ? 'Вариант 1: Оплата онлайн' : 'Option 1: Pay Online'}</h4>
                                 <p class="payment-option-desc">${isRussian ? 'Безопасная оплата картой' : 'Secure card payment'}</p>
-                                <a href="${stripeLink}" target="_blank" class="btn btn-primary btn-block">
+                                <a href="${stripeLink}" target="_blank" class="btn btn-primary btn-block" data-purchase-value="${data.price}" data-purchase-item="massage_${data.duration}min">
                                     💳 ${isRussian ? 'Оплатить через Stripe' : 'Pay with Stripe'}
                                 </a>
                             </div>
@@ -946,7 +946,7 @@ document.addEventListener('DOMContentLoaded', function() {
                             <div class="payment-option">
                                 <h4>${isRussian ? 'Вариант 1: Оплата онлайн' : 'Option 1: Pay Online'}</h4>
                                 <p class="payment-option-desc">${isRussian ? 'Безопасная оплата картой' : 'Secure card payment'}</p>
-                                <a href="https://buy.stripe.com/9B65kF8d9bRpbOFclScEw0a" target="_blank" class="btn btn-primary btn-block">
+                                <a href="https://buy.stripe.com/9B65kF8d9bRpbOFclScEw0a" target="_blank" class="btn btn-primary btn-block" data-purchase-value="130" data-purchase-item="media_package">
                                     💳 ${isRussian ? 'Оплатить через Stripe' : 'Pay with Stripe'}
                                 </a>
                             </div>

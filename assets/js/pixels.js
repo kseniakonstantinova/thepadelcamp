@@ -216,21 +216,46 @@ function trackBooking(serviceName, value) {
 // ─── Social & WhatsApp Click Tracking ────────────────────────────
 
 function initSocialClickTracking() {
-    // WhatsApp float button
-    document.querySelectorAll('.whatsapp-float, .btn-whatsapp').forEach(function(el) {
-        el.addEventListener('click', function() {
-            if (localStorage.getItem(CONSENT_KEY) !== 'accepted') return;
+    // WhatsApp & Stripe — event delegation for dynamic elements
+    document.addEventListener('click', function(e) {
+        if (localStorage.getItem(CONSENT_KEY) !== 'accepted') return;
+
+        // WhatsApp click → standard Contact event (FB Pixel + GA4)
+        var waLink = e.target.closest('a[href*="wa.me"], .whatsapp-float, .btn-whatsapp');
+        if (waLink) {
+            if (typeof fbq === 'function') {
+                fbq('track', 'Contact', { content_name: 'whatsapp' });
+            }
             if (typeof gtag === 'function') {
-                gtag('event', 'click', {
-                    event_category: 'social',
-                    event_label: 'whatsapp',
+                gtag('event', 'contact', {
+                    method: 'whatsapp',
+                    event_category: 'engagement',
                     transport_type: 'beacon'
                 });
             }
+        }
+
+        // Stripe link click → standard Purchase event (FB Pixel + GA4)
+        var stripeLink = e.target.closest('a[href*="buy.stripe.com"]');
+        if (stripeLink) {
+            var value = parseFloat(stripeLink.dataset.purchaseValue) || 0;
+            var item = stripeLink.dataset.purchaseItem || 'padel_camp';
             if (typeof fbq === 'function') {
-                fbq('trackCustom', 'SocialClick', { platform: 'whatsapp' });
+                fbq('track', 'Purchase', {
+                    value: value,
+                    currency: 'EUR',
+                    content_name: item
+                });
             }
-        });
+            if (typeof gtag === 'function') {
+                gtag('event', 'purchase', {
+                    value: value,
+                    currency: 'EUR',
+                    transaction_id: 'T_' + Date.now(),
+                    items: [{ item_name: item, price: value }]
+                });
+            }
+        }
     });
 
     // Instagram float button
