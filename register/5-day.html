@@ -221,7 +221,7 @@
 
     <div class="register-page">
         <div class="register-container">
-            <a href="/" class="back-link">&larr; Back to main page</a>
+            <a href="/" class="back-link" id="backLink">&larr; Back to main page</a>
 
             <div class="camp-summary">
                 <div class="camp-summary-label">Registration</div>
@@ -355,7 +355,16 @@
 
     <script src="../assets/js/main.js"></script>
     <script>
-        // Registration form submission for standalone page
+        // Smart back link: if came from our site — go back, otherwise — go to homepage
+        (function() {
+            var ref = document.referrer;
+            var link = document.getElementById('backLink');
+            if (ref && ref.indexOf('thepadelcamp.com.cy') !== -1) {
+                link.href = ref;
+                link.textContent = '\u2190 Back';
+            }
+        })();
+
         document.addEventListener('DOMContentLoaded', function() {
             const form = document.getElementById('registrationForm');
             if (form) {
