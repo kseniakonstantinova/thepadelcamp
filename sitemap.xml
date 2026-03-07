@@ -64,4 +64,44 @@
         <priority>0.3</priority>
     </url>
 
+    <!-- Register 5-Day Camp - English -->
+    <url>
+        <loc>https://thepadelcamp.com.cy/register/5-day</loc>
+        <xhtml:link rel="alternate" hreflang="en" href="https://thepadelcamp.com.cy/register/5-day"/>
+        <xhtml:link rel="alternate" hreflang="ru" href="https://thepadelcamp.com.cy/ru/register/5-day"/>
+        <lastmod>2026-03-07</lastmod>
+        <changefreq>monthly</changefreq>
+        <priority>0.9</priority>
+    </url>
+
+    <!-- Register 5-Day Camp - Russian -->
+    <url>
+        <loc>https://thepadelcamp.com.cy/ru/register/5-day</loc>
+        <xhtml:link rel="alternate" hreflang="en" href="https://thepadelcamp.com.cy/register/5-day"/>
+        <xhtml:link rel="alternate" hreflang="ru" href="https://thepadelcamp.com.cy/ru/register/5-day"/>
+        <lastmod>2026-03-07</lastmod>
+        <changefreq>monthly</changefreq>
+        <priority>0.9</priority>
+    </url>
+
+    <!-- Register 3-Day Camp - English -->
+    <url>
+        <loc>https://thepadelcamp.com.cy/register/3-day</loc>
+        <xhtml:link rel="alternate" hreflang="en" href="https://thepadelcamp.com.cy/register/3-day"/>
+        <xhtml:link rel="alternate" hreflang="ru" href="https://thepadelcamp.com.cy/ru/register/3-day"/>
+        <lastmod>2026-03-07</lastmod>
+        <changefreq>monthly</changefreq>
+        <priority>0.9</priority>
+    </url>
+
+    <!-- Register 3-Day Camp - Russian -->
+    <url>
+        <loc>https://thepadelcamp.com.cy/ru/register/3-day</loc>
+        <xhtml:link rel="alternate" hreflang="en" href="https://thepadelcamp.com.cy/register/3-day"/>
+        <xhtml:link rel="alternate" hreflang="ru" href="https://thepadelcamp.com.cy/ru/register/3-day"/>
+        <lastmod>2026-03-07</lastmod>
+        <changefreq>monthly</changefreq>
+        <priority>0.9</priority>
+    </url>
+
 </urlset>
