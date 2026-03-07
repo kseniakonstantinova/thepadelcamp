@@ -26,6 +26,19 @@
     <link rel="stylesheet" href="../../assets/css/style.css">
 
     <style>
+        /* Force header into scrolled state */
+        .header { background: rgba(255,255,255,0.95); backdrop-filter: blur(20px); }
+        .header .nav { opacity: 1; visibility: visible; }
+        .header .logo.logo-center { position: relative; left: 0; transform: translateX(0); }
+        .header .logo img { height: 50px; }
+        .header .container { height: 70px; }
+        @media (max-width: 768px) {
+            .header .container { height: 60px; }
+            .header .logo img { height: 40px; }
+            .header .logo.logo-center { left: 16px; top: 50%; transform: translateY(-50%); }
+            .header .lang-switch-mobile { left: auto; right: 70px; flex-direction: row; gap: 8px; }
+        }
+
         .register-page {
             min-height: 100vh;
             padding: 120px 0 60px;
