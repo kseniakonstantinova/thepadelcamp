@@ -726,12 +726,12 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     }
 
-    // Hero CTA buttons
+    // Hero CTA buttons — scroll to pricing section
     const heroCta = document.querySelector('.hero-cta a[href="#pricing"]');
     if (heroCta) {
         heroCta.addEventListener('click', function(e) {
             e.preventDefault();
-            openRegistrationModal('5-day');
+            document.getElementById('pricing').scrollIntoView({ behavior: 'smooth' });
         });
     }
 
