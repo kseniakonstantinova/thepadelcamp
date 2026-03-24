@@ -615,8 +615,12 @@ document.addEventListener('click', function(e) {
 // Registration form submission
 document.addEventListener('DOMContentLoaded', function() {
     const registrationForm = document.getElementById('registrationForm');
+    const registrationModal = document.getElementById('registrationModal');
 
-    if (registrationForm) {
+    // Only attach handler when the modal exists (main page) to avoid
+    // duplicate submissions on standalone registration pages which have
+    // their own inline handlers.
+    if (registrationForm && registrationModal) {
         registrationForm.addEventListener('submit', function(e) {
             e.preventDefault();
 
