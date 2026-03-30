@@ -233,9 +233,108 @@
             fill: currentColor;
         }
 
+        /* Registration form */
+        .register-form-card {
+            background: var(--white);
+            border-radius: 20px;
+            padding: 48px 32px;
+            box-shadow: 0 4px 24px rgba(0,0,0,0.06);
+            margin-bottom: 32px;
+        }
+        .register-form-card .form-section-title {
+            font-size: 14px;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            color: var(--gray-400);
+            text-align: center;
+            margin-bottom: 32px;
+            font-weight: 600;
+        }
+        .register-form-card .registration-form .form-group {
+            margin-bottom: 20px;
+        }
+        .register-form-card .registration-form .form-label {
+            display: block;
+            font-size: 14px;
+            font-weight: 600;
+            color: var(--black);
+            margin-bottom: 8px;
+        }
+        .register-form-card .registration-form .form-input,
+        .register-form-card .registration-form .form-select {
+            width: 100%;
+            padding: 12px 16px;
+            border: 1px solid var(--gray-200);
+            border-radius: 8px;
+            font-size: 15px;
+            font-family: var(--font-primary);
+            transition: border-color var(--transition);
+            background: var(--white);
+        }
+        .register-form-card .registration-form .form-input:focus,
+        .register-form-card .registration-form .form-select:focus {
+            outline: none;
+            border-color: var(--black);
+        }
+        .register-form-card .form-row {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 16px;
+        }
+        .register-form-card .goals-list {
+            display: grid;
+            gap: 8px;
+        }
+        .register-form-card .goal-option {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-size: 14px;
+            cursor: pointer;
+        }
+        .register-form-card .goal-option input[type="checkbox"] {
+            width: 18px;
+            height: 18px;
+            cursor: pointer;
+        }
+        .register-form-card .consent-option {
+            display: flex;
+            align-items: flex-start;
+            gap: 10px;
+            font-size: 13px;
+            color: var(--gray-600);
+            cursor: pointer;
+        }
+        .register-form-card .consent-option input[type="checkbox"] {
+            width: 18px;
+            height: 18px;
+            margin-top: 2px;
+            cursor: pointer;
+            flex-shrink: 0;
+        }
+        .register-form-card .consent-option a {
+            color: var(--black);
+            text-decoration: underline;
+        }
+        .register-form-card .btn-submit {
+            margin-top: 8px;
+            font-size: 16px;
+            padding: 16px;
+        }
+
+        .pricing-section.hidden {
+            display: none;
+        }
+
         @media (max-width: 600px) {
             .book-hero {
                 padding: 32px 24px;
+            }
+            .register-form-card {
+                padding: 32px 16px;
+            }
+            .register-form-card .form-row {
+                grid-template-columns: 1fr;
             }
             .pricing-section {
                 padding: 32px 16px;
@@ -302,8 +401,104 @@
                 </div>
             </div>
 
+            <!-- Registration Form -->
+            <div class="register-form-card" id="registerFormCard">
+                <div class="form-section-title">Заполните ваши данные</div>
+                <form id="registrationForm" class="registration-form">
+                    <input type="hidden" id="campType" name="campType" value="5-day">
+                    <input type="hidden" name="camp" value="5-day">
+
+                    <div class="form-group">
+                        <label class="form-label" for="fullName">Полное имя *</label>
+                        <input type="text" id="fullName" name="fullName" class="form-input" required placeholder="Введите ваше полное имя">
+                    </div>
+
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label class="form-label" for="phone">Телефон *</label>
+                            <input type="tel" id="phone" name="phone" class="form-input" required placeholder="+357 99 123 456">
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label" for="email">Email *</label>
+                            <input type="email" id="email" name="email" class="form-input" required placeholder="your@email.com">
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="form-label" for="level">Выберите ваш уровень паддла *</label>
+                        <select id="level" name="level" class="form-select" required>
+                            <option value="">Выберите вариант</option>
+                            <option value="beginner">Начинающий — Только начинаю</option>
+                            <option value="beginner-intermediate">Начинающий-Средний — Знаю основы</option>
+                            <option value="intermediate">Средний — Играю регулярно</option>
+                            <option value="intermediate-advanced">Средний-Продвинутый — Сильный игрок</option>
+                            <option value="advanced">Продвинутый — Участвую в турнирах</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="form-label">Отметьте ваши цели для этого лагеря *</label>
+                        <div class="goals-list">
+                            <label class="goal-option">
+                                <input type="checkbox" name="goals" value="Learn the basics">
+                                <span>Изучить основы</span>
+                            </label>
+                            <label class="goal-option">
+                                <input type="checkbox" name="goals" value="Improve technique">
+                                <span>Улучшить технику</span>
+                            </label>
+                            <label class="goal-option">
+                                <input type="checkbox" name="goals" value="Learn tactics">
+                                <span>Изучить тактику</span>
+                            </label>
+                            <label class="goal-option">
+                                <input type="checkbox" name="goals" value="Learn communication between partners during a match">
+                                <span>Научиться общению с партнером во время матча</span>
+                            </label>
+                            <label class="goal-option">
+                                <input type="checkbox" name="goals" value="Meet new people">
+                                <span>Познакомиться с новыми людьми</span>
+                            </label>
+                            <label class="goal-option">
+                                <input type="checkbox" name="goals" value="Enjoy the environment">
+                                <span>Насладиться атмосферой</span>
+                            </label>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="form-label" for="skills">Какие навыки вы хотите улучшить?</label>
+                        <input type="text" id="skills" name="skills" class="form-input" placeholder="Например: bandeja, volley, позиционирование...">
+                    </div>
+
+                    <div class="form-group">
+                        <label class="form-label" for="tshirt">Выберите размер футболки *</label>
+                        <select id="tshirt" name="tshirt" class="form-select" required>
+                            <option value="">Выберите вариант</option>
+                            <option value="XS">XS</option>
+                            <option value="S">S</option>
+                            <option value="M">M</option>
+                            <option value="L">L</option>
+                            <option value="XL">XL</option>
+                            <option value="XXL">XXL</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="consent-option">
+                            <input type="checkbox" name="consent" required>
+                            <span>Я согласен(на) на обработку моих персональных данных в соответствии с <a href="/privacy-policy-ru.html" target="_blank">Политикой конфиденциальности</a> *</span>
+                        </label>
+                    </div>
+
+                    <button type="submit" class="btn btn-primary btn-block btn-submit">
+                        Перейти к оплате
+                    </button>
+                </form>
+            </div>
+
             <!-- Stripe Pricing Table -->
-            <div class="pricing-section">
+            <div class="pricing-section hidden" id="pricingSection">
                 <div class="pricing-section-title">Выберите пакет</div>
                 <script async src="https://js.stripe.com/v3/pricing-table.js"></script>
                 <stripe-pricing-table pricing-table-id="prctbl_1TBar6RxMypVITymj8gbCFYf"
@@ -378,6 +573,50 @@
                 link.textContent = '\u2190 Назад';
             }
         })();
+
+        document.addEventListener('DOMContentLoaded', function() {
+            var form = document.getElementById('registrationForm');
+            if (form) {
+                form.addEventListener('submit', function(e) {
+                    e.preventDefault();
+
+                    var goals = document.querySelectorAll('input[name="goals"]:checked');
+                    if (goals.length === 0) {
+                        alert('Пожалуйста, выберите хотя бы одну цель.');
+                        return;
+                    }
+
+                    var formData = new FormData(this);
+                    var data = {
+                        type: 'camp',
+                        camp: '5-day',
+                        fullName: formData.get('fullName'),
+                        phone: formData.get('phone'),
+                        email: formData.get('email'),
+                        level: formData.get('level'),
+                        goals: Array.from(goals).map(function(g) { return g.value; }),
+                        skills: formData.get('skills'),
+                        tshirt: formData.get('tshirt'),
+                        consent: true,
+                        lang: 'ru'
+                    };
+
+                    if (typeof sendToGoogleSheets === 'function') {
+                        sendToGoogleSheets(data).catch(function(err) { console.log('Send error:', err); });
+                    }
+
+                    if (typeof trackRegistration === 'function') {
+                        trackRegistration({ type: 'camp_registration', camp: '5-day', value: 665 });
+                    }
+
+                    // Hide form, show pricing
+                    document.getElementById('registerFormCard').style.display = 'none';
+                    var pricingSection = document.getElementById('pricingSection');
+                    pricingSection.classList.remove('hidden');
+                    pricingSection.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                });
+            }
+        });
     </script>
 </body>
 </html>
