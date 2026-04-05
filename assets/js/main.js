@@ -590,7 +590,7 @@ function updateCampSelection() {
 
     if (selectedCamp && infoEl) {
         if (selectedCamp.value === '5-day') {
-            infoEl.textContent = '5-Day Intensive Camp — €800';
+            infoEl.textContent = '5-Day Intensive Camp — €665–€800';
         } else {
             infoEl.textContent = '3-Day Weekend Camp — €400';
         }
