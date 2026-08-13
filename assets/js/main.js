@@ -95,8 +95,8 @@ function initSmoothScroll() {
  * Countdown Timer
  */
 function initCountdown() {
-    // Camp start date: April 13, 2026
-    const campDate = new Date('April 13, 2026 09:00:00').getTime();
+    // Camp start date: October 5, 2026
+    const campDate = new Date('October 5, 2026 09:00:00').getTime();
 
     const daysEl = document.getElementById('days');
     const hoursEl = document.getElementById('hours');
@@ -567,10 +567,8 @@ function openRegistrationModal(campType) {
         document.body.style.overflow = 'hidden';
 
         // Pre-select camp type if specified
-        if (campType === '5-day') {
-            document.querySelector('input[name="camp"][value="5-day"]').checked = true;
-        } else if (campType === '3-day') {
-            document.querySelector('input[name="camp"][value="3-day"]').checked = true;
+        if (campType === '6-day' || campType === '4-day' || campType === '2-day') {
+            document.querySelector('input[name="camp"][value="' + campType + '"]').checked = true;
         }
         updateCampSelection();
     }
@@ -589,10 +587,12 @@ function updateCampSelection() {
     const infoEl = document.getElementById('selectedCampInfo');
 
     if (selectedCamp && infoEl) {
-        if (selectedCamp.value === '5-day') {
-            infoEl.textContent = '5-Day Intensive Camp — €665–€800';
+        if (selectedCamp.value === '6-day') {
+            infoEl.textContent = '6-Day Camp — €900';
+        } else if (selectedCamp.value === '4-day') {
+            infoEl.textContent = '4-Day Camp — €650';
         } else {
-            infoEl.textContent = '3-Day Weekend Camp — €400';
+            infoEl.textContent = '2-Day Camp — €350';
         }
     }
 }
@@ -653,15 +653,19 @@ document.addEventListener('DOMContentLoaded', function() {
             sendToGoogleSheets(data).catch(err => console.log('Send error:', err));
 
             // Track registration event
-            const priceNum = data.camp === '5-day' ? 800 : 400;
+            const priceMap = { '6-day': 900, '4-day': 650, '2-day': 350 };
+            const nameMap = {
+                '6-day': '6-Day Camp (October 5-10)',
+                '4-day': '4-Day Camp (October 5-8)',
+                '2-day': '2-Day Camp (October 9-10)'
+            };
+            const priceNum = priceMap[data.camp] || 0;
             if (typeof trackRegistration === 'function') {
                 trackRegistration({ type: 'camp_registration', camp: data.camp, value: priceNum });
             }
 
             // Create payment details
-            const campName = data.camp === '5-day' ? '5-Day Intensive Camp (April 13-17)' : '3-Day Weekend Camp (April 17-19)';
-            const qrImage = data.camp === '5-day' ? 'assets/qr/qr-payment-5day.jpeg' : 'assets/qr/qr-payment-3day.jpeg';
-            const stripeLink = data.camp === '5-day' ? 'https://buy.stripe.com/14A8wRctp9Jh4mdbhOcEw01' : 'https://buy.stripe.com/14A14pbpl6x56ul4TqcEw02';
+            const campName = nameMap[data.camp] || '';
 
             // Show payment details screen
             const modalContent = document.querySelector('.registration-modal-content');
@@ -677,34 +681,14 @@ document.addEventListener('DOMContentLoaded', function() {
                         <p class="payment-amount">Amount: <strong>€${priceNum}</strong></p>
                         <p class="payment-camp">${campName}</p>
 
-                        <div class="payment-options">
-                            <div class="payment-option">
-                                <h4>Option 1: Pay Online with Stripe</h4>
-                                <p class="payment-option-desc">Secure online payment with card</p>
-                                <a href="${stripeLink}" target="_blank" class="btn btn-primary btn-block" data-purchase-value="${priceNum}" data-purchase-item="${campName}">
-                                    💳 Pay with Stripe
-                                </a>
-                            </div>
-
-                            <div class="payment-divider">OR</div>
-
-                            <div class="payment-option">
-                                <h4>Option 2: Bank Transfer</h4>
-                                <p class="payment-option-desc">Scan QR code for payment details</p>
-                                <div class="qr-code-container">
-                                    <img src="${qrImage}" alt="Payment QR Code" class="qr-code">
-                                </div>
-                            </div>
-                        </div>
-
                         <div class="payment-note">
-                            <strong>Important:</strong> After payment, please confirm via WhatsApp
+                            <strong>Next step:</strong> We'll send you the payment link and bank details on WhatsApp to complete your booking.
                         </div>
                     </div>
 
                     <div class="payment-actions">
-                        <a href="https://wa.me/35797497756?text=${encodeURIComponent('Hi! I have completed the payment for ' + campName + '. Name: ' + data.fullName)}" target="_blank" class="btn btn-whatsapp btn-block">
-                            Confirm Payment via WhatsApp
+                        <a href="https://wa.me/35797497756?text=${encodeURIComponent('Hi! I just registered for ' + campName + '. Name: ' + data.fullName)}" target="_blank" class="btn btn-whatsapp btn-block">
+                            Continue on WhatsApp
                         </a>
                     </div>
                 </div>
@@ -719,14 +703,14 @@ document.addEventListener('DOMContentLoaded', function() {
     if (bookLimassol) {
         bookLimassol.addEventListener('click', function(e) {
             e.preventDefault();
-            openRegistrationModal('5-day');
+            openRegistrationModal('6-day');
         });
     }
 
     if (bookLarnaca) {
         bookLarnaca.addEventListener('click', function(e) {
             e.preventDefault();
-            openRegistrationModal('3-day');
+            openRegistrationModal('2-day');
         });
     }
 
