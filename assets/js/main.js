@@ -659,6 +659,11 @@ document.addEventListener('DOMContentLoaded', function() {
                 '4-day': '4-Day Camp (October 5-8)',
                 '2-day': '2-Day Camp (October 9-10)'
             };
+            const stripeMap = {
+                '6-day': 'https://book.stripe.com/14A9AV1OL4oXg4Vfy4cEw0f',
+                '4-day': 'https://book.stripe.com/14A28t651f3B5qhclScEw0g',
+                '2-day': 'https://book.stripe.com/eVq6oJalhaNlg4V5XucEw0h'
+            };
             const priceNum = priceMap[data.camp] || 0;
             if (typeof trackRegistration === 'function') {
                 trackRegistration({ type: 'camp_registration', camp: data.camp, value: priceNum });
@@ -666,6 +671,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
             // Create payment details
             const campName = nameMap[data.camp] || '';
+            const stripeLink = stripeMap[data.camp] || '';
 
             // Show payment details screen
             const modalContent = document.querySelector('.registration-modal-content');
@@ -681,14 +687,31 @@ document.addEventListener('DOMContentLoaded', function() {
                         <p class="payment-amount">Amount: <strong>€${priceNum}</strong></p>
                         <p class="payment-camp">${campName}</p>
 
+                        <div class="payment-options">
+                            <div class="payment-option">
+                                <h4>Option 1: Pay Online with Stripe</h4>
+                                <p class="payment-option-desc">Secure online payment with card</p>
+                                <a href="${stripeLink}" target="_blank" class="btn btn-primary btn-block" data-purchase-value="${priceNum}" data-purchase-item="${campName}">
+                                    💳 Pay with Stripe
+                                </a>
+                            </div>
+
+                            <div class="payment-divider">OR</div>
+
+                            <div class="payment-option">
+                                <h4>Option 2: Bank Transfer</h4>
+                                <p class="payment-option-desc">Contact us on WhatsApp for bank details</p>
+                            </div>
+                        </div>
+
                         <div class="payment-note">
-                            <strong>Next step:</strong> We'll send you the payment link and bank details on WhatsApp to complete your booking.
+                            <strong>Important:</strong> After payment, please confirm via WhatsApp
                         </div>
                     </div>
 
                     <div class="payment-actions">
-                        <a href="https://wa.me/35797497756?text=${encodeURIComponent('Hi! I just registered for ' + campName + '. Name: ' + data.fullName)}" target="_blank" class="btn btn-whatsapp btn-block">
-                            Continue on WhatsApp
+                        <a href="https://wa.me/35797497756?text=${encodeURIComponent('Hi! I have completed the payment for ' + campName + '. Name: ' + data.fullName)}" target="_blank" class="btn btn-whatsapp btn-block">
+                            Confirm Payment via WhatsApp
                         </a>
                     </div>
                 </div>

@@ -426,14 +426,31 @@
                                 <p class="payment-amount">Сумма: <strong>€900</strong></p>
                                 <p class="payment-camp">6-дневный лагерь (5-10 октября)</p>
 
+                                <div class="payment-options">
+                                    <div class="payment-option">
+                                        <h4>Вариант 1: Оплата онлайн</h4>
+                                        <p class="payment-option-desc">Безопасная оплата картой</p>
+                                        <a href="https://book.stripe.com/14A9AV1OL4oXg4Vfy4cEw0f" target="_blank" class="btn btn-primary btn-block" data-purchase-value="900" data-purchase-item="6-Day Camp">
+                                            💳 Оплатить через Stripe
+                                        </a>
+                                    </div>
+
+                                    <div class="payment-divider">ИЛИ</div>
+
+                                    <div class="payment-option">
+                                        <h4>Вариант 2: Банковский перевод</h4>
+                                        <p class="payment-option-desc">Напишите нам в WhatsApp для реквизитов</p>
+                                    </div>
+                                </div>
+
                                 <div class="payment-note">
-                                    <strong>Следующий шаг:</strong> Мы отправим вам ссылку на оплату и банковские реквизиты в WhatsApp для завершения бронирования.
+                                    <strong>Важно:</strong> После оплаты подтвердите через WhatsApp
                                 </div>
                             </div>
 
                             <div class="payment-actions">
-                                <a href="https://wa.me/35797497756?text=${encodeURIComponent('Привет! Я зарегистрировался(лась) на 6-дневный лагерь (5-10 октября). Имя: ' + data.fullName)}" target="_blank" class="btn btn-whatsapp btn-block">
-                                    Продолжить в WhatsApp
+                                <a href="https://wa.me/35797497756?text=${encodeURIComponent('Привет! Я оплатил(а) 6-дневный лагерь (5-10 октября). Имя: ' + data.fullName)}" target="_blank" class="btn btn-whatsapp btn-block">
+                                    Подтвердить оплату через WhatsApp
                                 </a>
                             </div>
                         </div>

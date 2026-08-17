@@ -426,14 +426,31 @@
                                 <p class="payment-amount">Amount: <strong>€900</strong></p>
                                 <p class="payment-camp">6-Day Camp (October 5-10)</p>
 
+                                <div class="payment-options">
+                                    <div class="payment-option">
+                                        <h4>Option 1: Pay Online with Stripe</h4>
+                                        <p class="payment-option-desc">Secure online payment with card</p>
+                                        <a href="https://book.stripe.com/14A9AV1OL4oXg4Vfy4cEw0f" target="_blank" class="btn btn-primary btn-block" data-purchase-value="900" data-purchase-item="6-Day Camp">
+                                            💳 Pay with Stripe
+                                        </a>
+                                    </div>
+
+                                    <div class="payment-divider">OR</div>
+
+                                    <div class="payment-option">
+                                        <h4>Option 2: Bank Transfer</h4>
+                                        <p class="payment-option-desc">Contact us on WhatsApp for bank details</p>
+                                    </div>
+                                </div>
+
                                 <div class="payment-note">
-                                    <strong>Next step:</strong> We'll send you the payment link and bank details on WhatsApp to complete your booking.
+                                    <strong>Important:</strong> After payment, please confirm via WhatsApp
                                 </div>
                             </div>
 
                             <div class="payment-actions">
-                                <a href="https://wa.me/35797497756?text=${encodeURIComponent('Hi! I just registered for the 6-Day Camp (October 5-10). Name: ' + data.fullName)}" target="_blank" class="btn btn-whatsapp btn-block">
-                                    Continue on WhatsApp
+                                <a href="https://wa.me/35797497756?text=${encodeURIComponent('Hi! I have completed the payment for 6-Day Camp (October 5-10). Name: ' + data.fullName)}" target="_blank" class="btn btn-whatsapp btn-block">
+                                    Confirm Payment via WhatsApp
                                 </a>
                             </div>
                         </div>
