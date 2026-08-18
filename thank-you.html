@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Payment Confirmed | The Padel Camp Cyprus</title>
+    <meta name="robots" content="noindex, nofollow">
+
+    <link rel="icon" type="image/png" href="assets/images/favicon.png">
+    <link rel="apple-touch-icon" href="assets/images/apple-touch-icon.png">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Helvetica+Neue:wght@400;500;700;900&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="assets/css/style.css">
+
+    <style>
+        .header { background: rgba(255,255,255,0.95); backdrop-filter: blur(20px); }
+        .header .nav { opacity: 1; visibility: visible; }
+        .header .logo.logo-center { position: relative; left: 0; transform: translateX(0); }
+        .header .logo img { height: 50px; }
+        .header .container { height: 70px; }
+        @media (max-width: 768px) {
+            .header .container { height: 60px; }
+            .header .logo img { height: 40px; }
+            .header .logo.logo-center { left: 16px; top: 50%; transform: translateY(-50%); }
+        }
+        .ty-page {
+            min-height: 100vh;
+            padding: 120px 0 60px;
+            background: var(--gray-100);
+            display: flex;
+            align-items: flex-start;
+            justify-content: center;
+        }
+        .ty-container {
+            max-width: 560px;
+            width: 100%;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        .ty-card {
+            background: var(--white);
+            border-radius: 16px;
+            padding: 40px 32px;
+            box-shadow: 0 4px 24px rgba(0,0,0,0.06);
+            text-align: center;
+        }
+        .back-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            color: var(--gray-500);
+            text-decoration: none;
+            font-size: 14px;
+            margin-bottom: 24px;
+        }
+        .back-link:hover { color: var(--black); }
+    </style>
+</head>
+<body>
+    <header class="header" id="header">
+        <div class="container">
+            <a href="/" class="logo logo-center"><img src="assets/images/logo.png" alt="The Padel Camp Cyprus"></a>
+            <nav class="nav" id="nav">
+                <ul class="nav-list">
+                    <li><a href="/#program">Program</a></li>
+                    <li><a href="/#coaches">Coaches</a></li>
+                    <li><a href="/#venue">Venue</a></li>
+                    <li><a href="/#services">Services</a></li>
+                    <li><a href="/#pricing">Pricing</a></li>
+                    <li><a href="/#faq">FAQ</a></li>
+                </ul>
+            </nav>
+            <div class="header-actions">
+                <button class="mobile-menu-btn" id="mobileMenuBtn" aria-label="Menu">
+                    <span></span>
+                    <span></span>
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <div class="ty-page">
+        <div class="ty-container">
+            <a href="/" class="back-link" id="backLink">&larr; <span id="backLinkText">Back to homepage</span></a>
+
+            <div class="ty-card payment-success">
+                <div class="payment-success-icon">✓</div>
+                <h2 id="tyHeading">You're in!</h2>
+                <p class="payment-success-subtitle" id="tySubtitle">Welcome to The Padel Camp Cyprus family.</p>
+
+                <div class="payment-details-box">
+                    <p class="payment-camp" id="tyItemLine">&nbsp;</p>
+                    <p id="tyBody">Get ready for an unforgettable week of padel, sun, and serious game-level upgrades. Our coaches can't wait to have you on court. We'll be in touch on WhatsApp shortly with everything you need — just relax, you've got this covered.</p>
+                </div>
+
+                <div class="payment-actions" style="margin-top: 20px;">
+                    <a id="tyWhatsapp" href="https://wa.me/35797497756" target="_blank" class="btn btn-whatsapp btn-block">
+                        <span id="tyWhatsappText">Message us on WhatsApp</span>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="assets/js/pixels.js"></script>
+    <script src="assets/js/main.js"></script>
+    <script>
+        (function () {
+            var params = new URLSearchParams(window.location.search);
+            var type = params.get('type') || 'camp';
+            var item = params.get('item') || '';
+            var value = parseFloat(params.get('value')) || 0;
+            var sessionId = params.get('session_id') || '';
+
+            var isRu = (navigator.language || '').toLowerCase().indexOf('ru') === 0;
+
+            var itemLabels = {
+                '6-day':        { en: '6-Day Camp',        ru: '6-дневный кэмп' },
+                '4-day':        { en: '4-Day Camp',        ru: '4-дневный кэмп' },
+                '2-day':        { en: '2-Day Camp',        ru: '2-дневный кэмп' },
+                'massage-75':   { en: '75-min Massage',    ru: 'Массаж 75 мин' },
+                'massage-60':   { en: '60-min Massage',    ru: 'Массаж 60 мин' },
+                'massage-30':   { en: '30-min Massage',    ru: 'Массаж 30 мин' },
+                'media-package':{ en: 'Media Package',     ru: 'Медиапакет «На память»' }
+            };
+            var label = itemLabels[item] ? (isRu ? itemLabels[item].ru : itemLabels[item].en) : (isRu ? 'Оплата' : 'Your booking');
+
+            document.title = (isRu ? 'Оплата подтверждена' : 'Payment Confirmed') + ' | The Padel Camp Cyprus';
+
+            if (isRu) {
+                document.getElementById('backLinkText').textContent = 'На главную';
+                document.getElementById('tyHeading').textContent = type === 'camp' ? '🎾 Вы с нами!' : '🎾 Готово!';
+                document.getElementById('tySubtitle').textContent = type === 'camp'
+                    ? 'Добро пожаловать в семью The Padel Camp Cyprus.'
+                    : 'Спасибо за оплату.';
+                document.getElementById('tyBody').textContent = type === 'camp'
+                    ? 'Впереди незабываемая неделя падела, солнца и серьёзного прогресса в игре. Наши тренеры уже ждут вас на корте. Мы свяжемся с вами в WhatsApp с деталями — просто расслабьтесь, всё под контролем.'
+                    : 'Мы получили вашу оплату и скоро свяжемся с вами в WhatsApp, чтобы подтвердить детали.';
+                document.getElementById('tyWhatsappText').textContent = 'Написать нам в WhatsApp';
+            }
+
+            var itemLine = document.getElementById('tyItemLine');
+            if (label && value) {
+                itemLine.innerHTML = '<strong>' + label + '</strong> — €' + value;
+            } else {
+                itemLine.style.display = 'none';
+            }
+
+            var waMsg = (isRu ? 'Привет! Я оплатил(а): ' : 'Hi! I just paid for: ') + label + (value ? ' (€' + value + ')' : '');
+            document.getElementById('tyWhatsapp').href = 'https://wa.me/35797497756?text=' + encodeURIComponent(waMsg);
+
+            // Fire the CONFIRMED purchase event exactly once per session for this booking.
+            var dedupeKey = 'ty_tracked_' + (sessionId || (type + '_' + item + '_' + value));
+            if (value > 0 && !sessionStorage.getItem(dedupeKey)) {
+                sessionStorage.setItem(dedupeKey, '1');
+                document.addEventListener('DOMContentLoaded', function () {
+                    if (typeof trackConfirmedPurchase === 'function') {
+                        trackConfirmedPurchase({ item: item || type, value: value, eventId: sessionId || undefined });
+                    }
+                });
+            }
+        })();
+    </script>
+</body>
+</html>
