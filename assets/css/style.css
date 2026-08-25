@@ -117,7 +117,7 @@ img {
 }
 
 .btn-primary {
-    background: rgba(17, 17, 17, 0.9);
+    background: rgba(75, 85, 99, 0.88);
     backdrop-filter: blur(var(--glass-blur-sm));
     -webkit-backdrop-filter: blur(var(--glass-blur-sm));
     color: var(--white);
@@ -126,7 +126,7 @@ img {
 }
 
 .btn-primary:hover {
-    background: rgba(17, 17, 17, 1);
+    background: rgba(75, 85, 99, 1);
     box-shadow: 0 8px 24px rgba(0, 0, 0, 0.3);
     transform: translateY(-2px);
 }
@@ -141,7 +141,7 @@ img {
 }
 
 .btn-ghost:hover {
-    background: rgba(17, 17, 17, 0.9);
+    background: rgba(75, 85, 99, 0.88);
     color: var(--white);
     border-color: transparent;
     transform: translateY(-2px);
