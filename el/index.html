@@ -549,8 +549,18 @@
                 <div class="service-card">
                     <h3>Ιδιωτικό Μάθημα</h3>
                     <p>1-προς-1 ή 2-προς-1 με Ισπανούς προπονητές. Εξατομικευμένη προσοχή.</p>
-                    <span class="service-price">€80 / ώρα</span>
-                    <button class="btn btn-primary btn-sm service-btn" onclick="openServiceBookingForm('Ιδιωτικό Μάθημα (ώρα)', 80)">Κράτηση & Πληρωμή</button>
+                    <div class="private-lesson-prices">
+                        <div>
+                            <span class="private-lesson-price-label">1-προς-1</span>
+                            <span class="service-price">€80</span>
+                        </div>
+                        <div>
+                            <span class="private-lesson-price-label">2-προς-1</span>
+                            <span class="service-price">€110</span>
+                        </div>
+                    </div>
+                    <button class="btn btn-primary btn-sm service-btn" onclick="openServiceBookingForm('Ιδιωτικό Μάθημα (1-προς-1)', 80)">Κράτηση 1-προς-1 — €80</button>
+                    <button class="btn btn-ghost btn-sm service-btn" style="margin-top: 8px;" onclick="openServiceBookingForm('Ιδιωτικό Μάθημα (2-προς-1)', 110)">Κράτηση 2-προς-1 — €110</button>
                 </div>
                 <div class="service-card service-card-massage" onclick="openMassageModal()">
                     <h3>Μασάζ & Αποκατάσταση</h3>

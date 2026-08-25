@@ -549,8 +549,18 @@
                 <div class="service-card">
                     <h3>Private Lesson</h3>
                     <p>1-on-1 or 2-on-1 with Spanish coaches. Personalized focus.</p>
-                    <span class="service-price">€80 / hour</span>
-                    <button class="btn btn-primary btn-sm service-btn" onclick="openServiceBookingForm('Private Lesson', 80)">Book & Pay</button>
+                    <div class="private-lesson-prices">
+                        <div>
+                            <span class="private-lesson-price-label">1-on-1</span>
+                            <span class="service-price">€80</span>
+                        </div>
+                        <div>
+                            <span class="private-lesson-price-label">2-on-1</span>
+                            <span class="service-price">€110</span>
+                        </div>
+                    </div>
+                    <button class="btn btn-primary btn-sm service-btn" onclick="openServiceBookingForm('Private Lesson (1-on-1)', 80)">Book 1-on-1 — €80</button>
+                    <button class="btn btn-ghost btn-sm service-btn" style="margin-top: 8px;" onclick="openServiceBookingForm('Private Lesson (2-on-1)', 110)">Book 2-on-1 — €110</button>
                 </div>
                 <div class="service-card service-card-massage" onclick="openMassageModal()">
                     <h3>Massage & Recovery</h3>
