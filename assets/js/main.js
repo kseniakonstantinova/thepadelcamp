@@ -6,6 +6,13 @@
 // Google Apps Script URL для отправки данных
 const GOOGLE_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbyRFc1LgrjR1okUiCvZRepdiKKhM0u_BcIfJz0pfpJhnqDvkXpHCeUUQYiEVpt18CvLOA/exec';
 
+// Current page language (en / ru / el), used to pick the right text for
+// modals that are shared between index.html, ru/index.html and el/index.html.
+function getPageLang() {
+    const lang = document.documentElement.lang;
+    return (lang === 'ru' || lang === 'el') ? lang : 'en';
+}
+
 // Функция для отправки данных в Google Sheets + Telegram
 function sendToGoogleSheets(data) {
     return fetch(GOOGLE_SCRIPT_URL, {
@@ -176,14 +183,16 @@ function openServiceBookingForm(serviceName, price) {
 
     if (modal && infoEl && serviceNameInput && priceInput) {
         // Update the displayed info
-        const isRussian = document.documentElement.lang === 'ru';
+        const lang = getPageLang();
+        const titleText = { en: 'Book Service', ru: 'Забронировать услугу', el: 'Κράτηση Υπηρεσίας' };
+        const hourText = { en: 'hour', ru: 'час', el: 'ώρα' };
 
         if (titleEl) {
-            titleEl.textContent = isRussian ? 'Забронировать услугу' : 'Book Service';
+            titleEl.textContent = titleText[lang];
         }
 
-        const priceText = serviceName.includes('hour') || serviceName.includes('час')
-            ? `€${price} / ${isRussian ? 'час' : 'hour'}`
+        const priceText = serviceName.includes('hour') || serviceName.includes('час') || serviceName.includes('ώρα')
+            ? `€${price} / ${hourText[lang]}`
             : `€${price}`;
 
         infoEl.textContent = `${serviceName} — ${priceText}`;
@@ -223,8 +232,9 @@ function openMassageBookingForm(duration, price) {
 
     if (modal && infoEl && durationInput && priceInput) {
         // Update the displayed info
-        const isRussian = document.documentElement.lang === 'ru';
-        infoEl.textContent = isRussian ? `${duration} мин — €${price}` : `${duration} min — €${price}`;
+        const lang = getPageLang();
+        const minText = { en: 'min', ru: 'мин', el: 'λεπτά' };
+        infoEl.textContent = `${duration} ${minText[lang]} — €${price}`;
 
         // Set hidden form values
         durationInput.value = duration;
@@ -526,6 +536,53 @@ document.addEventListener('click', function(e) {
 });
 
 /**
+ * Gallery Video Lightbox
+ */
+function openVideoLightbox(src) {
+    const modal = document.getElementById('videoLightbox');
+    const video = document.getElementById('videoLightboxPlayer');
+    if (!modal || !video) return;
+
+    video.src = src;
+    modal.classList.add('active');
+    document.body.style.overflow = 'hidden';
+    video.play();
+}
+
+function closeVideoLightbox() {
+    const modal = document.getElementById('videoLightbox');
+    const video = document.getElementById('videoLightboxPlayer');
+    if (!modal || !video) return;
+
+    video.pause();
+    video.removeAttribute('src');
+    video.load();
+    modal.classList.remove('active');
+    document.body.style.overflow = '';
+}
+
+document.addEventListener('click', function(e) {
+    const trigger = e.target.closest('.gallery-video');
+    if (trigger) {
+        const src = trigger.getAttribute('data-video-src');
+        if (src) openVideoLightbox(src);
+        return;
+    }
+    if (e.target.id === 'videoLightbox') closeVideoLightbox();
+});
+
+document.addEventListener('keydown', function(e) {
+    if (e.key === 'Escape') closeVideoLightbox();
+    if (e.key !== 'Enter' && e.key !== ' ') return;
+    const trigger = e.target.closest('.gallery-video');
+    if (trigger) {
+        e.preventDefault();
+        const src = trigger.getAttribute('data-video-src');
+        if (src) openVideoLightbox(src);
+    }
+});
+
+/**
  * Active Navigation Link Highlight
  */
 function initActiveNavHighlight() {
@@ -653,11 +710,12 @@ document.addEventListener('DOMContentLoaded', function() {
             sendToGoogleSheets(data).catch(err => console.log('Send error:', err));
 
             // Track registration event
+            const lang = getPageLang();
             const priceMap = { '6-day': 900, '4-day': 650, '2-day': 350 };
             const nameMap = {
-                '6-day': '6-Day Camp (October 5-10)',
-                '4-day': '4-Day Camp (October 5-8)',
-                '2-day': '2-Day Camp (October 9-10)'
+                en: { '6-day': '6-Day Camp (October 5-10)', '4-day': '4-Day Camp (October 5-8)', '2-day': '2-Day Camp (October 9-10)' },
+                ru: { '6-day': '6-дневный лагерь (5-10 октября)', '4-day': '4-дневный лагерь (5-8 октября)', '2-day': '2-дневный лагерь (9-10 октября)' },
+                el: { '6-day': '6ήμερο Camp (5-10 Οκτωβρίου)', '4-day': '4ήμερο Camp (5-8 Οκτωβρίου)', '2-day': '2ήμερο Camp (9-10 Οκτωβρίου)' }
             };
             const stripeMap = {
                 '6-day': 'https://book.stripe.com/14A9AV1OL4oXg4Vfy4cEw0f',
@@ -670,8 +728,32 @@ document.addEventListener('DOMContentLoaded', function() {
             }
 
             // Create payment details
-            const campName = nameMap[data.camp] || '';
+            const campName = nameMap[lang][data.camp] || '';
             const stripeLink = stripeMap[data.camp] || '';
+
+            const T = {
+                en: {
+                    heading: 'Registration Submitted!', thanks: 'Thank you', complete: 'Complete Your Payment',
+                    amount: 'Amount:', option1: 'Option 1: Pay Online with Stripe', secure: 'Secure online payment with card',
+                    pay: 'Pay with Stripe', or: 'OR', option2: 'Option 2: Bank Transfer', bank: 'Contact us on WhatsApp for bank details',
+                    important: 'Important:', confirm: 'After payment, please confirm via WhatsApp', whatsappBtn: 'Confirm Payment via WhatsApp',
+                    whatsappMsg: (camp, name) => `Hi! I have completed the payment for ${camp}. Name: ${name}`
+                },
+                ru: {
+                    heading: 'Регистрация отправлена!', thanks: 'Спасибо', complete: 'Завершите оплату',
+                    amount: 'Сумма:', option1: 'Вариант 1: Оплата онлайн через Stripe', secure: 'Безопасная онлайн-оплата картой',
+                    pay: 'Оплатить через Stripe', or: 'ИЛИ', option2: 'Вариант 2: Банковский перевод', bank: 'Свяжитесь с нами в WhatsApp для банковских реквизитов',
+                    important: 'Важно:', confirm: 'После оплаты подтвердите через WhatsApp', whatsappBtn: 'Подтвердить оплату через WhatsApp',
+                    whatsappMsg: (camp, name) => `Привет! Я завершил(а) оплату за ${camp}. Имя: ${name}`
+                },
+                el: {
+                    heading: 'Η Εγγραφή Στάλθηκε!', thanks: 'Ευχαριστούμε', complete: 'Ολοκληρώστε την Πληρωμή',
+                    amount: 'Ποσό:', option1: 'Επιλογή 1: Online Πληρωμή με Stripe', secure: 'Ασφαλής online πληρωμή με κάρτα',
+                    pay: 'Πληρωμή με Stripe', or: 'Ή', option2: 'Επιλογή 2: Τραπεζικό Έμβασμα', bank: 'Επικοινωνήστε μαζί μας στο WhatsApp για τραπεζικά στοιχεία',
+                    important: 'Σημαντικό:', confirm: 'Μετά την πληρωμή, επιβεβαιώστε μέσω WhatsApp', whatsappBtn: 'Επιβεβαίωση Πληρωμής μέσω WhatsApp',
+                    whatsappMsg: (camp, name) => `Γεια! Ολοκλήρωσα την πληρωμή για ${camp}. Όνομα: ${name}`
+                }
+            }[lang];
 
             // Show payment details screen
             const modalContent = document.querySelector('.registration-modal-content');
@@ -679,39 +761,39 @@ document.addEventListener('DOMContentLoaded', function() {
                 <button class="registration-modal-close" onclick="closeRegistrationModal()">&times;</button>
                 <div class="payment-success">
                     <div class="payment-success-icon">✓</div>
-                    <h2>Registration Submitted!</h2>
-                    <p class="payment-success-subtitle">Thank you, ${data.fullName}!</p>
+                    <h2>${T.heading}</h2>
+                    <p class="payment-success-subtitle">${T.thanks}, ${data.fullName}!</p>
 
                     <div class="payment-details-box">
-                        <h3>Complete Your Payment</h3>
-                        <p class="payment-amount">Amount: <strong>€${priceNum}</strong></p>
+                        <h3>${T.complete}</h3>
+                        <p class="payment-amount">${T.amount} <strong>€${priceNum}</strong></p>
                         <p class="payment-camp">${campName}</p>
 
                         <div class="payment-options">
                             <div class="payment-option">
-                                <h4>Option 1: Pay Online with Stripe</h4>
-                                <p class="payment-option-desc">Secure online payment with card</p>
+                                <h4>${T.option1}</h4>
+                                <p class="payment-option-desc">${T.secure}</p>
                                 <a href="${stripeLink}" target="_blank" class="btn btn-primary btn-block" data-purchase-value="${priceNum}" data-purchase-item="${campName}">
-                                    💳 Pay with Stripe
+                                    💳 ${T.pay}
                                 </a>
                             </div>
 
-                            <div class="payment-divider">OR</div>
+                            <div class="payment-divider">${T.or}</div>
 
                             <div class="payment-option">
-                                <h4>Option 2: Bank Transfer</h4>
-                                <p class="payment-option-desc">Contact us on WhatsApp for bank details</p>
+                                <h4>${T.option2}</h4>
+                                <p class="payment-option-desc">${T.bank}</p>
                             </div>
                         </div>
 
                         <div class="payment-note">
-                            <strong>Important:</strong> After payment, please confirm via WhatsApp
+                            <strong>${T.important}</strong> ${T.confirm}
                         </div>
                     </div>
 
                     <div class="payment-actions">
-                        <a href="https://wa.me/35797497756?text=${encodeURIComponent('Hi! I have completed the payment for ' + campName + '. Name: ' + data.fullName)}" target="_blank" class="btn btn-whatsapp btn-block">
-                            Confirm Payment via WhatsApp
+                        <a href="https://wa.me/35797497756?text=${encodeURIComponent(T.whatsappMsg(campName, data.fullName))}" target="_blank" class="btn btn-whatsapp btn-block">
+                            ${T.whatsappBtn}
                         </a>
                     </div>
                 </div>
@@ -776,11 +858,30 @@ document.addEventListener('DOMContentLoaded', function() {
             }
 
             // Determine language
-            const isRussian = document.documentElement.lang === 'ru';
+            const lang = getPageLang();
+            const hourText = { en: 'hour', ru: 'час', el: 'ώρα' };
 
-            const priceText = data.service.includes('hour') || data.service.includes('час')
-                ? `€${data.price} / ${isRussian ? 'час' : 'hour'}`
+            const priceText = data.service.includes('hour') || data.service.includes('час') || data.service.includes('ώρα')
+                ? `€${data.price} / ${hourText[lang]}`
                 : `€${data.price}`;
+
+            const T = {
+                en: {
+                    heading: 'Booking Request Submitted!', thanks: 'Thank you', next: 'What\'s Next?',
+                    contactSoon: 'We will contact you shortly to confirm your booking.', contactAt: 'We will contact you at:',
+                    note: 'Note:', noteText: 'Payment will be arranged after confirmation.', close: 'Close'
+                },
+                ru: {
+                    heading: 'Запрос отправлен!', thanks: 'Спасибо', next: 'Что дальше?',
+                    contactSoon: 'Мы свяжемся с вами в ближайшее время для подтверждения бронирования.', contactAt: 'Мы свяжемся с вами по:',
+                    note: 'Примечание:', noteText: 'Оплата будет произведена после подтверждения.', close: 'Закрыть'
+                },
+                el: {
+                    heading: 'Το Αίτημα Κράτησης Στάλθηκε!', thanks: 'Ευχαριστούμε', next: 'Τι Ακολουθεί;',
+                    contactSoon: 'Θα επικοινωνήσουμε μαζί σας σύντομα για να επιβεβαιώσουμε την κράτησή σας.', contactAt: 'Θα επικοινωνήσουμε μαζί σας στο:',
+                    note: 'Σημείωση:', noteText: 'Η πληρωμή θα κανονιστεί μετά την επιβεβαίωση.', close: 'Κλείσιμο'
+                }
+            }[lang];
 
             // Show success message
             const modalContent = document.querySelector('#serviceBookingModal .massage-booking-modal-content');
@@ -788,30 +889,26 @@ document.addEventListener('DOMContentLoaded', function() {
                 <button class="massage-modal-close" onclick="closeServiceBookingModal()">&times;</button>
                 <div class="payment-success">
                     <div class="payment-success-icon">✓</div>
-                    <h2>${isRussian ? 'Запрос отправлен!' : 'Booking Request Submitted!'}</h2>
-                    <p class="payment-success-subtitle">${isRussian ? 'Спасибо' : 'Thank you'}, ${data.name}!</p>
+                    <h2>${T.heading}</h2>
+                    <p class="payment-success-subtitle">${T.thanks}, ${data.name}!</p>
 
                     <div class="payment-details-box">
-                        <h3>${isRussian ? 'Что дальше?' : 'What\'s Next?'}</h3>
+                        <h3>${T.next}</h3>
                         <p class="payment-camp">${data.service} — ${priceText}</p>
 
                         <div class="massage-booking-success-info">
-                            <p>${isRussian
-                                ? 'Мы свяжемся с вами в ближайшее время для подтверждения бронирования.'
-                                : 'We will contact you shortly to confirm your booking.'}</p>
-                            <p><strong>${isRussian ? 'Мы свяжемся с вами по:' : 'We will contact you at:'}</strong></p>
+                            <p>${T.contactSoon}</p>
+                            <p><strong>${T.contactAt}</strong></p>
                             <p>📞 ${data.phone}<br>✉️ ${data.email}</p>
                         </div>
 
                         <div class="payment-note">
-                            ${isRussian
-                                ? '<strong>Примечание:</strong> Оплата будет произведена после подтверждения.'
-                                : '<strong>Note:</strong> Payment will be arranged after confirmation.'}
+                            <strong>${T.note}</strong> ${T.noteText}
                         </div>
                     </div>
 
                     <button onclick="closeServiceBookingModal()" class="btn btn-primary btn-block">
-                        ${isRussian ? 'Закрыть' : 'Close'}
+                        ${T.close}
                     </button>
                 </div>
             `;
@@ -848,7 +945,7 @@ document.addEventListener('DOMContentLoaded', function() {
             }
 
             // Determine language
-            const isRussian = document.documentElement.lang === 'ru';
+            const lang = getPageLang();
 
             // Select Stripe link and QR based on price
             let stripeLink, qrImage;
@@ -864,32 +961,56 @@ document.addEventListener('DOMContentLoaded', function() {
                 qrImage = 'assets/qr/massage-qr.jpeg';
             }
 
+            const T = {
+                en: {
+                    thanks: 'Thank you', massage: 'Massage', min: 'min', choose: 'Choose Payment Method',
+                    option1: 'Option 1: Pay Online', secure: 'Secure card payment', pay: 'Pay with Stripe', or: 'OR',
+                    option2: 'Option 2: Bank Transfer', scan: 'Scan QR code for details', important: 'Important:',
+                    confirm: 'After payment, please confirm via WhatsApp', whatsappBtn: 'Confirm Payment via WhatsApp',
+                    whatsappMsg: (d, p, n) => `Hi! I have paid for massage (${d} min, €${p}). Name: ${n}`
+                },
+                ru: {
+                    thanks: 'Спасибо', massage: 'Массаж', min: 'мин', choose: 'Выберите способ оплаты',
+                    option1: 'Вариант 1: Оплата онлайн', secure: 'Безопасная оплата картой', pay: 'Оплатить через Stripe', or: 'ИЛИ',
+                    option2: 'Вариант 2: Банковский перевод', scan: 'Отсканируйте QR-код', important: 'Важно:',
+                    confirm: 'После оплаты подтвердите через WhatsApp', whatsappBtn: 'Подтвердить оплату через WhatsApp',
+                    whatsappMsg: (d, p, n) => `Привет! Я оплатил(а) массаж (${d} мин, €${p}). Имя: ${n}`
+                },
+                el: {
+                    thanks: 'Ευχαριστούμε', massage: 'Μασάζ', min: 'λεπτά', choose: 'Επιλέξτε Τρόπο Πληρωμής',
+                    option1: 'Επιλογή 1: Online Πληρωμή', secure: 'Ασφαλής πληρωμή με κάρτα', pay: 'Πληρωμή με Stripe', or: 'Ή',
+                    option2: 'Επιλογή 2: Τραπεζικό Έμβασμα', scan: 'Σαρώστε τον κωδικό QR για λεπτομέρειες', important: 'Σημαντικό:',
+                    confirm: 'Μετά την πληρωμή, επιβεβαιώστε μέσω WhatsApp', whatsappBtn: 'Επιβεβαίωση Πληρωμής μέσω WhatsApp',
+                    whatsappMsg: (d, p, n) => `Γεια! Πλήρωσα για μασάζ (${d} λεπτά, €${p}). Όνομα: ${n}`
+                }
+            }[lang];
+
             // Show payment options
             const modalContent = document.querySelector('#massageBookingModal .massage-booking-modal-content');
             modalContent.innerHTML = `
                 <button class="massage-modal-close" onclick="closeMassageBookingModal()">&times;</button>
                 <div class="payment-success">
                     <div class="payment-success-icon">✓</div>
-                    <h2>${isRussian ? 'Спасибо' : 'Thank you'}, ${data.name}!</h2>
-                    <p class="payment-success-subtitle">${isRussian ? 'Массаж' : 'Massage'} ${data.duration} ${isRussian ? 'мин' : 'min'} — €${data.price}</p>
+                    <h2>${T.thanks}, ${data.name}!</h2>
+                    <p class="payment-success-subtitle">${T.massage} ${data.duration} ${T.min} — €${data.price}</p>
 
                     <div class="payment-details-box">
-                        <h3>${isRussian ? 'Выберите способ оплаты' : 'Choose Payment Method'}</h3>
+                        <h3>${T.choose}</h3>
 
                         <div class="payment-options">
                             <div class="payment-option">
-                                <h4>${isRussian ? 'Вариант 1: Оплата онлайн' : 'Option 1: Pay Online'}</h4>
-                                <p class="payment-option-desc">${isRussian ? 'Безопасная оплата картой' : 'Secure card payment'}</p>
+                                <h4>${T.option1}</h4>
+                                <p class="payment-option-desc">${T.secure}</p>
                                 <a href="${stripeLink}" target="_blank" class="btn btn-primary btn-block" data-purchase-value="${data.price}" data-purchase-item="massage_${data.duration}min">
-                                    💳 ${isRussian ? 'Оплатить через Stripe' : 'Pay with Stripe'}
+                                    💳 ${T.pay}
                                 </a>
                             </div>
 
-                            <div class="payment-divider">${isRussian ? 'ИЛИ' : 'OR'}</div>
+                            <div class="payment-divider">${T.or}</div>
 
                             <div class="payment-option">
-                                <h4>${isRussian ? 'Вариант 2: Банковский перевод' : 'Option 2: Bank Transfer'}</h4>
-                                <p class="payment-option-desc">${isRussian ? 'Отсканируйте QR-код' : 'Scan QR code for details'}</p>
+                                <h4>${T.option2}</h4>
+                                <p class="payment-option-desc">${T.scan}</p>
                                 <div class="qr-code-container">
                                     <img src="${qrImage}" alt="Payment QR Code" class="qr-code">
                                 </div>
@@ -897,13 +1018,13 @@ document.addEventListener('DOMContentLoaded', function() {
                         </div>
 
                         <div class="payment-note">
-                            <strong>${isRussian ? 'Важно:' : 'Important:'}</strong> ${isRussian ? 'После оплаты подтвердите через WhatsApp' : 'After payment, please confirm via WhatsApp'}
+                            <strong>${T.important}</strong> ${T.confirm}
                         </div>
                     </div>
 
                     <div class="payment-actions" style="margin-top: 20px;">
-                        <a href="https://wa.me/35797497756?text=${encodeURIComponent((isRussian ? 'Привет! Я оплатил(а) массаж (' + data.duration + ' мин, €' + data.price + '). Имя: ' : 'Hi! I have paid for massage (' + data.duration + ' min, €' + data.price + '). Name: ') + data.name)}" target="_blank" class="btn btn-whatsapp btn-block">
-                            ${isRussian ? 'Подтвердить оплату через WhatsApp' : 'Confirm Payment via WhatsApp'}
+                        <a href="https://wa.me/35797497756?text=${encodeURIComponent(T.whatsappMsg(data.duration, data.price, data.name))}" target="_blank" class="btn btn-whatsapp btn-block">
+                            ${T.whatsappBtn}
                         </a>
                     </div>
                 </div>
@@ -939,7 +1060,31 @@ document.addEventListener('DOMContentLoaded', function() {
             }
 
             // Determine language
-            const isRussian = document.documentElement.lang === 'ru';
+            const lang = getPageLang();
+
+            const T = {
+                en: {
+                    thanks: 'Thank you', subtitle: 'Media Package — €130', choose: 'Choose Payment Method',
+                    option1: 'Option 1: Pay Online', secure: 'Secure card payment', pay: 'Pay with Stripe', or: 'OR',
+                    option2: 'Option 2: Bank Transfer', scan: 'Scan QR code for details', important: 'Important:',
+                    confirm: 'After payment, please confirm via WhatsApp', whatsappBtn: 'Confirm Payment via WhatsApp',
+                    whatsappMsg: (n) => `Hi! I have paid for Media Package (€130). Name: ${n}`
+                },
+                ru: {
+                    thanks: 'Спасибо', subtitle: 'Медиапакет «На память» — €130', choose: 'Выберите способ оплаты',
+                    option1: 'Вариант 1: Оплата онлайн', secure: 'Безопасная оплата картой', pay: 'Оплатить через Stripe', or: 'ИЛИ',
+                    option2: 'Вариант 2: Банковский перевод', scan: 'Отсканируйте QR-код', important: 'Важно:',
+                    confirm: 'После оплаты подтвердите через WhatsApp', whatsappBtn: 'Подтвердить оплату через WhatsApp',
+                    whatsappMsg: (n) => `Привет! Я оплатил(а) медиапакет (€130). Имя: ${n}`
+                },
+                el: {
+                    thanks: 'Ευχαριστούμε', subtitle: 'Πακέτο Media — €130', choose: 'Επιλέξτε Τρόπο Πληρωμής',
+                    option1: 'Επιλογή 1: Online Πληρωμή', secure: 'Ασφαλής πληρωμή με κάρτα', pay: 'Πληρωμή με Stripe', or: 'Ή',
+                    option2: 'Επιλογή 2: Τραπεζικό Έμβασμα', scan: 'Σαρώστε τον κωδικό QR για λεπτομέρειες', important: 'Σημαντικό:',
+                    confirm: 'Μετά την πληρωμή, επιβεβαιώστε μέσω WhatsApp', whatsappBtn: 'Επιβεβαίωση Πληρωμής μέσω WhatsApp',
+                    whatsappMsg: (n) => `Γεια! Πλήρωσα για το Πακέτο Media (€130). Όνομα: ${n}`
+                }
+            }[lang];
 
             // Show payment options
             const modalContent = document.querySelector('#mediaPackageModal .massage-booking-modal-content');
@@ -947,26 +1092,26 @@ document.addEventListener('DOMContentLoaded', function() {
                 <button class="massage-modal-close" onclick="closeMediaPackageModal()">&times;</button>
                 <div class="payment-success">
                     <div class="payment-success-icon">✓</div>
-                    <h2>${isRussian ? 'Спасибо' : 'Thank you'}, ${data.name}!</h2>
-                    <p class="payment-success-subtitle">${isRussian ? 'Медиапакет «На память» — €130' : 'Media Package — €130'}</p>
+                    <h2>${T.thanks}, ${data.name}!</h2>
+                    <p class="payment-success-subtitle">${T.subtitle}</p>
 
                     <div class="payment-details-box">
-                        <h3>${isRussian ? 'Выберите способ оплаты' : 'Choose Payment Method'}</h3>
+                        <h3>${T.choose}</h3>
 
                         <div class="payment-options">
                             <div class="payment-option">
-                                <h4>${isRussian ? 'Вариант 1: Оплата онлайн' : 'Option 1: Pay Online'}</h4>
-                                <p class="payment-option-desc">${isRussian ? 'Безопасная оплата картой' : 'Secure card payment'}</p>
+                                <h4>${T.option1}</h4>
+                                <p class="payment-option-desc">${T.secure}</p>
                                 <a href="https://buy.stripe.com/9B65kF8d9bRpbOFclScEw0a" target="_blank" class="btn btn-primary btn-block" data-purchase-value="130" data-purchase-item="media_package">
-                                    💳 ${isRussian ? 'Оплатить через Stripe' : 'Pay with Stripe'}
+                                    💳 ${T.pay}
                                 </a>
                             </div>
 
-                            <div class="payment-divider">${isRussian ? 'ИЛИ' : 'OR'}</div>
+                            <div class="payment-divider">${T.or}</div>
 
                             <div class="payment-option">
-                                <h4>${isRussian ? 'Вариант 2: Банковский перевод' : 'Option 2: Bank Transfer'}</h4>
-                                <p class="payment-option-desc">${isRussian ? 'Отсканируйте QR-код' : 'Scan QR code for details'}</p>
+                                <h4>${T.option2}</h4>
+                                <p class="payment-option-desc">${T.scan}</p>
                                 <div class="qr-code-container">
                                     <img src="assets/qr/media-package-qr.jpeg" alt="Payment QR Code" class="qr-code">
                                 </div>
@@ -974,13 +1119,13 @@ document.addEventListener('DOMContentLoaded', function() {
                         </div>
 
                         <div class="payment-note">
-                            <strong>${isRussian ? 'Важно:' : 'Important:'}</strong> ${isRussian ? 'После оплаты подтвердите через WhatsApp' : 'After payment, please confirm via WhatsApp'}
+                            <strong>${T.important}</strong> ${T.confirm}
                         </div>
                     </div>
 
                     <div class="payment-actions" style="margin-top: 20px;">
-                        <a href="https://wa.me/35797497756?text=${encodeURIComponent((isRussian ? 'Привет! Я оплатил(а) медиапакет (€130). Имя: ' : 'Hi! I have paid for Media Package (€130). Name: ') + data.name)}" target="_blank" class="btn btn-whatsapp btn-block">
-                            ${isRussian ? 'Подтвердить оплату через WhatsApp' : 'Confirm Payment via WhatsApp'}
+                        <a href="https://wa.me/35797497756?text=${encodeURIComponent(T.whatsappMsg(data.name))}" target="_blank" class="btn btn-whatsapp btn-block">
+                            ${T.whatsappBtn}
                         </a>
                     </div>
                 </div>

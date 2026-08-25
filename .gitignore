@@ -1,2 +1,6 @@
 google-apps-script.js
 .DS_Store
+
+# Raw phone photo/video originals — converted .jpg/.mp4 versions are what the site actually uses
+assets/images/gallery/*.heic
+assets/videos/gallery/*.mov

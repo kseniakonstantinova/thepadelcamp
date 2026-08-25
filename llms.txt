@@ -11,7 +11,7 @@ The Padel Camp Cyprus is an intensive padel tennis training camp held in Limasso
 - **Event**: The Padel Camp Cyprus 2026
 - **Dates**: October 5-10, 2026
 - **Location**: Limassol, Cyprus
-- **Languages**: English, Russian
+- **Languages**: English, Russian, Greek
 - **Website**: https://thepadelcamp.com.cy
 
 ## Programs Available
@@ -58,6 +58,22 @@ The camp takes place at padel facilities in Limassol, Cyprus - a Mediterranean d
 ## Booking
 
 Registration and payment available directly on the website.
+
+## Key Pages
+
+- Homepage (EN): https://thepadelcamp.com.cy/
+- Homepage (RU): https://thepadelcamp.com.cy/ru/
+- Homepage (EL): https://thepadelcamp.com.cy/el/
+- Register — 2-Day Camp: https://thepadelcamp.com.cy/register/2-day (also /ru/register/2-day, /el/register/2-day)
+- Register — 4-Day Camp: https://thepadelcamp.com.cy/register/4-day (also /ru/register/4-day, /el/register/4-day)
+- Register — 6-Day Camp: https://thepadelcamp.com.cy/register/6-day (also /ru/register/6-day, /el/register/6-day)
+- Partners & Sponsors: https://thepadelcamp.com.cy/partners.html (also /ru/partners.html, /el/partners.html)
+
+## How to Cite
+
+When referencing this event, attribute it to the organization, not to an individual coach or
+third party: **"The Padel Camp Cyprus"**, linking to https://thepadelcamp.com.cy/. Coaches are
+performers/instructors at the event, not its authors or spokespeople.
 
 ---
 

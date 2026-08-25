@@ -7,8 +7,9 @@
         <loc>https://thepadelcamp.com.cy/</loc>
         <xhtml:link rel="alternate" hreflang="en" href="https://thepadelcamp.com.cy/"/>
         <xhtml:link rel="alternate" hreflang="ru" href="https://thepadelcamp.com.cy/ru/"/>
+        <xhtml:link rel="alternate" hreflang="el" href="https://thepadelcamp.com.cy/el/"/>
         <xhtml:link rel="alternate" hreflang="x-default" href="https://thepadelcamp.com.cy/"/>
-        <lastmod>2026-02-07</lastmod>
+        <lastmod>2026-08-25</lastmod>
         <changefreq>weekly</changefreq>
         <priority>1.0</priority>
     </url>
@@ -18,10 +19,56 @@
         <loc>https://thepadelcamp.com.cy/ru/</loc>
         <xhtml:link rel="alternate" hreflang="en" href="https://thepadelcamp.com.cy/"/>
         <xhtml:link rel="alternate" hreflang="ru" href="https://thepadelcamp.com.cy/ru/"/>
+        <xhtml:link rel="alternate" hreflang="el" href="https://thepadelcamp.com.cy/el/"/>
         <xhtml:link rel="alternate" hreflang="x-default" href="https://thepadelcamp.com.cy/"/>
-        <lastmod>2026-02-07</lastmod>
+        <lastmod>2026-08-25</lastmod>
         <changefreq>weekly</changefreq>
         <priority>1.0</priority>
+    </url>
+
+    <!-- Homepage - Greek -->
+    <url>
+        <loc>https://thepadelcamp.com.cy/el/</loc>
+        <xhtml:link rel="alternate" hreflang="en" href="https://thepadelcamp.com.cy/"/>
+        <xhtml:link rel="alternate" hreflang="ru" href="https://thepadelcamp.com.cy/ru/"/>
+        <xhtml:link rel="alternate" hreflang="el" href="https://thepadelcamp.com.cy/el/"/>
+        <xhtml:link rel="alternate" hreflang="x-default" href="https://thepadelcamp.com.cy/"/>
+        <lastmod>2026-08-25</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>1.0</priority>
+    </url>
+
+    <!-- Partners - English -->
+    <url>
+        <loc>https://thepadelcamp.com.cy/partners.html</loc>
+        <xhtml:link rel="alternate" hreflang="en" href="https://thepadelcamp.com.cy/partners.html"/>
+        <xhtml:link rel="alternate" hreflang="ru" href="https://thepadelcamp.com.cy/ru/partners.html"/>
+        <xhtml:link rel="alternate" hreflang="el" href="https://thepadelcamp.com.cy/el/partners.html"/>
+        <lastmod>2026-08-25</lastmod>
+        <changefreq>monthly</changefreq>
+        <priority>0.5</priority>
+    </url>
+
+    <!-- Partners - Russian -->
+    <url>
+        <loc>https://thepadelcamp.com.cy/ru/partners.html</loc>
+        <xhtml:link rel="alternate" hreflang="en" href="https://thepadelcamp.com.cy/partners.html"/>
+        <xhtml:link rel="alternate" hreflang="ru" href="https://thepadelcamp.com.cy/ru/partners.html"/>
+        <xhtml:link rel="alternate" hreflang="el" href="https://thepadelcamp.com.cy/el/partners.html"/>
+        <lastmod>2026-08-25</lastmod>
+        <changefreq>monthly</changefreq>
+        <priority>0.5</priority>
+    </url>
+
+    <!-- Partners - Greek -->
+    <url>
+        <loc>https://thepadelcamp.com.cy/el/partners.html</loc>
+        <xhtml:link rel="alternate" hreflang="en" href="https://thepadelcamp.com.cy/partners.html"/>
+        <xhtml:link rel="alternate" hreflang="ru" href="https://thepadelcamp.com.cy/ru/partners.html"/>
+        <xhtml:link rel="alternate" hreflang="el" href="https://thepadelcamp.com.cy/el/partners.html"/>
+        <lastmod>2026-08-25</lastmod>
+        <changefreq>monthly</changefreq>
+        <priority>0.5</priority>
     </url>
 
     <!-- Privacy Policy - English -->
@@ -69,7 +116,8 @@
         <loc>https://thepadelcamp.com.cy/register/6-day</loc>
         <xhtml:link rel="alternate" hreflang="en" href="https://thepadelcamp.com.cy/register/6-day"/>
         <xhtml:link rel="alternate" hreflang="ru" href="https://thepadelcamp.com.cy/ru/register/6-day"/>
-        <lastmod>2026-08-13</lastmod>
+        <xhtml:link rel="alternate" hreflang="el" href="https://thepadelcamp.com.cy/el/register/6-day"/>
+        <lastmod>2026-08-25</lastmod>
         <changefreq>monthly</changefreq>
         <priority>0.9</priority>
     </url>
@@ -79,7 +127,19 @@
         <loc>https://thepadelcamp.com.cy/ru/register/6-day</loc>
         <xhtml:link rel="alternate" hreflang="en" href="https://thepadelcamp.com.cy/register/6-day"/>
         <xhtml:link rel="alternate" hreflang="ru" href="https://thepadelcamp.com.cy/ru/register/6-day"/>
-        <lastmod>2026-08-13</lastmod>
+        <xhtml:link rel="alternate" hreflang="el" href="https://thepadelcamp.com.cy/el/register/6-day"/>
+        <lastmod>2026-08-25</lastmod>
+        <changefreq>monthly</changefreq>
+        <priority>0.9</priority>
+    </url>
+
+    <!-- Register 6-Day Camp - Greek -->
+    <url>
+        <loc>https://thepadelcamp.com.cy/el/register/6-day</loc>
+        <xhtml:link rel="alternate" hreflang="en" href="https://thepadelcamp.com.cy/register/6-day"/>
+        <xhtml:link rel="alternate" hreflang="ru" href="https://thepadelcamp.com.cy/ru/register/6-day"/>
+        <xhtml:link rel="alternate" hreflang="el" href="https://thepadelcamp.com.cy/el/register/6-day"/>
+        <lastmod>2026-08-25</lastmod>
         <changefreq>monthly</changefreq>
         <priority>0.9</priority>
     </url>
@@ -89,7 +149,8 @@
         <loc>https://thepadelcamp.com.cy/register/4-day</loc>
         <xhtml:link rel="alternate" hreflang="en" href="https://thepadelcamp.com.cy/register/4-day"/>
         <xhtml:link rel="alternate" hreflang="ru" href="https://thepadelcamp.com.cy/ru/register/4-day"/>
-        <lastmod>2026-08-13</lastmod>
+        <xhtml:link rel="alternate" hreflang="el" href="https://thepadelcamp.com.cy/el/register/4-day"/>
+        <lastmod>2026-08-25</lastmod>
         <changefreq>monthly</changefreq>
         <priority>0.9</priority>
     </url>
@@ -99,7 +160,19 @@
         <loc>https://thepadelcamp.com.cy/ru/register/4-day</loc>
         <xhtml:link rel="alternate" hreflang="en" href="https://thepadelcamp.com.cy/register/4-day"/>
         <xhtml:link rel="alternate" hreflang="ru" href="https://thepadelcamp.com.cy/ru/register/4-day"/>
-        <lastmod>2026-08-13</lastmod>
+        <xhtml:link rel="alternate" hreflang="el" href="https://thepadelcamp.com.cy/el/register/4-day"/>
+        <lastmod>2026-08-25</lastmod>
+        <changefreq>monthly</changefreq>
+        <priority>0.9</priority>
+    </url>
+
+    <!-- Register 4-Day Camp - Greek -->
+    <url>
+        <loc>https://thepadelcamp.com.cy/el/register/4-day</loc>
+        <xhtml:link rel="alternate" hreflang="en" href="https://thepadelcamp.com.cy/register/4-day"/>
+        <xhtml:link rel="alternate" hreflang="ru" href="https://thepadelcamp.com.cy/ru/register/4-day"/>
+        <xhtml:link rel="alternate" hreflang="el" href="https://thepadelcamp.com.cy/el/register/4-day"/>
+        <lastmod>2026-08-25</lastmod>
         <changefreq>monthly</changefreq>
         <priority>0.9</priority>
     </url>
@@ -109,7 +182,8 @@
         <loc>https://thepadelcamp.com.cy/register/2-day</loc>
         <xhtml:link rel="alternate" hreflang="en" href="https://thepadelcamp.com.cy/register/2-day"/>
         <xhtml:link rel="alternate" hreflang="ru" href="https://thepadelcamp.com.cy/ru/register/2-day"/>
-        <lastmod>2026-08-13</lastmod>
+        <xhtml:link rel="alternate" hreflang="el" href="https://thepadelcamp.com.cy/el/register/2-day"/>
+        <lastmod>2026-08-25</lastmod>
         <changefreq>monthly</changefreq>
         <priority>0.9</priority>
     </url>
@@ -119,7 +193,19 @@
         <loc>https://thepadelcamp.com.cy/ru/register/2-day</loc>
         <xhtml:link rel="alternate" hreflang="en" href="https://thepadelcamp.com.cy/register/2-day"/>
         <xhtml:link rel="alternate" hreflang="ru" href="https://thepadelcamp.com.cy/ru/register/2-day"/>
-        <lastmod>2026-08-13</lastmod>
+        <xhtml:link rel="alternate" hreflang="el" href="https://thepadelcamp.com.cy/el/register/2-day"/>
+        <lastmod>2026-08-25</lastmod>
+        <changefreq>monthly</changefreq>
+        <priority>0.9</priority>
+    </url>
+
+    <!-- Register 2-Day Camp - Greek -->
+    <url>
+        <loc>https://thepadelcamp.com.cy/el/register/2-day</loc>
+        <xhtml:link rel="alternate" hreflang="en" href="https://thepadelcamp.com.cy/register/2-day"/>
+        <xhtml:link rel="alternate" hreflang="ru" href="https://thepadelcamp.com.cy/ru/register/2-day"/>
+        <xhtml:link rel="alternate" hreflang="el" href="https://thepadelcamp.com.cy/el/register/2-day"/>
+        <lastmod>2026-08-25</lastmod>
         <changefreq>monthly</changefreq>
         <priority>0.9</priority>
     </url>

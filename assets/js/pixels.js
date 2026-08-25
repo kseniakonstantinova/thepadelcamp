@@ -21,7 +21,23 @@ const CONSENT_KEY = 'cookie_consent';
 function createConsentBanner() {
     if (localStorage.getItem(CONSENT_KEY)) return;
 
-    const isRu = document.documentElement.lang === 'ru';
+    const pageLang = document.documentElement.lang;
+    const lang = (pageLang === 'ru' || pageLang === 'el') ? pageLang : 'en';
+
+    const T = {
+        en: {
+            text: 'We use cookies and analytics tools to improve your experience. Learn more in our <a href="/privacy-policy.html">Privacy Policy</a>.',
+            accept: 'Accept', decline: 'Decline'
+        },
+        ru: {
+            text: 'Мы используем файлы cookie и аналитические инструменты для улучшения работы сайта. Подробнее в нашей <a href="/ru/privacy-policy.html">Политике конфиденциальности</a>.',
+            accept: 'Принять', decline: 'Отклонить'
+        },
+        el: {
+            text: 'Χρησιμοποιούμε cookies και εργαλεία ανάλυσης για να βελτιώσουμε την εμπειρία σας. Μάθετε περισσότερα στην <a href="/privacy-policy.html">Πολιτική Απορρήτου</a>.',
+            accept: 'Αποδοχή', decline: 'Απόρριψη'
+        }
+    }[lang];
 
     const banner = document.createElement('div');
     banner.id = 'cookieConsent';
@@ -29,16 +45,14 @@ function createConsentBanner() {
     banner.innerHTML = `
         <div class="cookie-consent-inner">
             <p class="cookie-consent-text">
-                ${isRu
-                    ? 'Мы используем файлы cookie и аналитические инструменты для улучшения работы сайта. Подробнее в нашей <a href="/ru/privacy-policy.html">Политике конфиденциальности</a>.'
-                    : 'We use cookies and analytics tools to improve your experience. Learn more in our <a href="/privacy-policy.html">Privacy Policy</a>.'}
+                ${T.text}
             </p>
             <div class="cookie-consent-buttons">
                 <button class="cookie-btn cookie-btn-accept" onclick="acceptCookies()">
-                    ${isRu ? 'Принять' : 'Accept'}
+                    ${T.accept}
                 </button>
                 <button class="cookie-btn cookie-btn-decline" onclick="declineCookies()">
-                    ${isRu ? 'Отклонить' : 'Decline'}
+                    ${T.decline}
                 </button>
             </div>
         </div>
@@ -204,11 +218,46 @@ function trackBooking(serviceName, value) {
     }
 
     if (typeof gtag === 'function') {
-        gtag('event', 'purchase', {
+        gtag('event', 'begin_checkout', {
             event_category: 'booking',
             event_label: serviceName,
             value: value || 0,
             currency: 'EUR'
+        });
+    }
+}
+
+/**
+ * Track a CONFIRMED purchase — call only from the post-payment thank-you
+ * page (i.e. after Stripe actually redirects back), never on link click.
+ *
+ * data.eventId (the Stripe Checkout Session ID) is passed through as Meta's
+ * eventID so this browser-side Purchase event dedupes against the matching
+ * server-side Conversions API event sent by the Apps Script webhook using
+ * the same session ID.
+ */
+function trackConfirmedPurchase(data) {
+    if (localStorage.getItem(CONSENT_KEY) !== 'accepted') return;
+
+    if (typeof fbq === 'function') {
+        var fbData = {
+            value: data.value || 0,
+            currency: 'EUR',
+            content_name: data.item || 'padel_camp'
+        };
+        if (data.eventId) {
+            fbq('track', 'Purchase', fbData, { eventID: data.eventId });
+        } else {
+            fbq('track', 'Purchase', fbData);
+        }
+    }
+
+    if (typeof gtag === 'function') {
+        gtag('event', 'purchase', {
+            value: data.value || 0,
+            currency: 'EUR',
+            transaction_id: data.eventId || ('T_' + Date.now()),
+            items: [{ item_name: data.item || 'padel_camp', price: data.value || 0 }]
         });
     }
 }
@@ -235,25 +284,16 @@ function initSocialClickTracking() {
             }
         }
 
-        // Stripe link click → standard Purchase event (FB Pixel + GA4)
-        var stripeLink = e.target.closest('a[href*="buy.stripe.com"]');
+        // Stripe link click → InitiateCheckout (FB Pixel + GA4).
+        // NOT a Purchase yet — the customer hasn't paid, just clicked toward
+        // Stripe. The real Purchase event fires from thank-you.html, after
+        // Stripe redirects back post-payment.
+        var stripeLink = e.target.closest('a[href*="buy.stripe.com"], a[href*="book.stripe.com"]');
         if (stripeLink) {
             var value = parseFloat(stripeLink.dataset.purchaseValue) || 0;
             var item = stripeLink.dataset.purchaseItem || 'padel_camp';
-            if (typeof fbq === 'function') {
-                fbq('track', 'Purchase', {
-                    value: value,
-                    currency: 'EUR',
-                    content_name: item
-                });
-            }
-            if (typeof gtag === 'function') {
-                gtag('event', 'purchase', {
-                    value: value,
-                    currency: 'EUR',
-                    transaction_id: 'T_' + Date.now(),
-                    items: [{ item_name: item, price: value }]
-                });
+            if (typeof trackPurchase === 'function') {
+                trackPurchase({ camp: item, value: value });
             }
         }
     });
