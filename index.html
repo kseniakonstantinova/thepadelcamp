@@ -857,7 +857,11 @@
                 <h2 class="section-title">GALLERY</h2>
                 <p class="section-subtitle">Real players, real training, real Padel Camp moments</p>
             </div>
-            <div class="gallery-grid">
+            <div class="gallery-grid collapsed">
+                <div class="gallery-item gallery-video" role="button" tabindex="0" data-video-src="assets/videos/gallery/video-4.mp4" aria-label="Play video: coach Barbara Sala in action">
+                    <img src="assets/images/gallery/video-4-poster.jpg" alt="Coach Barbara Sala in action during a padel match — video preview" loading="lazy">
+                    <span class="gallery-play-btn"></span>
+                </div>
                 <div class="gallery-item">
                     <img src="assets/images/gallery/photo-1.jpg" alt="Two Padel Camp Cyprus players walking off court with rackets after a match in Limassol" loading="lazy">
                 </div>
@@ -866,10 +870,6 @@
                 </div>
                 <div class="gallery-item">
                     <img src="assets/images/gallery/photo-3.jpg" alt="Doubles match in progress at The Padel K club in Limassol" loading="lazy">
-                </div>
-                <div class="gallery-item gallery-video" role="button" tabindex="0" data-video-src="assets/videos/gallery/video-4.mp4" aria-label="Play video: coach Barbara Sala in action">
-                    <img src="assets/images/gallery/video-4-poster.jpg" alt="Coach Barbara Sala in action during a padel match — video preview" loading="lazy">
-                    <span class="gallery-play-btn"></span>
                 </div>
                 <div class="gallery-item">
                     <img src="assets/images/gallery/photo-4.jpg" alt="Padel Camp Cyprus group relaxing courtside with a dog after training" loading="lazy">
@@ -919,6 +919,9 @@
                 <div class="gallery-item">
                     <img src="assets/images/gallery/photo-15.jpg" alt="Padel Camp Cyprus coaches and staff posing together after an evening session" loading="lazy">
                 </div>
+            </div>
+            <div class="gallery-toggle">
+                <button class="btn btn-ghost" id="galleryToggleBtn" onclick="toggleGallery()" data-label-more="Show More Photos & Videos" data-label-less="Show Less">Show More Photos & Videos</button>
             </div>
         </div>
     </section>

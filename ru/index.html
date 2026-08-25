@@ -857,7 +857,11 @@
                 <h2 class="section-title">ГАЛЕРЕЯ</h2>
                 <p class="section-subtitle">Реальные игроки, реальные тренировки, реальные моменты Padel Camp</p>
             </div>
-            <div class="gallery-grid">
+            <div class="gallery-grid collapsed">
+                <div class="gallery-item gallery-video" role="button" tabindex="0" data-video-src="../assets/videos/gallery/video-4.mp4" aria-label="Воспроизвести видео: тренер Барбара Сала в игре">
+                    <img src="../assets/images/gallery/video-4-poster.jpg" alt="Тренер Барбара Сала в игре на корте — превью видео" loading="lazy">
+                    <span class="gallery-play-btn"></span>
+                </div>
                 <div class="gallery-item">
                     <img src="../assets/images/gallery/photo-1.jpg" alt="Две участницы The Padel Camp Cyprus уходят с корта с ракетками после игры в Лимассоле" loading="lazy">
                 </div>
@@ -866,10 +870,6 @@
                 </div>
                 <div class="gallery-item">
                     <img src="../assets/images/gallery/photo-3.jpg" alt="Парная игра в клубе The Padel K в Лимассоле" loading="lazy">
-                </div>
-                <div class="gallery-item gallery-video" role="button" tabindex="0" data-video-src="../assets/videos/gallery/video-4.mp4" aria-label="Воспроизвести видео: тренер Барбара Сала в игре">
-                    <img src="../assets/images/gallery/video-4-poster.jpg" alt="Тренер Барбара Сала в игре на корте — превью видео" loading="lazy">
-                    <span class="gallery-play-btn"></span>
                 </div>
                 <div class="gallery-item">
                     <img src="../assets/images/gallery/photo-4.jpg" alt="Группа участников The Padel Camp Cyprus отдыхает у корта с собакой после тренировки" loading="lazy">
@@ -919,6 +919,9 @@
                 <div class="gallery-item">
                     <img src="../assets/images/gallery/photo-15.jpg" alt="Тренеры и команда The Padel Camp Cyprus вместе после вечерней сессии" loading="lazy">
                 </div>
+            </div>
+            <div class="gallery-toggle">
+                <button class="btn btn-ghost" id="galleryToggleBtn" onclick="toggleGallery()" data-label-more="Показать больше фото и видео" data-label-less="Свернуть">Показать больше фото и видео</button>
             </div>
         </div>
     </section>

@@ -561,6 +561,15 @@ function closeVideoLightbox() {
     document.body.style.overflow = '';
 }
 
+function toggleGallery() {
+    const grid = document.querySelector('.gallery-grid');
+    const btn = document.getElementById('galleryToggleBtn');
+    if (!grid || !btn) return;
+
+    const collapsed = grid.classList.toggle('collapsed');
+    btn.textContent = collapsed ? btn.dataset.labelMore : btn.dataset.labelLess;
+}
+
 document.addEventListener('click', function(e) {
     const trigger = e.target.closest('.gallery-video');
     if (trigger) {

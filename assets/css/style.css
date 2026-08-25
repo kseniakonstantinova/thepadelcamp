@@ -2508,6 +2508,15 @@ img {
     gap: 16px;
 }
 
+.gallery-grid.collapsed .gallery-item:nth-child(n+4) {
+    display: none;
+}
+
+.gallery-toggle {
+    text-align: center;
+    margin-top: 32px;
+}
+
 .gallery-item {
     position: relative;
     aspect-ratio: 4 / 3;
